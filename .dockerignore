@@ -1,0 +1,19 @@
+# Never in the image: secrets, local databases, uploads, real student data, big model files.
+.env
+*.sqlite3
+media/
+private/
+staticfiles/
+model_cache/
+*.gguf
+logs/
+*.log
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.git/
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

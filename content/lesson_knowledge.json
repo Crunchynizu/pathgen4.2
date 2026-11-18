@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "content_version": "draft-2026-11-18",
+  "status": "draft: waits for the math teacher's check, like the question bank",
+  "entries": [
+    {
+      "skill_id": "INT_NUMBER_LINE",
+      "lesson_code": "integer_foundation",
+      "section_id": "skill-int-number-line",
+      "title": "Integers on the number line",
+      "explanation": "Integers are whole numbers, their negatives, and zero. On a number line, zero is in the middle, positive integers go right and negative integers go left.",
+      "worked_example": "A point 4 units to the left of 0 is at -4."
+    },
+    {
+      "skill_id": "INT_OPPOSITE_POS4",
+      "lesson_code": "integer_foundation",
+      "section_id": "skill-int-opposite-pos4",
+      "title": "Opposites",
+      "explanation": "Opposites are the same distance from zero, on different sides. Keep the number and change its sign.",
+      "worked_example": "The opposite of 9 is -9, and the opposite of -2 is 2. Zero is its own opposite."
+    },
+    {
+      "skill_id": "INT_ABS_COMPARE",
+      "lesson_code": "integer_foundation",
+      "section_id": "skill-int-abs-compare",
+      "title": "Absolute value is a distance",
+      "explanation": "The absolute value of a number is its distance from zero, so it is never negative.",
+      "worked_example": "|-6| = 6 and |6| = 6, because both are 6 units from zero."
+    },
+    {
+      "skill_id": "INT_ORDER_NEG",
+      "lesson_code": "integer_foundation",
+      "section_id": "skill-int-order-neg",
+      "title": "Compare by position",
+      "explanation": "On a number line, numbers get greater to the right. A number farther left is less, even when its digits look bigger.",
+      "worked_example": "-8 < -3, because -8 is farther left than -3."
+    },
+    {
+      "skill_id": "INT_ADD_NEG",
+      "lesson_code": "integer_addition",
+      "section_id": "skill-int-add-neg",
+      "title": "Adding integers",
+      "explanation": "Same signs: add the distances and keep the sign. Different signs: subtract the distances and keep the sign of the number farther from zero.",
+      "worked_example": "-9 + 4: 9 - 4 = 5, and -9 is farther from zero, so -9 + 4 = -5."
+    },
+    {
+      "skill_id": "INT_SUB_NEG",
+      "lesson_code": "integer_subtraction",
+      "section_id": "skill-int-sub-neg",
+      "title": "Adding the opposite",
+      "explanation": "To subtract an integer, add its opposite.",
+      "worked_example": "3 - (-5) = 3 + 5 = 8, and 2 - 6 = 2 + (-6) = -4."
+    },
+    {
+      "skill_id": "INT_MULT_NEG",
+      "lesson_code": "integer_multiplication",
+      "section_id": "skill-int-mult-neg",
+      "title": "The sign of a product",
+      "explanation": "Multiply the distances first, then decide the sign: same signs give a positive product, different signs give a negative product.",
+      "worked_example": "(-3) x 7: 3 x 7 = 21, and the signs are different, so the product is -21."
+    },
+    {
+      "skill_id": "INT_DIV_NEG",
+      "lesson_code": "integer_division",
+      "section_id": "skill-int-div-neg",
+      "title": "The sign of a quotient",
+      "explanation": "Divide the distances first, then use the same sign rules as multiplication.",
+      "worked_example": "(-35) / (-5): 35 / 5 = 7, and the signs are the same, so the quotient is 7."
+    },
+    {
+      "skill_id": "INT_EXPR_NEG",
+      "lesson_code": "integer_expressions_applications",
+      "section_id": "skill-int-expr-neg",
+      "title": "Order of operations",
+      "explanation": "Work inside grouping symbols first, then multiply and divide from left to right, then add and subtract from left to right.",
+      "worked_example": "4 + 2 x (-3) = 4 + (-6) = -2. Multiply before you add."
+    },
+    {
+      "skill_id": "INT_CONTEXT",
+      "lesson_code": "integer_expressions_applications",
+      "section_id": "skill-int-context",
+      "title": "Signed changes",
+      "explanation": "Rise, gain and deposit are positive changes. Fall, loss and withdrawal are negative changes. Add the change to the starting value.",
+      "worked_example": "A diver at -5 m rises 3 m: -5 + 3 = -2, so the diver is 2 m below the surface."
+    }
+  ]
+}

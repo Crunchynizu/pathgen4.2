@@ -1,0 +1,17 @@
+{# Dialog 2: Create class (docs/modals.md). The page shows the next step when no teacher exists. #}
+<dialog id="dialog-create-class" class="dialog" aria-labelledby="dialog-create-class-title"{% if open_dialog == "dialog-create-class" %} data-open-on-load{% endif %}>
+  <form method="post" action="{% url 'classrooms:create_classroom' %}" data-guard novalidate>
+    {% csrf_token %}
+    <div class="dialog-head">
+      <h2 id="dialog-create-class-title">Create class</h2>
+      <button type="button" class="dialog-x" data-dialog-close aria-label="Close">×</button>
+    </div>
+    <div class="dialog-body">
+      {% include "includes/form_fields.html" with form=class_form %}
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-dialog-close>Cancel</button>
+      <button type="submit" class="btn btn-primary" data-once>Create class</button>
+    </div>
+  </form>
+</dialog>

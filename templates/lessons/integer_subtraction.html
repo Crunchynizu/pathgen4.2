@@ -1,0 +1,47 @@
+{% extends "layouts/lesson.html" %}
+{% comment %}
+Subtracting Integers: skill 6. Text adapted from PathGen 3.0 Lesson 2.1 (draft, waiting for the math
+teacher's check). Examples avoid the locked pretest/posttest items.
+{% endcomment %}
+{% block lesson_body %}
+<section class="recap card card-ink" aria-labelledby="recap-title">
+  <p class="eyebrow">2-minute recap</p>
+  <h2 id="recap-title">Subtracting integers</h2>
+  <p class="key-idea">Subtracting an integer is the same as adding its opposite: a - b = a + (-b).</p>
+  <div class="lw-box" data-reveal-group data-reveal-label="Show step" data-reveal-final="Show the answer">
+    <p class="lw-badge">Try it</p>
+    <p class="lw-title">Rewrite 5 - (-2) as an addition</p>
+    <ol class="lw-steps">
+      <li data-reveal-item>Keep the first number: 5.</li>
+      <li data-reveal-item>Change the subtraction to addition: 5 + ...</li>
+      <li data-reveal-item>Change -2 to its opposite, 2: 5 + 2.</li>
+    </ol>
+    <p class="lw-answer" data-reveal-item data-reveal-answer>5 - (-2) = 5 + 2 = 7</p>
+  </div>
+  <div class="lw-box" data-reveal-group data-reveal-label="Show step" data-reveal-final="Show the answer">
+    <p class="lw-title">Worked example</p>
+    <p>Compute -3 - 6.</p>
+    <ol class="lw-steps">
+      <li data-reveal-item>Add the opposite of 6: -3 + (-6).</li>
+      <li data-reveal-item>Same signs: add the distances, 3 + 6 = 9, and keep the negative sign.</li>
+    </ol>
+    <p class="lw-answer" data-reveal-item data-reveal-answer>-3 - 6 = -9</p>
+  </div>
+</section>
+
+<section id="skill-int-sub-neg" class="lesson-section card" aria-labelledby="skill-int-sub-neg-title">
+  <h2 id="skill-int-sub-neg-title">Subtraction</h2>
+  <p>Subtracting an integer is the same as adding its opposite. a - b = a + (-b).</p>
+  <ul>
+    <li>4 - (-3) = 4 + 3 = 7</li>
+    <li>2 - 6 = 2 + (-6) = -4</li>
+    <li>-8 - (-5) = -8 + 5 = -3</li>
+  </ul>
+  <p>On a number line, subtracting a positive number moves left, and subtracting a negative number moves right.</p>
+  <div class="lw-box lw-mistake" data-spot-mistake>
+    <p class="lw-mistake-label">Common mistake</p>
+    <p data-mistake-text>4 - (-3) = 1 is wrong. Subtracting -3 means adding 3, so 4 - (-3) = 7.</p>
+  </div>
+  <p class="muted">Subtraction builds on <a href="{% url 'curriculum:lesson' 'integer_foundation' %}#skill-int-opposite-pos4">opposites</a> and <a href="{% url 'curriculum:lesson' 'integer_addition' %}#skill-int-add-neg">addition</a>.</p>
+</section>
+{% endblock %}

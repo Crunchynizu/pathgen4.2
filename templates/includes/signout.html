@@ -1,0 +1,4 @@
+{% load icons %}<form method="post" action="{% url 'accounts:logout' %}" class="signout" data-signout>
+  {% csrf_token %}
+  <button type="submit" class="{{ signout_class|default:'btn btn-secondary btn-small' }}">{% icon "log-out" 18 %}<span>Sign out</span></button>
+</form>

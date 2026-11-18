@@ -1,0 +1,18 @@
+# The Django service on Railway (docs/tech_stack.md, "Railway production"). Built from the Dockerfile.
+# The Qwen service has its own config in deploy/llm/railway.toml.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# Each deploy migrates PostgreSQL and loads the lessons, skills and the locked test (safe to repeat).
+preDeployCommand = [
+  "python manage.py migrate --noinput",
+  "python manage.py seed_curriculum",
+  "python manage.py seed_assessments",
+]
+healthcheckPath = "/health/"
+healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5

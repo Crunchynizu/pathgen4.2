@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{# Admin and teacher pages: a sidebar from 1024px up, a menu button below it. #}
+{% block body_class %}role-{{ user.role }}{% endblock %}
+
+{% block shell %}
+<div class="shell">
+  <header class="shell-bar">
+    <a class="brand" href="{% url 'dashboards:home' %}"><img src="{% static 'images/pathgen.png' %}" alt="" width="28" height="28"> PathGen</a>
+    <details class="shell-menu" data-menu>
+      <summary class="btn btn-secondary btn-small">Menu</summary>
+      <div class="shell-menu-panel">
+        {% if user.is_app_admin %}{% include "includes/admin_sidebar.html" %}{% else %}{% include "includes/teacher_sidebar.html" %}{% endif %}
+        {% include "includes/signout.html" %}
+      </div>
+    </details>
+  </header>
+  <aside class="sidebar" aria-label="Sections">
+    <a class="brand" href="{% url 'dashboards:home' %}"><img src="{% static 'images/pathgen.png' %}" alt="" width="32" height="32"> PathGen</a>
+    <p class="sidebar-role">{{ user.get_role_display }} · {{ user }}</p>
+    {% if user.is_app_admin %}{% include "includes/admin_sidebar.html" %}{% else %}{% include "includes/teacher_sidebar.html" %}{% endif %}
+    <div class="sidebar-foot">{% include "includes/signout.html" %}</div>
+  </aside>
+  <main id="main" class="shell-main" tabindex="-1">
+    {% include "includes/messages.html" %}
+    {% block content %}{% endblock %}
+  </main>
+</div>
+{% endblock %}

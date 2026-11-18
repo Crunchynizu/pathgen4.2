@@ -1,0 +1,13 @@
+{# Dialog 11: Discard unsaved changes (docs/modals.md). app.js opens it when closing a changed form or signing out. #}
+<dialog id="dialog-discard" class="dialog" aria-labelledby="dialog-discard-title">
+  <div class="dialog-head">
+    <h2 id="dialog-discard-title">Discard your changes?</h2>
+  </div>
+  <div class="dialog-body">
+    <p>You changed this form but haven't saved it. If you leave now, those changes are lost.</p>
+  </div>
+  <div class="dialog-actions">
+    <button type="button" class="btn btn-secondary" data-discard-keep>Keep editing</button>
+    <button type="button" class="btn btn-danger" data-discard-confirm>Discard changes</button>
+  </div>
+</dialog>

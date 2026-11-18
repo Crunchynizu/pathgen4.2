@@ -1,0 +1,82 @@
+{% extends "layouts/lesson.html" %}
+{% comment %}
+Integer Foundations: skills 1-4. Text adapted from PathGen 3.0 Lessons 1.1 and 1.2 (draft, waiting
+for the math teacher's check). Examples avoid the locked pretest/posttest items.
+{% endcomment %}
+{% block lesson_body %}
+<section class="recap card card-ink" aria-labelledby="recap-title">
+  <p class="eyebrow">2-minute recap</p>
+  <h2 id="recap-title">Every integer has a place on the number line</h2>
+  <p class="key-idea">Zero is in the middle. Positive integers go right, negative integers go left, and numbers get greater as you move right.</p>
+  <figure class="lw-box" data-widget="numberline" data-mode="opposites" data-start="-5">
+    <p class="lw-badge">Try it</p>
+    <div data-widget-stage><p>-5 and 5 are opposites: each is 5 steps from 0, so |-5| = 5 and |5| = 5.</p></div>
+    <figcaption class="muted">Tap a number to see its opposite and its distance from zero.</figcaption>
+  </figure>
+  <div class="lw-box" data-reveal-group data-reveal-label="Show step" data-reveal-final="Show the answer">
+    <p class="lw-title">Worked example</p>
+    <p>Is -11 an integer? What is its opposite? What is |-11|?</p>
+    <ol class="lw-steps">
+      <li data-reveal-item>-11 has no fraction and no decimal, so it is an integer.</li>
+      <li data-reveal-item>The opposite of -11 is 11: same distance from zero, other side.</li>
+      <li data-reveal-item>|-11| = 11, because -11 is 11 units from zero.</li>
+    </ol>
+    <p class="lw-answer" data-reveal-item data-reveal-answer>Integer: yes. Opposite: 11. Absolute value: 11.</p>
+  </div>
+</section>
+
+<section id="skill-int-number-line" class="lesson-section card" aria-labelledby="skill-int-number-line-title">
+  <h2 id="skill-int-number-line-title">Number line: what is an integer?</h2>
+  <p>An integer is a whole number. It can be positive, negative, or zero. It has no fraction and no decimal part.</p>
+  <ul>
+    <li>-8, -3, 0, 5 and 12 are integers.</li>
+    <li>3/4, 0.6 and 12% are not integers.</li>
+  </ul>
+  <p>We use negative numbers every day. A temperature 3 degrees below zero is -3. A debt of 500 pesos is -500. A diver 6 meters under the sea is at -6.</p>
+  <p>On a number line, a point 4 units to the left of 0 is at -4, and a point 4 units to the right is at 4.</p>
+</section>
+
+<section id="skill-int-opposite-pos4" class="lesson-section card" aria-labelledby="skill-int-opposite-pos4-title">
+  <h2 id="skill-int-opposite-pos4-title">Opposites</h2>
+  <p>Opposites are two integers the same distance from zero, on different sides. -5 and 5 are opposites. To find the opposite, keep the number and change the sign.</p>
+  <ul>
+    <li>The opposite of 9 is -9.</li>
+    <li>The opposite of -2 is 2.</li>
+    <li>Zero is its own opposite.</li>
+  </ul>
+</section>
+
+<section id="skill-int-abs-compare" class="lesson-section card" aria-labelledby="skill-int-abs-compare-title">
+  <h2 id="skill-int-abs-compare-title">Absolute value</h2>
+  <p>Absolute value is the distance from zero. A distance is always positive or zero. We write it with two bars: |6| = 6, |-6| = 6, |0| = 0.</p>
+  <p>To compare absolute values, find each distance first: |-12| = 12 and |9| = 9, so |-12| &gt; |9|.</p>
+  <div class="lw-box lw-mistake" data-spot-mistake>
+    <p class="lw-mistake-label">Common mistake</p>
+    <p data-mistake-text>|-8| = -8 is wrong. Absolute value is a distance from zero, so it is never negative. Correct: |-8| = 8.</p>
+  </div>
+</section>
+
+<section id="skill-int-order-neg" class="lesson-section card" aria-labelledby="skill-int-order-neg-title">
+  <h2 id="skill-int-order-neg-title">Compare and order</h2>
+  <p>Values increase as you move right, so -9 &lt; -2 &lt; 0 &lt; 4. Compare by position, not by the size of the digits: -9 is less than -2 because it is farther left.</p>
+  <figure class="lw-box" data-widget="numberline" data-start="-3">
+    <p class="lw-badge">Try it</p>
+    <div data-widget-stage><p>Every number to the right of -3 on the number line is greater than -3.</p></div>
+    <figcaption class="muted">Pick a number: every number to its right is greater.</figcaption>
+  </figure>
+  <div class="lw-box" data-reveal-group data-reveal-label="Show step" data-reveal-final="Show the answer">
+    <p class="lw-title">Worked example</p>
+    <p>Order 4, -6, 0 and -1 from least to greatest.</p>
+    <ol class="lw-steps">
+      <li data-reveal-item>Place each number on the number line. -6 is farthest left and 4 is farthest right.</li>
+      <li data-reveal-item>Between them, -1 is left of 0.</li>
+      <li data-reveal-item>Read the numbers from left to right.</li>
+    </ol>
+    <p class="lw-answer" data-reveal-item data-reveal-answer>-6, -1, 0, 4</p>
+  </div>
+  <div class="lw-box lw-mistake" data-spot-mistake>
+    <p class="lw-mistake-label">Common mistake</p>
+    <p data-mistake-text>-9 &gt; -4 is wrong. The digit 9 is bigger, but -9 is farther left. Correct: -9 &lt; -4.</p>
+  </div>
+</section>
+{% endblock %}

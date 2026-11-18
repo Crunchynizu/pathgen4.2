@@ -1,0 +1,19 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{# Student pages: Journey, own profile and sign out (docs/pages.md, "Navigation"). #}
+{% block body_class %}role-{{ user.role }} gv{% endblock %}
+
+{% block header %}
+<header class="topbar">
+  <a class="brand" href="{% url 'dashboards:home' %}"><img src="{% static 'images/pathgen.png' %}" alt="" width="28" height="28"> PathGen</a>
+  <nav class="topbar-nav" aria-label="Main">
+    {% if user.is_student %}
+    <a href="{% url 'dashboards:learn' %}"{% if nav == 'journey' %} aria-current="page"{% endif %}>Journey</a>
+    {% else %}
+    <a href="{% url 'dashboards:home' %}">Dashboard</a>
+    {% endif %}
+    <a href="{% url 'accounts:profile' %}"{% if nav == 'profile' %} aria-current="page"{% endif %}>Profile</a>
+    {% include "includes/signout.html" with signout_class="btn btn-secondary btn-small" %}
+  </nav>
+</header>
+{% endblock %}

@@ -1,0 +1,12 @@
+{# The ten skills with their labels; the words carry the meaning, the color only helps. #}
+<ul class="skill-list">
+  {% for row in skills %}
+  <li class="skill skill-{{ row.tone }}">
+    <div>
+      <span class="skill-name">{{ row.skill.short_name }}</span>
+      {% if row.tone == "needs" %}<p class="skill-review"><a href="{{ row.skill.review_url }}">Review it</a>{% if row.review %} · review first: {% for p in row.review %}<a href="{{ p.review_url }}">{{ p.short_name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %}</p>{% endif %}
+    </div>
+    <span class="skill-label">{{ row.label }}{% if show_mastery and row.mastery is not None %}<br><span class="muted">mastery {{ row.mastery|floatformat:2 }}</span>{% endif %}</span>
+  </li>
+  {% endfor %}
+</ul>

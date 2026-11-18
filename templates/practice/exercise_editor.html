@@ -1,0 +1,110 @@
+{% extends "layouts/dashboard.html" %}
+{% load static %}
+{% comment %}
+docs/pages.md #5, the exercise editor: lesson, title, count, required skills, ordered pool, format and
+media fields, draft actions and publishing. Modes: "new" (pick a lesson), "edit" (a draft),
+"live" (published, no draft: read-only with publish/unpublish and "edit in a new draft").
+{% endcomment %}
+{% block title %}{% if mode == "new" %}New exercise{% else %}{{ revision.title }}{% endif %}{% endblock %}
+
+{% block content %}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="{% url 'dashboards:teacher' 'exercises' %}">Exercises</a> › <span aria-current="page">{% if mode == "new" %}New exercise{% else %}{{ revision.title }}{% endif %}</span></nav>
+
+{% if mode == "new" %}
+<header class="page-head"><p class="eyebrow">Teacher</p><h1>New exercise</h1>
+  <p class="muted">Pick the lesson it belongs to. You add the questions on the next page, and students see nothing until you publish.</p></header>
+<section class="card">
+  <form method="post" data-guard data-guard-page novalidate>
+    {% csrf_token %}
+    {% include "includes/form_fields.html" with form=new_form %}
+    <div class="actions">
+      <button type="submit" class="btn btn-primary" data-once>Create the draft</button>
+      <a class="btn btn-secondary" href="{% url 'dashboards:teacher' 'exercises' %}">Cancel</a>
+    </div>
+  </form>
+</section>
+
+{% else %}
+<header class="page-head page-head-actions">
+  <div>
+    <p class="eyebrow">{{ lesson.title }}</p>
+    <h1>{{ revision.title }}</h1>
+    <p class="muted">
+      {% if draft %}Draft (version {{ draft.number }}){% if live %} · students still get version {{ live.number }}{% endif %}{% else %}Version {{ live.number }}, published {{ live.published_at|date:"M j, Y" }}{% endif %}
+      · {% if active_assignments %}open for {% for a in active_assignments %}{{ a.classroom.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% elif exercise.status == "unpublished" %}unpublished{% else %}not published yet{% endif %}
+    </p>
+  </div>
+  <div class="actions">
+    {% if active_assignments %}<button type="button" class="btn btn-secondary" data-dialog-open="dialog-unpublish">Unpublish…</button>{% endif %}
+    {% if can_delete %}<button type="button" class="btn btn-danger-quiet" data-dialog-open="dialog-delete">Delete draft…</button>{% endif %}
+  </div>
+</header>
+
+{% if problems %}
+<section class="card notice-card" id="problems" aria-labelledby="problems-title">
+  <h2 id="problems-title">Before you can publish</h2>
+  <ul>{% for problem in problems %}<li>{{ problem }}</li>{% endfor %}</ul>
+</section>
+{% endif %}
+
+{% if mode == "live" %}
+<section class="card" aria-labelledby="live-title">
+  <h2 id="live-title">This version is published</h2>
+  <p>Published versions are frozen, so each student's saved results match what they saw. To change questions, hints or settings, make a new draft; students keep this version until you publish the draft.</p>
+  <div class="actions">
+    <form method="post" action="{% url 'practice:start_draft' exercise.id %}">{% csrf_token %}<button type="submit" class="btn btn-primary" data-once>Edit in a new draft</button></form>
+    {% if live %}<button type="button" class="btn btn-secondary" data-dialog-open="dialog-publish">{% if active_assignments %}Publish to more classes…{% else %}Publish again…{% endif %}</button>{% endif %}
+  </div>
+  <dl class="facts">
+    <div><dt>Questions per session</dt><dd>{{ revision.target_count }}</dd></div>
+    <div><dt>Required skills</dt><dd>{% for skill in skills %}{{ skill.short_name }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd></div>
+    <div><dt>Pool</dt><dd>{{ questions|length }} questions</dd></div>
+  </dl>
+</section>
+<section aria-labelledby="pool-title">
+  <h2 id="pool-title">Question pool, in your order</h2>
+  {% include "practice/_pool.html" %}
+</section>
+
+{% else %}
+<form method="post" enctype="multipart/form-data" class="editor stack" data-guard data-guard-page data-editor novalidate>
+  {% csrf_token %}
+  <section class="card" aria-labelledby="settings-title">
+    <h2 id="settings-title">Settings</h2>
+    {% include "includes/form_fields.html" with form=revision_form only %}
+    {% if single_skill %}<p class="field-help">This lesson teaches one skill, so every question uses it.</p>{% endif %}
+  </section>
+
+  <section aria-labelledby="questions-title" class="stack">
+    <div class="row-between">
+      <h2 id="questions-title">Question pool <span class="count" data-question-count>{{ formset.initial_form_count }}</span></h2>
+      <p class="muted">The order here is your pool order: the first question goes to students with no practice yet, and ties go to the earlier one.</p>
+    </div>
+    {{ formset.management_form }}
+    {% if formset.non_form_errors %}<div class="form-errors" role="alert">{% for error in formset.non_form_errors %}<p>{{ error }}</p>{% endfor %}</div>{% endif %}
+    <ol class="q-edit-list" data-question-list>
+      {% for form in formset %}
+      {% include "practice/_question_form.html" with form=form number=forloop.counter %}
+      {% endfor %}
+    </ol>
+    <template data-question-template>
+      {% include "practice/_question_form.html" with form=formset.empty_form number="new" %}
+    </template>
+    <button type="button" class="btn btn-secondary" data-add-question hidden>+ Add another question</button>
+  </section>
+
+  <div class="editor-bar">
+    <button type="submit" name="action" value="save" class="btn btn-secondary" data-once>Save draft</button>
+    <button type="submit" name="action" value="publish" class="btn btn-primary" data-once>Save and publish…</button>
+    <a class="btn btn-quiet" href="{% url 'dashboards:teacher' 'exercises' %}">Back to exercises</a>
+  </div>
+</form>
+{% endif %}
+
+{% if publish_target and not problems %}{% include "includes/dialogs/publish_exercise.html" %}{% endif %}
+{% if active_assignments %}{% include "includes/dialogs/unpublish_exercise.html" %}{% endif %}
+{% if can_delete %}{% include "includes/dialogs/delete_exercise.html" %}{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}<script src="{% static 'js/editor.js' %}" defer></script>{% endblock %}

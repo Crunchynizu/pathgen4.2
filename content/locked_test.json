@@ -1,0 +1,429 @@
+{
+ "title": "Integers pretest and posttest (locked)",
+ "note": "The approved 30-item test, used unchanged for both the pretest and the posttest. Items are not edited in the app. Skill tags map 3.0's S1-S7 codes to the 10 skills: S2 splits into addition or subtraction by operation, S1 into number line or absolute value by content. No item measures INT_OPPOSITE_POS4.",
+ "source_file": "pathgen3.0app/content_source/pretest_posttest.json",
+ "source_file_sha256": "90550295efe5bdfa0cfc5724b9b51dfa647f45fe6d90e3f0648b7108a5bfdadb",
+ "source_pdf_sha256": "f0233e1b676a8d00083b7931eb4363c989572fad17d9094f5fe28737db5f88ad",
+ "items": [
+  {
+   "position": 1,
+   "source_code": "PP-01",
+   "source_skill": "S1",
+   "skill": "INT_NUMBER_LINE",
+   "prompt": "Which of the following is an integer?",
+   "choices": [
+    "5",
+    "1/2",
+    "0.5",
+    "11.5%"
+   ],
+   "correct_index": 0
+  },
+  {
+   "position": 2,
+   "source_code": "PP-02",
+   "source_skill": "S1",
+   "skill": "INT_ABS_COMPARE",
+   "prompt": "The opposite of 9 is -9, and the absolute value of |-5| is __________.",
+   "choices": [
+    "-5",
+    "5",
+    "0.5",
+    "1/5"
+   ],
+   "correct_index": 1
+  },
+  {
+   "position": 3,
+   "source_code": "PP-03",
+   "source_skill": "S2",
+   "skill": "INT_ADD_NEG",
+   "prompt": "Find the sum of (-28) and (-23).",
+   "choices": [
+    "51",
+    "-51",
+    "5",
+    "-5"
+   ],
+   "correct_index": 1
+  },
+  {
+   "position": 4,
+   "source_code": "PP-04",
+   "source_skill": "S2",
+   "skill": "INT_SUB_NEG",
+   "prompt": "Find the difference: (-62) - (-135).",
+   "choices": [
+    "-73",
+    "73",
+    "197",
+    "-197"
+   ],
+   "correct_index": 1
+  },
+  {
+   "position": 5,
+   "source_code": "PP-05",
+   "source_skill": "S3",
+   "skill": "INT_MULT_NEG",
+   "prompt": "What is the product of (-20) and (15)?",
+   "choices": [
+    "300",
+    "-300",
+    "-5",
+    "5"
+   ],
+   "correct_index": 1
+  },
+  {
+   "position": 6,
+   "source_code": "PP-06",
+   "source_skill": "S7",
+   "skill": "INT_DIV_NEG",
+   "prompt": "What is the quotient when you divide 125 by (-5)?",
+   "choices": [
+    "-15",
+    "15",
+    "25",
+    "-25"
+   ],
+   "correct_index": 3
+  },
+  {
+   "position": 7,
+   "source_code": "PP-07",
+   "source_skill": "S4",
+   "skill": "INT_EXPR_NEG",
+   "prompt": "Simplify -48 x (4) / (-16) + (-26)",
+   "choices": [
+    "14",
+    "-14",
+    "1",
+    "-1"
+   ],
+   "correct_index": 1
+  },
+  {
+   "position": 8,
+   "source_code": "PP-08",
+   "source_skill": "S4",
+   "skill": "INT_EXPR_NEG",
+   "prompt": "What is 7 - 15 + 3 x 8?",
+   "choices": [
+    "16",
+    "17",
+    "-40",
+    "60"
+   ],
+   "correct_index": 0
+  },
+  {
+   "position": 9,
+   "source_code": "PP-09",
+   "source_skill": "S4",
+   "skill": "INT_EXPR_NEG",
+   "prompt": "Simplify 2 + 5(10) - 25",
+   "choices": [
+    "27",
+    "45",
+    "-27",
+    "-45"
+   ],
+   "correct_index": 0
+  },
+  {
+   "position": 10,
+   "source_code": "PP-10",
+   "source_skill": "S4",
+   "skill": "INT_EXPR_NEG",
+   "prompt": "What is 2{5(9 - 5) + 3[8]}?",
+   "choices": [
+    "64",
+    "368",
+    "88",
+    "184"
+   ],
+   "correct_index": 2
+  },
+  {
+   "position": 11,
+   "source_code": "PP-11",
+   "source_skill": "S4",
+   "skill": "INT_EXPR_NEG",
+   "prompt": "What is (4) x (-5) + (6) x (3)?",
+   "choices": [
+    "38",
+    "2",
+    "-2",
+    "-42"
+   ],
+   "correct_index": 2
+  },
+  {
+   "position": 12,
+   "source_code": "PP-12",
+   "source_skill": "S4",
+   "skill": "INT_EXPR_NEG",
+   "prompt": "Which expression is the least?",
+   "choices": [
+    "(-5) + (-7)",
+    "(+5) + (+7)",
+    "(+5) - (+7)",
+    "(+5) - (-7)"
+   ],
+   "correct_index": 0
+  },
+  {
+   "position": 13,
+   "source_code": "PP-13",
+   "source_skill": "S1",
+   "skill": "INT_NUMBER_LINE",
+   "prompt": "Which of the following does NOT represent -4?",
+   "choices": [
+    "-1 + -1 + -1 + -1",
+    "-2 + -2",
+    "Four negative counters",
+    "Four positive counters"
+   ],
+   "correct_index": 3
+  },
+  {
+   "position": 14,
+   "source_code": "PP-14",
+   "source_skill": "S4",
+   "skill": "INT_EXPR_NEG",
+   "prompt": "Solve (-6) x (-2) + 24 / 4",
+   "choices": [
+    "-6",
+    "3",
+    "9",
+    "18"
+   ],
+   "correct_index": 3
+  },
+  {
+   "position": 15,
+   "source_code": "PP-15",
+   "source_skill": "S5",
+   "skill": "INT_ORDER_NEG",
+   "prompt": "Which of the following statements is correct about -3 and -7?",
+   "choices": [
+    "-3 < -7",
+    "-3 > -7",
+    "3 = -7",
+    "-3 = -(-7) - 3"
+   ],
+   "correct_index": 1
+  },
+  {
+   "position": 16,
+   "source_code": "PP-16",
+   "source_skill": "S4",
+   "skill": "INT_EXPR_NEG",
+   "prompt": "Apply order of operations to solve: -3 x (-4) + (-18) / 6 - (-5)",
+   "choices": [
+    "4",
+    "-11/6",
+    "14",
+    "10"
+   ],
+   "correct_index": 2
+  },
+  {
+   "position": 17,
+   "source_code": "PP-17",
+   "source_skill": "S7",
+   "skill": "INT_DIV_NEG",
+   "prompt": "Perform the operation: (-4) x (-4) / (-4) =",
+   "choices": [
+    "4",
+    "-12",
+    "-4",
+    "-1"
+   ],
+   "correct_index": 2
+  },
+  {
+   "position": 18,
+   "source_code": "PP-18",
+   "source_skill": "S6",
+   "skill": "INT_CONTEXT",
+   "prompt": "If the temperature at 7:00 am was -7 degrees C and the temperature rose 8 degrees C during the morning, what was the temperature by noon?",
+   "choices": [
+    "-15 degrees C",
+    "-1 degree C",
+    "15 degrees C",
+    "1 degree C"
+   ],
+   "correct_index": 3
+  },
+  {
+   "position": 19,
+   "source_code": "PP-19",
+   "source_skill": "S5",
+   "skill": "INT_ORDER_NEG",
+   "prompt": "Which of the following integers are ordered from GREATEST to LEAST?",
+   "choices": [
+    "-1, -4, 0, 4, 7",
+    "-5, -2, 0, 4, 7",
+    "7, 4, 0, -2, -5",
+    "7, 4, 0, -5, -4"
+   ],
+   "correct_index": 2
+  },
+  {
+   "position": 20,
+   "source_code": "PP-20",
+   "source_skill": "S4",
+   "skill": "INT_EXPR_NEG",
+   "prompt": "Which correctly answers [(-2) x (-4)] + [(-12) / (+3)]?",
+   "choices": [
+    "4",
+    "12",
+    "-12",
+    "0"
+   ],
+   "correct_index": 0
+  },
+  {
+   "position": 21,
+   "source_code": "PP-21",
+   "source_skill": "S4",
+   "skill": "INT_EXPR_NEG",
+   "prompt": "Solve (-4) x (-3) + 18 / 3",
+   "choices": [
+    "-6",
+    "3",
+    "9",
+    "18"
+   ],
+   "correct_index": 3
+  },
+  {
+   "position": 22,
+   "source_code": "PP-22",
+   "source_skill": "S3",
+   "skill": "INT_MULT_NEG",
+   "prompt": "Evaluate (-2) x 9 x (-5).",
+   "choices": [
+    "90",
+    "10",
+    "180",
+    "45"
+   ],
+   "correct_index": 0
+  },
+  {
+   "position": 23,
+   "source_code": "PP-23",
+   "source_skill": "S5",
+   "skill": "INT_ORDER_NEG",
+   "prompt": "Order the integers 3, -7, 6, and 0 from least to greatest.",
+   "choices": [
+    "6, 3, 0, -7",
+    "-7, 0, 3, 6",
+    "3, -7, 6, 0",
+    "-7, 0, 6, 3"
+   ],
+   "correct_index": 1
+  },
+  {
+   "position": 24,
+   "source_code": "PP-24",
+   "source_skill": "S3",
+   "skill": "INT_MULT_NEG",
+   "prompt": "Find the product: -5 x (-6).",
+   "choices": [
+    "-11",
+    "30",
+    "1",
+    "-30"
+   ],
+   "correct_index": 1
+  },
+  {
+   "position": 25,
+   "source_code": "PP-25",
+   "source_skill": "S7",
+   "skill": "INT_DIV_NEG",
+   "prompt": "Find the quotient: 66 / 11.",
+   "choices": [
+    "77",
+    "6",
+    "-6",
+    "7"
+   ],
+   "correct_index": 1
+  },
+  {
+   "position": 26,
+   "source_code": "PP-26",
+   "source_skill": "S5",
+   "skill": "INT_ORDER_NEG",
+   "prompt": "Write the integers -1, -7, 6, -6, 8, and 0 in order from least to greatest.",
+   "choices": [
+    "-7, 6, -1, 0, -6, 8",
+    "-1, -7, 6, -6, 8, 0",
+    "-7, -6, -1, 0, 6, 8",
+    "8, 6, 0, -1, -6, -7"
+   ],
+   "correct_index": 2
+  },
+  {
+   "position": 27,
+   "source_code": "PP-27",
+   "source_skill": "S2",
+   "skill": "INT_ADD_NEG",
+   "prompt": "Add: -34 + (-35)",
+   "choices": [
+    "69",
+    "-69",
+    "1",
+    "-1"
+   ],
+   "correct_index": 1
+  },
+  {
+   "position": 28,
+   "source_code": "PP-28",
+   "source_skill": "S2",
+   "skill": "INT_SUB_NEG",
+   "prompt": "Subtract: -26 from -25",
+   "choices": [
+    "1",
+    "-1",
+    "51",
+    "-51"
+   ],
+   "correct_index": 0
+  },
+  {
+   "position": 29,
+   "source_code": "PP-29",
+   "source_skill": "S3",
+   "skill": "INT_MULT_NEG",
+   "prompt": "Multiply: 4 x (-6)",
+   "choices": [
+    "2",
+    "-24",
+    "-2",
+    "24"
+   ],
+   "correct_index": 1
+  },
+  {
+   "position": 30,
+   "source_code": "PP-30",
+   "source_skill": "S7",
+   "skill": "INT_DIV_NEG",
+   "prompt": "Find the quotient -102 / (-3)",
+   "choices": [
+    "-99",
+    "-105",
+    "-34",
+    "34"
+   ],
+   "correct_index": 3
+  }
+ ]
+}

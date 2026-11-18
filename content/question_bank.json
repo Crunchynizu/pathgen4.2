@@ -1,0 +1,4632 @@
+{
+ "bank_version": "PG42-BANK-2026-11-16-draft1",
+ "status": "draft: every question waits for a math teacher's check",
+ "built_from": "PathGen 3.0 content_source/lessons/*.json (105 questions) plus new 4.2 questions",
+ "notes": [
+  "Skills: 3.0's S1-S7 split into the 10 skills of the 4.2 spec.",
+  "Difficulty: Easy/Medium/Hard drives the easier/harder rule; the number the model uses is the struggle rate of the closest Junyi template (model_artifacts/template_difficulty.json).",
+  "Junyi templates for order of operations (T010-T012 = Junyi problem types 0, 1, 2) are matched by difficulty order, because Junyi doesn't describe the types. The model groupmate should confirm them.",
+  "All 18 figure questions are text only, because 3.0's figures are blank placeholders."
+ ],
+ "exercises": [
+  {
+   "lesson": "integer_foundation",
+   "title": "Integer Foundations practice",
+   "target_count": 5,
+   "required_skills": [
+    "INT_NUMBER_LINE",
+    "INT_OPPOSITE_POS4",
+    "INT_ABS_COMPARE",
+    "INT_ORDER_NEG"
+   ],
+   "questions": [
+    {
+     "item_key": "L1-R-S1-01",
+     "source_code": "L1-R-S1-01",
+     "format": "text",
+     "prompt": "Which value is an integer?",
+     "choices": [
+      {
+       "text": "-8",
+       "correct": true
+      },
+      {
+       "text": "3/4",
+       "correct": false
+      },
+      {
+       "text": "0.6",
+       "correct": false
+      },
+      {
+       "text": "12%",
+       "correct": false
+      }
+     ],
+     "skill": "INT_NUMBER_LINE",
+     "difficulty": "easy",
+     "junyi_template": "T003",
+     "hint": "Integers are whole numbers, their negatives, and zero. Look for the value with no fraction, decimal or percent.",
+     "hint_source": "drafted",
+     "explanation": "-8 has no fractional part.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-A-S1-01",
+     "source_code": "L1-A-S1-01",
+     "format": "text",
+     "prompt": "Which value belongs to the integers?",
+     "choices": [
+      {
+       "text": "-15",
+       "correct": true
+      },
+      {
+       "text": "2.5",
+       "correct": false
+      },
+      {
+       "text": "1/3",
+       "correct": false
+      },
+      {
+       "text": "7.1%",
+       "correct": false
+      }
+     ],
+     "skill": "INT_NUMBER_LINE",
+     "difficulty": "easy",
+     "junyi_template": "T003",
+     "hint": "Integers have no fraction or decimal part. Negative whole numbers count too.",
+     "hint_source": "drafted",
+     "explanation": "-15 is a whole number.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-F-S1-01",
+     "source_code": "L1-F-S1-01",
+     "format": "text",
+     "prompt": "Zero belongs to which set?",
+     "choices": [
+      {
+       "text": "Integers",
+       "correct": true
+      },
+      {
+       "text": "Only fractions",
+       "correct": false
+      },
+      {
+       "text": "Only decimals",
+       "correct": false
+      },
+      {
+       "text": "Only percentages",
+       "correct": false
+      }
+     ],
+     "skill": "INT_NUMBER_LINE",
+     "difficulty": "easy",
+     "junyi_template": "T003",
+     "hint": "Integers include negatives, zero, and positive whole numbers.",
+     "hint_source": "3.0",
+     "explanation": "Zero is an integer.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "PG42-NL-01",
+     "source_code": "",
+     "format": "text",
+     "prompt": "On a number line, point P is 6 units to the left of 0. Which integer is at P?",
+     "choices": [
+      {
+       "text": "6",
+       "correct": false
+      },
+      {
+       "text": "-6",
+       "correct": true
+      },
+      {
+       "text": "0",
+       "correct": false
+      },
+      {
+       "text": "-5",
+       "correct": false
+      }
+     ],
+     "skill": "INT_NUMBER_LINE",
+     "difficulty": "easy",
+     "junyi_template": "T003",
+     "hint": "Left of zero means negative. Count 6 units from zero.",
+     "hint_source": "drafted",
+     "explanation": "6 units left of 0 is -6.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "L1-R-S1-04",
+     "source_code": "L1-R-S1-04",
+     "format": "text",
+     "prompt": "Which list contains only integers?",
+     "choices": [
+      {
+       "text": "-3, 0, 7",
+       "correct": true
+      },
+      {
+       "text": "-3, 0.5, 7",
+       "correct": false
+      },
+      {
+       "text": "1/2, 0, 7",
+       "correct": false
+      },
+      {
+       "text": "-3, 0, 7.5",
+       "correct": false
+      }
+     ],
+     "skill": "INT_NUMBER_LINE",
+     "difficulty": "medium",
+     "junyi_template": "T003",
+     "hint": "Check every number in each list. One fraction or decimal makes the whole list wrong.",
+     "hint_source": "drafted",
+     "explanation": "-3, 0 and 7 have no fractional or decimal part.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-A-S1-04",
+     "source_code": "L1-A-S1-04",
+     "format": "text",
+     "prompt": "A debt of 250 pesos is written as which integer?",
+     "choices": [
+      {
+       "text": "-250",
+       "correct": true
+      },
+      {
+       "text": "250",
+       "correct": false
+      },
+      {
+       "text": "0",
+       "correct": false
+      },
+      {
+       "text": "-25",
+       "correct": false
+      }
+     ],
+     "skill": "INT_NUMBER_LINE",
+     "difficulty": "medium",
+     "junyi_template": "T003",
+     "hint": "A debt is money you owe, so it is less than zero. Use a negative sign.",
+     "hint_source": "drafted",
+     "explanation": "A debt is below zero, so it is negative: -250.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "PG42-NL-02",
+     "source_code": "",
+     "format": "text",
+     "prompt": "On a number line, point Q is 2 units to the right of -5. Which integer is at Q?",
+     "choices": [
+      {
+       "text": "-7",
+       "correct": false
+      },
+      {
+       "text": "-3",
+       "correct": true
+      },
+      {
+       "text": "3",
+       "correct": false
+      },
+      {
+       "text": "7",
+       "correct": false
+      }
+     ],
+     "skill": "INT_NUMBER_LINE",
+     "difficulty": "medium",
+     "junyi_template": "T003",
+     "hint": "Start at -5 and move 2 units to the right, toward zero.",
+     "hint_source": "drafted",
+     "explanation": "Moving 2 units right from -5 lands on -3.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "PG42-NL-03",
+     "source_code": "",
+     "format": "text",
+     "prompt": "On a number line, point R is halfway between -4 and 2. Which integer is at R?",
+     "choices": [
+      {
+       "text": "-1",
+       "correct": true
+      },
+      {
+       "text": "-2",
+       "correct": false
+      },
+      {
+       "text": "1",
+       "correct": false
+      },
+      {
+       "text": "-3",
+       "correct": false
+      }
+     ],
+     "skill": "INT_NUMBER_LINE",
+     "difficulty": "hard",
+     "junyi_template": "T003",
+     "hint": "From -4 to 2 is 6 units. Move half of that distance from -4.",
+     "hint_source": "drafted",
+     "explanation": "Half of 6 units is 3 units, and 3 units right of -4 is -1.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "L1-R-S1-02",
+     "source_code": "L1-R-S1-02",
+     "format": "text",
+     "prompt": "What is the opposite of -12?",
+     "choices": [
+      {
+       "text": "-12",
+       "correct": false
+      },
+      {
+       "text": "0",
+       "correct": false
+      },
+      {
+       "text": "12",
+       "correct": true
+      },
+      {
+       "text": "1/12",
+       "correct": false
+      }
+     ],
+     "skill": "INT_OPPOSITE_POS4",
+     "difficulty": "easy",
+     "junyi_template": "T001",
+     "hint": "The opposite is the same distance from zero, on the other side. Keep the 12 and change the sign.",
+     "hint_source": "drafted",
+     "explanation": "Same distance from zero, different sign.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-A-S1-02",
+     "source_code": "L1-A-S1-02",
+     "format": "text",
+     "prompt": "A point on the number line is at -4. Which value is its opposite?",
+     "choices": [
+      {
+       "text": "-4",
+       "correct": false
+      },
+      {
+       "text": "0",
+       "correct": false
+      },
+      {
+       "text": "4",
+       "correct": true
+      },
+      {
+       "text": "8",
+       "correct": false
+      }
+     ],
+     "skill": "INT_OPPOSITE_POS4",
+     "difficulty": "easy",
+     "junyi_template": "T001",
+     "hint": "Flip the point across zero. It stays 4 units from zero.",
+     "hint_source": "drafted",
+     "explanation": "Reflect -4 across zero.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now.",
+      "Prompt reworded (3.0's was: \"The point is -4. Which value is its opposite?\").",
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-F-S1-02",
+     "source_code": "L1-F-S1-02",
+     "format": "text",
+     "prompt": "What is the opposite of 5?",
+     "choices": [
+      {
+       "text": "5",
+       "correct": false
+      },
+      {
+       "text": "-5",
+       "correct": true
+      },
+      {
+       "text": "0",
+       "correct": false
+      },
+      {
+       "text": "10",
+       "correct": false
+      }
+     ],
+     "skill": "INT_OPPOSITE_POS4",
+     "difficulty": "easy",
+     "junyi_template": "T001",
+     "hint": "Keep the distance, change the sign.",
+     "hint_source": "3.0",
+     "explanation": "Mirror 5 across zero.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L1-R-S1-05",
+     "source_code": "L1-R-S1-05",
+     "format": "text",
+     "prompt": "What is the opposite of 0?",
+     "choices": [
+      {
+       "text": "0",
+       "correct": true
+      },
+      {
+       "text": "1",
+       "correct": false
+      },
+      {
+       "text": "-1",
+       "correct": false
+      },
+      {
+       "text": "It has no opposite",
+       "correct": false
+      }
+     ],
+     "skill": "INT_OPPOSITE_POS4",
+     "difficulty": "medium",
+     "junyi_template": "T001",
+     "hint": "Zero is 0 units from zero. Which number is 0 units away on the other side?",
+     "hint_source": "drafted",
+     "explanation": "Zero is 0 units from zero, so it is its own opposite.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "PG42-OP-01",
+     "source_code": "",
+     "format": "text",
+     "prompt": "Which pair of numbers are opposites?",
+     "choices": [
+      {
+       "text": "-7 and 7",
+       "correct": true
+      },
+      {
+       "text": "-7 and -7",
+       "correct": false
+      },
+      {
+       "text": "7 and 1/7",
+       "correct": false
+      },
+      {
+       "text": "-7 and 0",
+       "correct": false
+      }
+     ],
+     "skill": "INT_OPPOSITE_POS4",
+     "difficulty": "medium",
+     "junyi_template": "T001",
+     "hint": "Opposites are the same distance from zero, on different sides of zero.",
+     "hint_source": "drafted",
+     "explanation": "-7 and 7 are both 7 units from zero, on opposite sides.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "L1-A-S1-06",
+     "source_code": "L1-A-S1-06",
+     "format": "text",
+     "prompt": "Which statement is true?",
+     "choices": [
+      {
+       "text": "|-6| = -6",
+       "correct": false
+      },
+      {
+       "text": "|-6| < |4|",
+       "correct": false
+      },
+      {
+       "text": "The opposite of -6 is 6",
+       "correct": true
+      },
+      {
+       "text": "-6 is not an integer",
+       "correct": false
+      }
+     ],
+     "skill": "INT_OPPOSITE_POS4",
+     "difficulty": "hard",
+     "junyi_template": "T001",
+     "hint": "Test each statement one at a time. Absolute value is never negative, and -6 is an integer.",
+     "hint_source": "drafted",
+     "explanation": "6 is the same distance from zero as -6, on the other side.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "PG42-OP-02",
+     "source_code": "",
+     "format": "text",
+     "prompt": "What is the opposite of the opposite of -9?",
+     "choices": [
+      {
+       "text": "9",
+       "correct": false
+      },
+      {
+       "text": "-9",
+       "correct": true
+      },
+      {
+       "text": "0",
+       "correct": false
+      },
+      {
+       "text": "18",
+       "correct": false
+      }
+     ],
+     "skill": "INT_OPPOSITE_POS4",
+     "difficulty": "hard",
+     "junyi_template": "T001",
+     "hint": "Do it in two steps: first find the opposite of -9, then the opposite of that answer.",
+     "hint_source": "drafted",
+     "explanation": "The opposite of -9 is 9, and the opposite of 9 is -9.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "L1-R-S1-03",
+     "source_code": "L1-R-S1-03",
+     "format": "text",
+     "prompt": "What is |-9|?",
+     "choices": [
+      {
+       "text": "-9",
+       "correct": false
+      },
+      {
+       "text": "9",
+       "correct": true
+      },
+      {
+       "text": "0",
+       "correct": false
+      },
+      {
+       "text": "1/9",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ABS_COMPARE",
+     "difficulty": "easy",
+     "junyi_template": "T002",
+     "hint": "Absolute value is the distance from zero. A distance is never negative.",
+     "hint_source": "drafted",
+     "explanation": "The distance from -9 to zero is 9.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now.",
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-A-S1-03",
+     "source_code": "L1-A-S1-03",
+     "format": "text",
+     "prompt": "What is |-14|?",
+     "choices": [
+      {
+       "text": "-14",
+       "correct": false
+      },
+      {
+       "text": "0",
+       "correct": false
+      },
+      {
+       "text": "14",
+       "correct": true
+      },
+      {
+       "text": "28",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ABS_COMPARE",
+     "difficulty": "easy",
+     "junyi_template": "T002",
+     "hint": "How many units is -14 from zero?",
+     "hint_source": "drafted",
+     "explanation": "Distance from zero is 14 units.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-F-S1-03",
+     "source_code": "L1-F-S1-03",
+     "format": "text",
+     "prompt": "What is |-3|?",
+     "choices": [
+      {
+       "text": "-3",
+       "correct": false
+      },
+      {
+       "text": "0",
+       "correct": false
+      },
+      {
+       "text": "3",
+       "correct": true
+      },
+      {
+       "text": "6",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ABS_COMPARE",
+     "difficulty": "easy",
+     "junyi_template": "T002",
+     "hint": "Count steps from -3 to zero.",
+     "hint_source": "3.0",
+     "explanation": "Three unit steps to zero.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now.",
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L1-R-S1-06",
+     "source_code": "L1-R-S1-06",
+     "format": "text",
+     "prompt": "Which two numbers have an absolute value of 8?",
+     "choices": [
+      {
+       "text": "8 and -8",
+       "correct": true
+      },
+      {
+       "text": "8 and 0",
+       "correct": false
+      },
+      {
+       "text": "-8 and 0",
+       "correct": false
+      },
+      {
+       "text": "4 and -4",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ABS_COMPARE",
+     "difficulty": "medium",
+     "junyi_template": "T002",
+     "hint": "Look for two numbers that are each 8 steps from zero, one on each side of zero.",
+     "hint_source": "drafted",
+     "explanation": "Both 8 and -8 are 8 units from zero.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-A-S1-05",
+     "source_code": "L1-A-S1-05",
+     "format": "text",
+     "prompt": "What is |-7| + |3|?",
+     "choices": [
+      {
+       "text": "-4",
+       "correct": false
+      },
+      {
+       "text": "4",
+       "correct": false
+      },
+      {
+       "text": "10",
+       "correct": true
+      },
+      {
+       "text": "-10",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ABS_COMPARE",
+     "difficulty": "medium",
+     "junyi_template": "T002",
+     "hint": "Find each absolute value first, then add the two distances.",
+     "hint_source": "drafted",
+     "explanation": "|-7| = 7 and |3| = 3, so 7 + 3 = 10.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had number line, opposites and absolute value as one skill (S1)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S1",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "PG42-AB-01",
+     "source_code": "",
+     "format": "text",
+     "prompt": "Which statement is true?",
+     "choices": [
+      {
+       "text": "|-12| < |9|",
+       "correct": false
+      },
+      {
+       "text": "|-12| > |9|",
+       "correct": true
+      },
+      {
+       "text": "|-12| = |9|",
+       "correct": false
+      },
+      {
+       "text": "|-12| < 0",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ABS_COMPARE",
+     "difficulty": "medium",
+     "junyi_template": "T002",
+     "hint": "Find each absolute value first, then compare the two distances.",
+     "hint_source": "drafted",
+     "explanation": "|-12| = 12 and |9| = 9, and 12 > 9.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "PG42-AB-02",
+     "source_code": "",
+     "format": "text",
+     "prompt": "Order |-5|, |3| and |-1| from least to greatest.",
+     "choices": [
+      {
+       "text": "|-1|, |3|, |-5|",
+       "correct": true
+      },
+      {
+       "text": "|-5|, |-1|, |3|",
+       "correct": false
+      },
+      {
+       "text": "|3|, |-1|, |-5|",
+       "correct": false
+      },
+      {
+       "text": "|-5|, |3|, |-1|",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ABS_COMPARE",
+     "difficulty": "hard",
+     "junyi_template": "T002",
+     "hint": "Find each absolute value first: the distance from zero. Then order those distances.",
+     "hint_source": "drafted",
+     "explanation": "The values are 5, 3 and 1, so the order is |-1|, |3|, |-5|.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "L1-R-S5-04",
+     "source_code": "L1-R-S5-04",
+     "format": "text",
+     "prompt": "On a number line, which integer is farthest to the left?",
+     "choices": [
+      {
+       "text": "-9",
+       "correct": true
+      },
+      {
+       "text": "-1",
+       "correct": false
+      },
+      {
+       "text": "0",
+       "correct": false
+      },
+      {
+       "text": "3",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T004",
+     "hint": "The number farthest left is the least. Look for the most negative number.",
+     "hint_source": "drafted",
+     "explanation": "-9 is the least, so it is farthest left.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-R-S5-03",
+     "source_code": "L1-R-S5-03",
+     "format": "text",
+     "prompt": "The points -6, -1, 3 and 6 are plotted on a number line. Which value is greatest?",
+     "choices": [
+      {
+       "text": "-6",
+       "correct": false
+      },
+      {
+       "text": "-1",
+       "correct": false
+      },
+      {
+       "text": "3",
+       "correct": false
+      },
+      {
+       "text": "6",
+       "correct": true
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T004",
+     "hint": "The greatest value is the one farthest to the right.",
+     "hint_source": "drafted",
+     "explanation": "6 is farthest right.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now.",
+      "Prompt reworded (3.0's was: \"Which plotted value is greatest?\")."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-A-S5-05",
+     "source_code": "L1-A-S5-05",
+     "format": "text",
+     "prompt": "Morning temperatures were -3, 1, -8, and 0 degrees C. Which was the coldest?",
+     "choices": [
+      {
+       "text": "-3",
+       "correct": false
+      },
+      {
+       "text": "1",
+       "correct": false
+      },
+      {
+       "text": "-8",
+       "correct": true
+      },
+      {
+       "text": "0",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T004",
+     "hint": "The coldest temperature is the least number, the one farthest left.",
+     "hint_source": "drafted",
+     "explanation": "-8 is the least, so it is the coldest.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-F-S5-01",
+     "source_code": "L1-F-S5-01",
+     "format": "text",
+     "prompt": "Which is greater, -2 or -5?",
+     "choices": [
+      {
+       "text": "-5",
+       "correct": false
+      },
+      {
+       "text": "-2",
+       "correct": true
+      },
+      {
+       "text": "They are equal",
+       "correct": false
+      },
+      {
+       "text": "0",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T004",
+     "hint": "The rightmost number is greater.",
+     "hint_source": "3.0",
+     "explanation": "-2 is farther right.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L1-F-S5-02",
+     "source_code": "L1-F-S5-02",
+     "format": "text",
+     "prompt": "Order -3, 0, and 2 from least to greatest.",
+     "choices": [
+      {
+       "text": "2, 0, -3",
+       "correct": false
+      },
+      {
+       "text": "-3, 2, 0",
+       "correct": false
+      },
+      {
+       "text": "-3, 0, 2",
+       "correct": true
+      },
+      {
+       "text": "0, -3, 2",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T004",
+     "hint": "Begin with the negative value.",
+     "hint_source": "3.0",
+     "explanation": "Read left to right.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L1-F-S5-03",
+     "source_code": "L1-F-S5-03",
+     "format": "text",
+     "prompt": "Which symbol completes -4 __ 1?",
+     "choices": [
+      {
+       "text": "<",
+       "correct": true
+      },
+      {
+       "text": ">",
+       "correct": false
+      },
+      {
+       "text": "=",
+       "correct": false
+      },
+      {
+       "text": "+",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T004",
+     "hint": "A negative number is left of a positive number.",
+     "hint_source": "3.0",
+     "explanation": "-4 is smaller than 1.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L1-R-S5-01",
+     "source_code": "L1-R-S5-01",
+     "format": "text",
+     "prompt": "Which list is ordered least to greatest?",
+     "choices": [
+      {
+       "text": "-6, -2, 0, 4",
+       "correct": true
+      },
+      {
+       "text": "4, 0, -2, -6",
+       "correct": false
+      },
+      {
+       "text": "-2, -6, 0, 4",
+       "correct": false
+      },
+      {
+       "text": "-6, 0, -2, 4",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T004",
+     "hint": "Least to greatest means left to right on the number line. The most negative number comes first.",
+     "hint_source": "drafted",
+     "explanation": "Values increase left to right.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-R-S5-02",
+     "source_code": "L1-R-S5-02",
+     "format": "text",
+     "prompt": "Which comparison is true?",
+     "choices": [
+      {
+       "text": "-7 > -3",
+       "correct": false
+      },
+      {
+       "text": "-7 = -3",
+       "correct": false
+      },
+      {
+       "text": "-7 < -3",
+       "correct": true
+      },
+      {
+       "text": "-3 < -7",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T004",
+     "hint": "On a number line, the number farther left is less. Where is -7 compared with -3?",
+     "hint_source": "drafted",
+     "explanation": "-7 is to the left of -3.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-R-S5-05",
+     "source_code": "L1-R-S5-05",
+     "format": "text",
+     "prompt": "Order -4, 2, -10, and 0 from least to greatest.",
+     "choices": [
+      {
+       "text": "-10, -4, 0, 2",
+       "correct": true
+      },
+      {
+       "text": "-4, -10, 0, 2",
+       "correct": false
+      },
+      {
+       "text": "2, 0, -4, -10",
+       "correct": false
+      },
+      {
+       "text": "0, -4, -10, 2",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T004",
+     "hint": "Start with the most negative number, then move right: negatives, then 0, then positives.",
+     "hint_source": "drafted",
+     "explanation": "Start with the farthest left: -10, then -4, 0, 2.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-R-S5-06",
+     "source_code": "L1-R-S5-06",
+     "format": "text",
+     "prompt": "Which integer is between -6 and -2?",
+     "choices": [
+      {
+       "text": "-8",
+       "correct": false
+      },
+      {
+       "text": "-4",
+       "correct": true
+      },
+      {
+       "text": "-1",
+       "correct": false
+      },
+      {
+       "text": "3",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T004",
+     "hint": "Picture -6 and -2 on a number line. Which choice sits between them?",
+     "hint_source": "drafted",
+     "explanation": "-4 is right of -6 and left of -2.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-A-S5-01",
+     "source_code": "L1-A-S5-01",
+     "format": "text",
+     "prompt": "Order -1, 5, -5, and 0 from greatest to least.",
+     "choices": [
+      {
+       "text": "5, 0, -1, -5",
+       "correct": true
+      },
+      {
+       "text": "-5, -1, 0, 5",
+       "correct": false
+      },
+      {
+       "text": "5, -1, 0, -5",
+       "correct": false
+      },
+      {
+       "text": "0, 5, -1, -5",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T004",
+     "hint": "Greatest to least means right to left. Start with the largest positive number.",
+     "hint_source": "drafted",
+     "explanation": "Start with the farthest right.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-A-S5-02",
+     "source_code": "L1-A-S5-02",
+     "format": "text",
+     "prompt": "Which comparison is correct?",
+     "choices": [
+      {
+       "text": "-2 < -8",
+       "correct": false
+      },
+      {
+       "text": "-8 > 0",
+       "correct": false
+      },
+      {
+       "text": "-2 > -8",
+       "correct": true
+      },
+      {
+       "text": "0 < -8",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T004",
+     "hint": "A negative number closer to zero is greater. Which is closer to zero, -2 or -8?",
+     "hint_source": "drafted",
+     "explanation": "-2 lies right of -8.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-A-S5-03",
+     "source_code": "L1-A-S5-03",
+     "format": "text",
+     "prompt": "The points -4, 0 and 7 are plotted on a number line. Which value is in the middle?",
+     "choices": [
+      {
+       "text": "-4",
+       "correct": false
+      },
+      {
+       "text": "0",
+       "correct": true
+      },
+      {
+       "text": "7",
+       "correct": false
+      },
+      {
+       "text": "-7",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T004",
+     "hint": "Put the three plotted values in order from least to greatest. The middle one is between the other two.",
+     "hint_source": "drafted",
+     "explanation": "0 lies between -4 and 7.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now.",
+      "Prompt reworded (3.0's was: \"Which is the middle plotted value?\")."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-A-S5-04",
+     "source_code": "L1-A-S5-04",
+     "format": "text",
+     "prompt": "Which symbol makes -12 __ -15 true?",
+     "choices": [
+      {
+       "text": "<",
+       "correct": false
+      },
+      {
+       "text": ">",
+       "correct": true
+      },
+      {
+       "text": "=",
+       "correct": false
+      },
+      {
+       "text": "+",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T004",
+     "hint": "Which number is farther right on the number line? The one farther right is greater.",
+     "hint_source": "drafted",
+     "explanation": "-12 is to the right of -15, so -12 > -15.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L1-A-S5-06",
+     "source_code": "L1-A-S5-06",
+     "format": "text",
+     "prompt": "Ana says -2 < -9 because 2 < 9. Which correction is right?",
+     "choices": [
+      {
+       "text": "She is right",
+       "correct": false
+      },
+      {
+       "text": "-2 > -9 because -2 is farther right",
+       "correct": true
+      },
+      {
+       "text": "-2 = -9",
+       "correct": false
+      },
+      {
+       "text": "-2 < -9 because both are negative",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ORDER_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T004",
+     "hint": "Compare positions, not just the digits. Which number is farther right?",
+     "hint_source": "drafted",
+     "explanation": "Compare by position: -2 is right of -9, so -2 > -9.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S5",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    }
+   ]
+  },
+  {
+   "lesson": "integer_addition",
+   "title": "Adding integers practice",
+   "target_count": 4,
+   "required_skills": [
+    "INT_ADD_NEG"
+   ],
+   "questions": [
+    {
+     "item_key": "L2-F-S2-01",
+     "source_code": "L2-F-S2-01",
+     "format": "text",
+     "prompt": "Compute -4 + (-3).",
+     "choices": [
+      {
+       "text": "-7",
+       "correct": true
+      },
+      {
+       "text": "-1",
+       "correct": false
+      },
+      {
+       "text": "1",
+       "correct": false
+      },
+      {
+       "text": "7",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ADD_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T005",
+     "hint": "Two negatives combine into a larger negative.",
+     "hint_source": "3.0",
+     "explanation": "Move 3 left from -4.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L2-F-S2-02",
+     "source_code": "L2-F-S2-02",
+     "format": "text",
+     "prompt": "Compute -6 + 8.",
+     "choices": [
+      {
+       "text": "-14",
+       "correct": false
+      },
+      {
+       "text": "-2",
+       "correct": false
+      },
+      {
+       "text": "2",
+       "correct": true
+      },
+      {
+       "text": "14",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ADD_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T006",
+     "hint": "Think of 6 negative and 8 positive counters. Each negative-positive pair makes zero; count what is left.",
+     "hint_source": "drafted",
+     "explanation": "Six pairs cancel, two positives remain.",
+     "review_status": "draft",
+     "review_notes": [
+      "Hint rewritten (3.0's was: \"Pair each negative with one positive.\").",
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now.",
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "PG42-ADD-01",
+     "source_code": "",
+     "format": "text",
+     "prompt": "Compute -15 + 15.",
+     "choices": [
+      {
+       "text": "-30",
+       "correct": false
+      },
+      {
+       "text": "0",
+       "correct": true
+      },
+      {
+       "text": "15",
+       "correct": false
+      },
+      {
+       "text": "30",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ADD_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T006",
+     "hint": "A number plus its opposite always gives the same result. Think of zero pairs.",
+     "hint_source": "drafted",
+     "explanation": "-15 and 15 are opposites, so their sum is 0.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "L2-R-S2-01",
+     "source_code": "L2-R-S2-01",
+     "format": "text",
+     "prompt": "Compute -18 + (-7).",
+     "choices": [
+      {
+       "text": "-25",
+       "correct": true
+      },
+      {
+       "text": "-11",
+       "correct": false
+      },
+      {
+       "text": "11",
+       "correct": false
+      },
+      {
+       "text": "25",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ADD_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T005",
+     "hint": "Both numbers are negative. Add their distances from zero and keep the negative sign.",
+     "hint_source": "drafted",
+     "explanation": "Add distances, keep the negative sign.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S2-02",
+     "source_code": "L2-R-S2-02",
+     "format": "text",
+     "prompt": "Compute -9 + 14.",
+     "choices": [
+      {
+       "text": "-23",
+       "correct": false
+      },
+      {
+       "text": "-5",
+       "correct": false
+      },
+      {
+       "text": "5",
+       "correct": true
+      },
+      {
+       "text": "23",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ADD_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T006",
+     "hint": "Start at -9 on a number line and move 14 steps right. You pass zero after 9 steps.",
+     "hint_source": "drafted",
+     "explanation": "Fourteen steps right from -9 lands at 5.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now.",
+      "Prompt reworded (3.0's was: \"Use the arrow to compute -9 + 14.\").",
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S2-04",
+     "source_code": "L2-R-S2-04",
+     "format": "text",
+     "prompt": "Compute 15 + (-22).",
+     "choices": [
+      {
+       "text": "-37",
+       "correct": false
+      },
+      {
+       "text": "-7",
+       "correct": true
+      },
+      {
+       "text": "7",
+       "correct": false
+      },
+      {
+       "text": "37",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ADD_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T005",
+     "hint": "The signs are different. Subtract the distances, 22 - 15, and keep the sign of the number farther from zero.",
+     "hint_source": "drafted",
+     "explanation": "Different signs: 22 - 15 = 7, and the larger distance is negative.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S2-01",
+     "source_code": "L2-A-S2-01",
+     "format": "text",
+     "prompt": "Compute -24 + 9.",
+     "choices": [
+      {
+       "text": "-33",
+       "correct": false
+      },
+      {
+       "text": "-15",
+       "correct": true
+      },
+      {
+       "text": "15",
+       "correct": false
+      },
+      {
+       "text": "33",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ADD_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T006",
+     "hint": "Different signs: find 24 - 9, then use the sign of -24, the number farther from zero.",
+     "hint_source": "drafted",
+     "explanation": "The larger distance is negative.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S2-04",
+     "source_code": "L2-A-S2-04",
+     "format": "text",
+     "prompt": "Compute -13 + (-16).",
+     "choices": [
+      {
+       "text": "-29",
+       "correct": true
+      },
+      {
+       "text": "-3",
+       "correct": false
+      },
+      {
+       "text": "3",
+       "correct": false
+      },
+      {
+       "text": "29",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ADD_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T005",
+     "hint": "Same signs: add 13 and 16, then keep the negative sign.",
+     "hint_source": "drafted",
+     "explanation": "Same signs: add the distances and keep the negative sign.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "PG42-ADD-02",
+     "source_code": "",
+     "format": "text",
+     "prompt": "Compute 6 + (-11).",
+     "choices": [
+      {
+       "text": "-17",
+       "correct": false
+      },
+      {
+       "text": "-5",
+       "correct": true
+      },
+      {
+       "text": "5",
+       "correct": false
+      },
+      {
+       "text": "17",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ADD_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T005",
+     "hint": "Different signs: find 11 - 6, then use the sign of -11, the number farther from zero.",
+     "hint_source": "drafted",
+     "explanation": "11 - 6 = 5, and -11 is farther from zero, so the sum is -5.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "PG42-ADD-03",
+     "source_code": "",
+     "format": "text",
+     "prompt": "Which sum is negative?",
+     "choices": [
+      {
+       "text": "-8 + 12",
+       "correct": false
+      },
+      {
+       "text": "7 + (-3)",
+       "correct": false
+      },
+      {
+       "text": "-5 + (-1)",
+       "correct": true
+      },
+      {
+       "text": "-9 + 9",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ADD_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T005",
+     "hint": "Work out each sum, or look for the one with more negative than positive.",
+     "hint_source": "drafted",
+     "explanation": "-5 + (-1) = -6. The others are 4, 4 and 0.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "PG42-ADD-04",
+     "source_code": "",
+     "format": "text",
+     "prompt": "Jo says -7 + 4 = -11. What is the correct sum?",
+     "choices": [
+      {
+       "text": "-11",
+       "correct": false
+      },
+      {
+       "text": "-3",
+       "correct": true
+      },
+      {
+       "text": "3",
+       "correct": false
+      },
+      {
+       "text": "11",
+       "correct": false
+      }
+     ],
+     "skill": "INT_ADD_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T006",
+     "hint": "Jo added the distances. With different signs, subtract the distances instead.",
+     "hint_source": "drafted",
+     "explanation": "7 - 4 = 3, and -7 is farther from zero, so the sum is -3.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    }
+   ]
+  },
+  {
+   "lesson": "integer_subtraction",
+   "title": "Subtracting integers practice",
+   "target_count": 4,
+   "required_skills": [
+    "INT_SUB_NEG"
+   ],
+   "questions": [
+    {
+     "item_key": "L2-F-S2-03",
+     "source_code": "L2-F-S2-03",
+     "format": "text",
+     "prompt": "Compute 3 - (-2).",
+     "choices": [
+      {
+       "text": "1",
+       "correct": false
+      },
+      {
+       "text": "-1",
+       "correct": false
+      },
+      {
+       "text": "5",
+       "correct": true
+      },
+      {
+       "text": "-5",
+       "correct": false
+      }
+     ],
+     "skill": "INT_SUB_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T007",
+     "hint": "Rewrite as 3 + 2.",
+     "hint_source": "3.0",
+     "explanation": "Subtract negative = add positive.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "PG42-SUB-01",
+     "source_code": "",
+     "format": "text",
+     "prompt": "Compute 4 - 9.",
+     "choices": [
+      {
+       "text": "-13",
+       "correct": false
+      },
+      {
+       "text": "-5",
+       "correct": true
+      },
+      {
+       "text": "5",
+       "correct": false
+      },
+      {
+       "text": "13",
+       "correct": false
+      }
+     ],
+     "skill": "INT_SUB_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T007",
+     "hint": "Start at 4 and move 9 steps to the left on a number line.",
+     "hint_source": "drafted",
+     "explanation": "4 - 9 = 4 + (-9) = -5.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "PG42-SUB-02",
+     "source_code": "",
+     "format": "text",
+     "prompt": "Compute -2 - 5.",
+     "choices": [
+      {
+       "text": "-7",
+       "correct": true
+      },
+      {
+       "text": "-3",
+       "correct": false
+      },
+      {
+       "text": "3",
+       "correct": false
+      },
+      {
+       "text": "7",
+       "correct": false
+      }
+     ],
+     "skill": "INT_SUB_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T007",
+     "hint": "Start at -2 and move 5 more steps to the left.",
+     "hint_source": "drafted",
+     "explanation": "-2 - 5 = -2 + (-5) = -7.",
+     "review_status": "draft",
+     "review_notes": [
+      "New question for 4.2."
+     ],
+     "is_new": true,
+     "from_3_0": null
+    },
+    {
+     "item_key": "L2-R-S2-05",
+     "source_code": "L2-R-S2-05",
+     "format": "text",
+     "prompt": "Compute -8 - 13.",
+     "choices": [
+      {
+       "text": "-21",
+       "correct": true
+      },
+      {
+       "text": "-5",
+       "correct": false
+      },
+      {
+       "text": "5",
+       "correct": false
+      },
+      {
+       "text": "21",
+       "correct": false
+      }
+     ],
+     "skill": "INT_SUB_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T007",
+     "hint": "Subtracting 13 is the same as adding -13. Then add the two negatives.",
+     "hint_source": "drafted",
+     "explanation": "-8 - 13 = -8 + (-13) = -21.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S2-03",
+     "source_code": "L2-R-S2-03",
+     "format": "text",
+     "prompt": "Compute -31 - (-12).",
+     "choices": [
+      {
+       "text": "-43",
+       "correct": false
+      },
+      {
+       "text": "-19",
+       "correct": true
+      },
+      {
+       "text": "19",
+       "correct": false
+      },
+      {
+       "text": "43",
+       "correct": false
+      }
+     ],
+     "skill": "INT_SUB_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T007",
+     "hint": "Subtracting a negative is the same as adding its opposite: -31 + 12.",
+     "hint_source": "drafted",
+     "explanation": "Subtracting -12 means adding 12.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S2-02",
+     "source_code": "L2-A-S2-02",
+     "format": "text",
+     "prompt": "Compute 17 - (-6).",
+     "choices": [
+      {
+       "text": "11",
+       "correct": false
+      },
+      {
+       "text": "-11",
+       "correct": false
+      },
+      {
+       "text": "23",
+       "correct": true
+      },
+      {
+       "text": "-23",
+       "correct": false
+      }
+     ],
+     "skill": "INT_SUB_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T007",
+     "hint": "Subtracting -6 is the same as adding 6.",
+     "hint_source": "drafted",
+     "explanation": "Subtracting -6 means adding 6.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now.",
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S2-05",
+     "source_code": "L2-A-S2-05",
+     "format": "text",
+     "prompt": "Compute 7 - 19.",
+     "choices": [
+      {
+       "text": "-26",
+       "correct": false
+      },
+      {
+       "text": "-12",
+       "correct": true
+      },
+      {
+       "text": "12",
+       "correct": false
+      },
+      {
+       "text": "26",
+       "correct": false
+      }
+     ],
+     "skill": "INT_SUB_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T007",
+     "hint": "Rewrite it as 7 + (-19). The answer is below zero.",
+     "hint_source": "drafted",
+     "explanation": "7 - 19 = 7 + (-19) = -12.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S2-06",
+     "source_code": "L2-R-S2-06",
+     "format": "text",
+     "prompt": "Which expression has the same value as 9 - (-4)?",
+     "choices": [
+      {
+       "text": "9 - 4",
+       "correct": false
+      },
+      {
+       "text": "9 + 4",
+       "correct": true
+      },
+      {
+       "text": "-9 + 4",
+       "correct": false
+      },
+      {
+       "text": "-9 - 4",
+       "correct": false
+      }
+     ],
+     "skill": "INT_SUB_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T007",
+     "hint": "Change the subtraction to adding the opposite. What is the opposite of -4?",
+     "hint_source": "drafted",
+     "explanation": "Subtracting -4 is the same as adding 4.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S2-03",
+     "source_code": "L2-A-S2-03",
+     "format": "text",
+     "prompt": "Compute -42 - (-19).",
+     "choices": [
+      {
+       "text": "-61",
+       "correct": false
+      },
+      {
+       "text": "-23",
+       "correct": true
+      },
+      {
+       "text": "23",
+       "correct": false
+      },
+      {
+       "text": "61",
+       "correct": false
+      }
+     ],
+     "skill": "INT_SUB_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T007",
+     "hint": "Rewrite it as -42 + 19. The signs are different, so subtract the distances.",
+     "hint_source": "drafted",
+     "explanation": "-42 + 19 = -23.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S2-06",
+     "source_code": "L2-A-S2-06",
+     "format": "text",
+     "prompt": "Ana says -5 - (-9) = -14. What is the correct value?",
+     "choices": [
+      {
+       "text": "-14",
+       "correct": false
+      },
+      {
+       "text": "-4",
+       "correct": false
+      },
+      {
+       "text": "4",
+       "correct": true
+      },
+      {
+       "text": "14",
+       "correct": false
+      }
+     ],
+     "skill": "INT_SUB_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T007",
+     "hint": "Ana subtracted 9. Subtracting -9 means adding 9 instead.",
+     "hint_source": "drafted",
+     "explanation": "Subtracting -9 means adding 9: -5 + 9 = 4.",
+     "review_status": "draft",
+     "review_notes": [
+      "3.0 had addition and subtraction as one skill (S2)."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S2",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    }
+   ]
+  },
+  {
+   "lesson": "integer_multiplication",
+   "title": "Multiplying integers practice",
+   "target_count": 4,
+   "required_skills": [
+    "INT_MULT_NEG"
+   ],
+   "questions": [
+    {
+     "item_key": "L2-R-S3-03",
+     "source_code": "L2-R-S3-03",
+     "format": "text",
+     "prompt": "What do four equal groups of -3 total?",
+     "choices": [
+      {
+       "text": "-12",
+       "correct": true
+      },
+      {
+       "text": "12",
+       "correct": false
+      },
+      {
+       "text": "-7",
+       "correct": false
+      },
+      {
+       "text": "7",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T008",
+     "hint": "Four groups of -3 is -3 + -3 + -3 + -3, which is the same as 4 x (-3).",
+     "hint_source": "drafted",
+     "explanation": "4 x (-3) = -12.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S3-06",
+     "source_code": "L2-A-S3-06",
+     "format": "text",
+     "prompt": "Compute (-10) x 7.",
+     "choices": [
+      {
+       "text": "-17",
+       "correct": false
+      },
+      {
+       "text": "17",
+       "correct": false
+      },
+      {
+       "text": "-70",
+       "correct": true
+      },
+      {
+       "text": "70",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T008",
+     "hint": "Find 10 x 7, then decide the sign.",
+     "hint_source": "drafted",
+     "explanation": "Different signs give a negative product: 10 x 7 = 70.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-F-S3-01",
+     "source_code": "L2-F-S3-01",
+     "format": "text",
+     "prompt": "Compute (-3) x 4.",
+     "choices": [
+      {
+       "text": "-12",
+       "correct": true
+      },
+      {
+       "text": "12",
+       "correct": false
+      },
+      {
+       "text": "-7",
+       "correct": false
+      },
+      {
+       "text": "7",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T008",
+     "hint": "Find 3 x 4 first, then the sign.",
+     "hint_source": "3.0",
+     "explanation": "One negative factor gives a negative product.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L2-F-S3-04",
+     "source_code": "L2-F-S3-04",
+     "format": "text",
+     "prompt": "Compute 5 x (-3).",
+     "choices": [
+      {
+       "text": "-15",
+       "correct": true
+      },
+      {
+       "text": "15",
+       "correct": false
+      },
+      {
+       "text": "-8",
+       "correct": false
+      },
+      {
+       "text": "8",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T008",
+     "hint": "Find 5 x 3 first, then decide the sign.",
+     "hint_source": "3.0",
+     "explanation": "Different signs make a negative product.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L2-F-S3-03",
+     "source_code": "L2-F-S3-03",
+     "format": "text",
+     "prompt": "Compute (-2) x (-5).",
+     "choices": [
+      {
+       "text": "-10",
+       "correct": false
+      },
+      {
+       "text": "10",
+       "correct": true
+      },
+      {
+       "text": "-7",
+       "correct": false
+      },
+      {
+       "text": "7",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T008",
+     "hint": "Both factors are negative.",
+     "hint_source": "3.0",
+     "explanation": "Same signs -> positive product.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L2-R-S3-01",
+     "source_code": "L2-R-S3-01",
+     "format": "text",
+     "prompt": "Compute (-7) x 6.",
+     "choices": [
+      {
+       "text": "-42",
+       "correct": true
+      },
+      {
+       "text": "42",
+       "correct": false
+      },
+      {
+       "text": "-13",
+       "correct": false
+      },
+      {
+       "text": "13",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T008",
+     "hint": "Multiply 7 x 6 first. Then decide the sign: the signs are different.",
+     "hint_source": "drafted",
+     "explanation": "Different signs give a negative result.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S3-04",
+     "source_code": "L2-R-S3-04",
+     "format": "text",
+     "prompt": "Compute 8 x (-5).",
+     "choices": [
+      {
+       "text": "-40",
+       "correct": true
+      },
+      {
+       "text": "40",
+       "correct": false
+      },
+      {
+       "text": "-13",
+       "correct": false
+      },
+      {
+       "text": "13",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T008",
+     "hint": "Find 8 x 5, then use the sign rule: different signs give a negative product.",
+     "hint_source": "drafted",
+     "explanation": "Different signs give a negative product: 8 x 5 = 40.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S3-05",
+     "source_code": "L2-R-S3-05",
+     "format": "text",
+     "prompt": "Compute (-11) x (-3).",
+     "choices": [
+      {
+       "text": "-33",
+       "correct": false
+      },
+      {
+       "text": "33",
+       "correct": true
+      },
+      {
+       "text": "-14",
+       "correct": false
+      },
+      {
+       "text": "14",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T008",
+     "hint": "Find 11 x 3. Two negative factors give a positive product.",
+     "hint_source": "drafted",
+     "explanation": "Same signs give a positive product: 11 x 3 = 33.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S3-06",
+     "source_code": "L2-R-S3-06",
+     "format": "text",
+     "prompt": "Compute (-12) x 5.",
+     "choices": [
+      {
+       "text": "-17",
+       "correct": false
+      },
+      {
+       "text": "17",
+       "correct": false
+      },
+      {
+       "text": "-60",
+       "correct": true
+      },
+      {
+       "text": "60",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T008",
+     "hint": "Find 12 x 5, then decide the sign.",
+     "hint_source": "drafted",
+     "explanation": "Different signs give a negative product: 12 x 5 = 60.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S3-01",
+     "source_code": "L2-A-S3-01",
+     "format": "text",
+     "prompt": "Compute (-9) x (-4).",
+     "choices": [
+      {
+       "text": "-36",
+       "correct": false
+      },
+      {
+       "text": "36",
+       "correct": true
+      },
+      {
+       "text": "-13",
+       "correct": false
+      },
+      {
+       "text": "13",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T008",
+     "hint": "Find 9 x 4. Same signs give a positive product.",
+     "hint_source": "drafted",
+     "explanation": "Same signs give a positive product.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S3-04",
+     "source_code": "L2-A-S3-04",
+     "format": "text",
+     "prompt": "Compute 7 x (-8).",
+     "choices": [
+      {
+       "text": "-56",
+       "correct": true
+      },
+      {
+       "text": "56",
+       "correct": false
+      },
+      {
+       "text": "-15",
+       "correct": false
+      },
+      {
+       "text": "15",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T008",
+     "hint": "Find 7 x 8, then use the sign rule for different signs.",
+     "hint_source": "drafted",
+     "explanation": "Different signs give a negative product: 7 x 8 = 56.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S3-05",
+     "source_code": "L2-A-S3-05",
+     "format": "text",
+     "prompt": "Compute (-6) x (-9).",
+     "choices": [
+      {
+       "text": "-15",
+       "correct": false
+      },
+      {
+       "text": "15",
+       "correct": false
+      },
+      {
+       "text": "-54",
+       "correct": false
+      },
+      {
+       "text": "54",
+       "correct": true
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T008",
+     "hint": "Find 6 x 9. Both factors are negative.",
+     "hint_source": "drafted",
+     "explanation": "Same signs give a positive product: 6 x 9 = 54.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S3-07",
+     "source_code": "L2-R-S3-07",
+     "format": "text",
+     "prompt": "Without computing, what is the sign of (-2) x (-3) x (-4)?",
+     "choices": [
+      {
+       "text": "Positive",
+       "correct": false
+      },
+      {
+       "text": "Negative",
+       "correct": true
+      },
+      {
+       "text": "Zero",
+       "correct": false
+      },
+      {
+       "text": "It cannot be known",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T008",
+     "hint": "Count the negative factors. An even count gives a positive product; an odd count gives a negative one.",
+     "hint_source": "drafted",
+     "explanation": "There are three negative factors. An odd number of negatives gives a negative product.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S3-07",
+     "source_code": "L2-A-S3-07",
+     "format": "text",
+     "prompt": "Which product is positive?",
+     "choices": [
+      {
+       "text": "(-4) x 5",
+       "correct": false
+      },
+      {
+       "text": "4 x (-5)",
+       "correct": false
+      },
+      {
+       "text": "(-4) x (-5)",
+       "correct": true
+      },
+      {
+       "text": "(-4) x 5 x 1",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T008",
+     "hint": "A product is positive when it has an even number of negative factors.",
+     "hint_source": "drafted",
+     "explanation": "Only (-4) x (-5) has two negative factors, so only it is positive.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S3-08",
+     "source_code": "L2-A-S3-08",
+     "format": "text",
+     "prompt": "Lito says (-3) x (-7) = -21. What is the correct product?",
+     "choices": [
+      {
+       "text": "-21",
+       "correct": false
+      },
+      {
+       "text": "21",
+       "correct": true
+      },
+      {
+       "text": "-10",
+       "correct": false
+      },
+      {
+       "text": "10",
+       "correct": false
+      }
+     ],
+     "skill": "INT_MULT_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T008",
+     "hint": "Check Lito's sign. What do two negative factors give?",
+     "hint_source": "drafted",
+     "explanation": "Same signs give a positive product: 3 x 7 = 21.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S3",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    }
+   ]
+  },
+  {
+   "lesson": "integer_division",
+   "title": "Dividing integers practice",
+   "target_count": 4,
+   "required_skills": [
+    "INT_DIV_NEG"
+   ],
+   "questions": [
+    {
+     "item_key": "L2-A-S7-02",
+     "source_code": "L2-A-S7-02",
+     "format": "text",
+     "prompt": "Compute 70 / (-10).",
+     "choices": [
+      {
+       "text": "-60",
+       "correct": false
+      },
+      {
+       "text": "60",
+       "correct": false
+      },
+      {
+       "text": "-7",
+       "correct": true
+      },
+      {
+       "text": "7",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T009",
+     "hint": "Find 70 / 10, then decide the sign.",
+     "hint_source": "drafted",
+     "explanation": "Different signs give a negative quotient: 70 / 10 = 7.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-F-S3-02",
+     "source_code": "L2-F-S3-02",
+     "format": "text",
+     "prompt": "Compute (-12) / 3.",
+     "choices": [
+      {
+       "text": "-4",
+       "correct": true
+      },
+      {
+       "text": "4",
+       "correct": false
+      },
+      {
+       "text": "-9",
+       "correct": false
+      },
+      {
+       "text": "9",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T009",
+     "hint": "Divide the numbers without their signs first, then decide the sign.",
+     "hint_source": "drafted",
+     "explanation": "Different signs make a negative quotient.",
+     "review_status": "draft",
+     "review_notes": [
+      "Hint rewritten (3.0's was: \"12 / 3 = 4, signs differ.\")."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L2-F-S7-01",
+     "source_code": "L2-F-S7-01",
+     "format": "text",
+     "prompt": "Compute 20 / (-4).",
+     "choices": [
+      {
+       "text": "-5",
+       "correct": true
+      },
+      {
+       "text": "5",
+       "correct": false
+      },
+      {
+       "text": "-16",
+       "correct": false
+      },
+      {
+       "text": "16",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T009",
+     "hint": "Find 20 / 4 first, then decide the sign.",
+     "hint_source": "3.0",
+     "explanation": "Different signs make a negative quotient.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L2-F-S7-02",
+     "source_code": "L2-F-S7-02",
+     "format": "text",
+     "prompt": "Compute (-18) / (-6).",
+     "choices": [
+      {
+       "text": "-3",
+       "correct": false
+      },
+      {
+       "text": "3",
+       "correct": true
+      },
+      {
+       "text": "-12",
+       "correct": false
+      },
+      {
+       "text": "12",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T009",
+     "hint": "Both numbers are negative.",
+     "hint_source": "3.0",
+     "explanation": "Same signs make a positive quotient.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L2-R-S3-02",
+     "source_code": "L2-R-S3-02",
+     "format": "text",
+     "prompt": "Compute (-48) / (-8).",
+     "choices": [
+      {
+       "text": "-6",
+       "correct": false
+      },
+      {
+       "text": "6",
+       "correct": true
+      },
+      {
+       "text": "-40",
+       "correct": false
+      },
+      {
+       "text": "40",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T009",
+     "hint": "Find 48 / 8. Same signs give a positive quotient.",
+     "hint_source": "drafted",
+     "explanation": "Same signs give a positive result.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S7-01",
+     "source_code": "L2-R-S7-01",
+     "format": "text",
+     "prompt": "Compute 56 / (-7).",
+     "choices": [
+      {
+       "text": "-8",
+       "correct": true
+      },
+      {
+       "text": "8",
+       "correct": false
+      },
+      {
+       "text": "-49",
+       "correct": false
+      },
+      {
+       "text": "49",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T009",
+     "hint": "Find 56 / 7, then decide the sign: the signs are different.",
+     "hint_source": "drafted",
+     "explanation": "Different signs give a negative quotient: 56 / 7 = 8.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S7-02",
+     "source_code": "L2-R-S7-02",
+     "format": "text",
+     "prompt": "Compute (-45) / 9.",
+     "choices": [
+      {
+       "text": "-36",
+       "correct": false
+      },
+      {
+       "text": "36",
+       "correct": false
+      },
+      {
+       "text": "-5",
+       "correct": true
+      },
+      {
+       "text": "5",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T009",
+     "hint": "Find 45 / 9, then use the sign rule.",
+     "hint_source": "drafted",
+     "explanation": "Different signs give a negative quotient: 45 / 9 = 5.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S7-03",
+     "source_code": "L2-R-S7-03",
+     "format": "text",
+     "prompt": "Compute (-72) / (-8).",
+     "choices": [
+      {
+       "text": "-9",
+       "correct": false
+      },
+      {
+       "text": "9",
+       "correct": true
+      },
+      {
+       "text": "-64",
+       "correct": false
+      },
+      {
+       "text": "64",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T009",
+     "hint": "Find 72 / 8. Both numbers are negative.",
+     "hint_source": "drafted",
+     "explanation": "Same signs give a positive quotient: 72 / 8 = 9.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S3-02",
+     "source_code": "L2-A-S3-02",
+     "format": "text",
+     "prompt": "Compute (-63) / 7.",
+     "choices": [
+      {
+       "text": "-9",
+       "correct": true
+      },
+      {
+       "text": "9",
+       "correct": false
+      },
+      {
+       "text": "-56",
+       "correct": false
+      },
+      {
+       "text": "56",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T009",
+     "hint": "Find 63 / 7, then decide the sign.",
+     "hint_source": "drafted",
+     "explanation": "Different signs give a negative quotient.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S7-01",
+     "source_code": "L2-A-S7-01",
+     "format": "text",
+     "prompt": "Compute (-36) / (-4).",
+     "choices": [
+      {
+       "text": "-9",
+       "correct": false
+      },
+      {
+       "text": "9",
+       "correct": true
+      },
+      {
+       "text": "-32",
+       "correct": false
+      },
+      {
+       "text": "32",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T009",
+     "hint": "Find 36 / 4. Same signs give a positive quotient.",
+     "hint_source": "drafted",
+     "explanation": "Same signs give a positive quotient: 36 / 4 = 9.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S7-04",
+     "source_code": "L2-R-S7-04",
+     "format": "text",
+     "prompt": "Which division has a negative quotient?",
+     "choices": [
+      {
+       "text": "(-30) / (-5)",
+       "correct": false
+      },
+      {
+       "text": "30 / 5",
+       "correct": false
+      },
+      {
+       "text": "30 / (-5)",
+       "correct": true
+      },
+      {
+       "text": "(-30) / (-6)",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T009",
+     "hint": "A quotient is negative when the two numbers have different signs.",
+     "hint_source": "drafted",
+     "explanation": "Only 30 / (-5) has different signs, so only its quotient is negative.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-R-S7-05",
+     "source_code": "L2-R-S7-05",
+     "format": "text",
+     "prompt": "If (-6) x 7 = -42, what is (-42) / 7?",
+     "choices": [
+      {
+       "text": "-35",
+       "correct": false
+      },
+      {
+       "text": "35",
+       "correct": false
+      },
+      {
+       "text": "-6",
+       "correct": true
+      },
+      {
+       "text": "6",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T009",
+     "hint": "Division undoes multiplication. Which number times 7 gives -42?",
+     "hint_source": "drafted",
+     "explanation": "Division undoes multiplication, so (-42) / 7 = -6.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S7-03",
+     "source_code": "L2-A-S7-03",
+     "format": "text",
+     "prompt": "Compute (-121) / 11.",
+     "choices": [
+      {
+       "text": "-11",
+       "correct": true
+      },
+      {
+       "text": "11",
+       "correct": false
+      },
+      {
+       "text": "-110",
+       "correct": false
+      },
+      {
+       "text": "110",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T009",
+     "hint": "Find 121 / 11 (think of 11 x 11). The signs are different.",
+     "hint_source": "drafted",
+     "explanation": "Different signs give a negative quotient: 121 / 11 = 11.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S3-03",
+     "source_code": "L2-A-S3-03",
+     "format": "text",
+     "prompt": "Compute 96 / (-12).",
+     "choices": [
+      {
+       "text": "-8",
+       "correct": true
+      },
+      {
+       "text": "8",
+       "correct": false
+      },
+      {
+       "text": "-84",
+       "correct": false
+      },
+      {
+       "text": "84",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T009",
+     "hint": "Find 96 / 12 (think of 12 x 8), then decide the sign.",
+     "hint_source": "drafted",
+     "explanation": "96 / 12 = 8, signs differ.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L2-A-S7-04",
+     "source_code": "L2-A-S7-04",
+     "format": "text",
+     "prompt": "Mika says (-50) / (-5) = -10. What is the correct quotient?",
+     "choices": [
+      {
+       "text": "-10",
+       "correct": false
+      },
+      {
+       "text": "10",
+       "correct": true
+      },
+      {
+       "text": "-45",
+       "correct": false
+      },
+      {
+       "text": "45",
+       "correct": false
+      }
+     ],
+     "skill": "INT_DIV_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T009",
+     "hint": "Check Mika's sign. Both numbers are negative.",
+     "hint_source": "drafted",
+     "explanation": "Same signs give a positive quotient: 50 / 5 = 10.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S7",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    }
+   ]
+  },
+  {
+   "lesson": "integer_expressions_applications",
+   "title": "Expressions and applications practice",
+   "target_count": 4,
+   "required_skills": [
+    "INT_EXPR_NEG",
+    "INT_CONTEXT"
+   ],
+   "questions": [
+    {
+     "item_key": "L3-R-S4-05",
+     "source_code": "L3-R-S4-05",
+     "format": "text",
+     "prompt": "Evaluate (7 - 12) x 3.",
+     "choices": [
+      {
+       "text": "-29",
+       "correct": false
+      },
+      {
+       "text": "-15",
+       "correct": true
+      },
+      {
+       "text": "15",
+       "correct": false
+      },
+      {
+       "text": "-5",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T010",
+     "hint": "Work inside the brackets first.",
+     "hint_source": "drafted",
+     "explanation": "The bracket is -5; -5 x 3 = -15.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-R-S4-03",
+     "source_code": "L3-R-S4-03",
+     "format": "text",
+     "prompt": "Evaluate (-2) x [6 - 9].",
+     "choices": [
+      {
+       "text": "-6",
+       "correct": false
+      },
+      {
+       "text": "6",
+       "correct": true
+      },
+      {
+       "text": "-18",
+       "correct": false
+      },
+      {
+       "text": "18",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T010",
+     "hint": "Find the value in the brackets first, then multiply.",
+     "hint_source": "drafted",
+     "explanation": "The bracket is -3; (-2) x (-3) = 6.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-F-S4-01",
+     "source_code": "L3-F-S4-01",
+     "format": "text",
+     "prompt": "Evaluate 2 + 3 x 4.",
+     "choices": [
+      {
+       "text": "14",
+       "correct": true
+      },
+      {
+       "text": "20",
+       "correct": false
+      },
+      {
+       "text": "24",
+       "correct": false
+      },
+      {
+       "text": "9",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T010",
+     "hint": "Multiply first.",
+     "hint_source": "3.0",
+     "explanation": "2 + 12 = 14.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L3-F-S4-02",
+     "source_code": "L3-F-S4-02",
+     "format": "text",
+     "prompt": "Evaluate (5 - 8) x (-2).",
+     "choices": [
+      {
+       "text": "-6",
+       "correct": false
+      },
+      {
+       "text": "6",
+       "correct": true
+      },
+      {
+       "text": "-26",
+       "correct": false
+      },
+      {
+       "text": "26",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T010",
+     "hint": "Do the bracket first.",
+     "hint_source": "3.0",
+     "explanation": "Bracket is -3; (-3) x (-2) = 6.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L3-F-S4-03",
+     "source_code": "L3-F-S4-03",
+     "format": "text",
+     "prompt": "Evaluate 12 / (-3) + 1.",
+     "choices": [
+      {
+       "text": "-5",
+       "correct": false
+      },
+      {
+       "text": "-3",
+       "correct": true
+      },
+      {
+       "text": "3",
+       "correct": false
+      },
+      {
+       "text": "5",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "easy",
+     "junyi_template": "T010",
+     "hint": "Divide first.",
+     "hint_source": "3.0",
+     "explanation": "-4 + 1 = -3.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L3-R-S4-01",
+     "source_code": "L3-R-S4-01",
+     "format": "text",
+     "prompt": "Evaluate 5 + (-3) x 4.",
+     "choices": [
+      {
+       "text": "8",
+       "correct": false
+      },
+      {
+       "text": "-7",
+       "correct": true
+      },
+      {
+       "text": "-32",
+       "correct": false
+      },
+      {
+       "text": "-20",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T011",
+     "hint": "Multiply before you add: work out (-3) x 4 first.",
+     "hint_source": "drafted",
+     "explanation": "Multiply first: -12, then 5 + (-12) = -7.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-R-S4-02",
+     "source_code": "L3-R-S4-02",
+     "format": "text",
+     "prompt": "Evaluate 18 / (-3) + 7.",
+     "choices": [
+      {
+       "text": "-13",
+       "correct": false
+      },
+      {
+       "text": "-1",
+       "correct": false
+      },
+      {
+       "text": "1",
+       "correct": true
+      },
+      {
+       "text": "13",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T011",
+     "hint": "Divide first, then add 7.",
+     "hint_source": "drafted",
+     "explanation": "Divide first to get -6, then -6 + 7 = 1.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-R-S4-04",
+     "source_code": "L3-R-S4-04",
+     "format": "text",
+     "prompt": "Evaluate -6 + 10 / (-2).",
+     "choices": [
+      {
+       "text": "-11",
+       "correct": true
+      },
+      {
+       "text": "-2",
+       "correct": false
+      },
+      {
+       "text": "2",
+       "correct": false
+      },
+      {
+       "text": "11",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T011",
+     "hint": "Do the division 10 / (-2) before you add.",
+     "hint_source": "drafted",
+     "explanation": "Divide first: 10 / (-2) = -5, then -6 + (-5) = -11.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S4-02",
+     "source_code": "L3-A-S4-02",
+     "format": "text",
+     "prompt": "Evaluate 8 - [3 + (-7)].",
+     "choices": [
+      {
+       "text": "-2",
+       "correct": false
+      },
+      {
+       "text": "4",
+       "correct": false
+      },
+      {
+       "text": "12",
+       "correct": true
+      },
+      {
+       "text": "18",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T011",
+     "hint": "Work out the brackets first. Then subtracting a negative means adding its opposite.",
+     "hint_source": "drafted",
+     "explanation": "The bracket is -4; 8 - (-4) = 12.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S4-05",
+     "source_code": "L3-A-S4-05",
+     "format": "text",
+     "prompt": "Evaluate [(-9) + 3] / (-2).",
+     "choices": [
+      {
+       "text": "-3",
+       "correct": false
+      },
+      {
+       "text": "3",
+       "correct": true
+      },
+      {
+       "text": "-6",
+       "correct": false
+      },
+      {
+       "text": "6",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "medium",
+     "junyi_template": "T011",
+     "hint": "Do the brackets first, then divide.",
+     "hint_source": "drafted",
+     "explanation": "The bracket is -6; (-6) / (-2) = 3.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-R-S4-06",
+     "source_code": "L3-R-S4-06",
+     "format": "text",
+     "prompt": "Which expression equals -4?",
+     "choices": [
+      {
+       "text": "2 - 3 x 2",
+       "correct": true
+      },
+      {
+       "text": "(2 - 3) x 2",
+       "correct": false
+      },
+      {
+       "text": "2 x 3 - 2",
+       "correct": false
+      },
+      {
+       "text": "-2 x (3 - 2)",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T012",
+     "hint": "Evaluate each choice. Multiply before you subtract, unless brackets say otherwise.",
+     "hint_source": "drafted",
+     "explanation": "Multiply first: 3 x 2 = 6, then 2 - 6 = -4.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S4-01",
+     "source_code": "L3-A-S4-01",
+     "format": "text",
+     "prompt": "Evaluate (-4) x (-5) - 27 / 9.",
+     "choices": [
+      {
+       "text": "17",
+       "correct": true
+      },
+      {
+       "text": "23",
+       "correct": false
+      },
+      {
+       "text": "-17",
+       "correct": false
+      },
+      {
+       "text": "-23",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T012",
+     "hint": "Do the multiplication and the division first, then subtract.",
+     "hint_source": "drafted",
+     "explanation": "20 - 3 = 17.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S4-04",
+     "source_code": "L3-A-S4-04",
+     "format": "text",
+     "prompt": "Evaluate 20 - 4 x (-3).",
+     "choices": [
+      {
+       "text": "-48",
+       "correct": false
+      },
+      {
+       "text": "8",
+       "correct": false
+      },
+      {
+       "text": "32",
+       "correct": true
+      },
+      {
+       "text": "-32",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T012",
+     "hint": "Multiply first. Then subtracting a negative means adding.",
+     "hint_source": "drafted",
+     "explanation": "Multiply first: 4 x (-3) = -12, then 20 - (-12) = 32.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S4-03",
+     "source_code": "L3-A-S4-03",
+     "format": "text",
+     "prompt": "Evaluate (-24) / 6 x (-2).",
+     "choices": [
+      {
+       "text": "-8",
+       "correct": false
+      },
+      {
+       "text": "8",
+       "correct": true
+      },
+      {
+       "text": "-2",
+       "correct": false
+      },
+      {
+       "text": "2",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T012",
+     "hint": "Multiplication and division have the same rank: work from left to right.",
+     "hint_source": "drafted",
+     "explanation": "Left to right: -4 x (-2) = 8.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S4-06",
+     "source_code": "L3-A-S4-06",
+     "format": "text",
+     "prompt": "Lito evaluated 8 + 12 / (-4) and got -5. What did he do wrong?",
+     "choices": [
+      {
+       "text": "He added before dividing; the answer is 5",
+       "correct": true
+      },
+      {
+       "text": "Nothing; the answer is -5",
+       "correct": false
+      },
+      {
+       "text": "He divided first; the answer is -3",
+       "correct": false
+      },
+      {
+       "text": "He added before dividing; the answer is 20",
+       "correct": false
+      }
+     ],
+     "skill": "INT_EXPR_NEG",
+     "difficulty": "hard",
+     "junyi_template": "T012",
+     "hint": "Which operation should come first here: the addition or the division?",
+     "hint_source": "drafted",
+     "explanation": "Divide first: 12 / (-4) = -3, then 8 + (-3) = 5. Lito did (8 + 12) / (-4).",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S4",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-R-S6-04",
+     "source_code": "L3-R-S6-04",
+     "format": "text",
+     "prompt": "Which integer shows a loss of 15 pesos?",
+     "choices": [
+      {
+       "text": "-15",
+       "correct": true
+      },
+      {
+       "text": "+15",
+       "correct": false
+      },
+      {
+       "text": "0",
+       "correct": false
+      },
+      {
+       "text": "30",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "easy",
+     "junyi_template": "T013",
+     "hint": "A loss takes money away, so it is a negative number.",
+     "hint_source": "drafted",
+     "explanation": "A loss is a negative change: -15.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-F-S6-01",
+     "source_code": "L3-F-S6-01",
+     "format": "text",
+     "prompt": "It is -2 degrees C, then warms 5 degrees. What is the temperature?",
+     "choices": [
+      {
+       "text": "-7",
+       "correct": false
+      },
+      {
+       "text": "-3",
+       "correct": false
+      },
+      {
+       "text": "3",
+       "correct": true
+      },
+      {
+       "text": "7",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "easy",
+     "junyi_template": "T013",
+     "hint": "Warming adds a positive change.",
+     "hint_source": "3.0",
+     "explanation": "-2 + 5 = 3.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L3-F-S6-02",
+     "source_code": "L3-F-S6-02",
+     "format": "text",
+     "prompt": "A diver is at -3 m and goes down 2 m. Where is the diver?",
+     "choices": [
+      {
+       "text": "-5 m",
+       "correct": true
+      },
+      {
+       "text": "-1 m",
+       "correct": false
+      },
+      {
+       "text": "1 m",
+       "correct": false
+      },
+      {
+       "text": "5 m",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "easy",
+     "junyi_template": "T015",
+     "hint": "Down means subtract 2.",
+     "hint_source": "3.0",
+     "explanation": "-3 - 2 = -5.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L3-F-S6-03",
+     "source_code": "L3-F-S6-03",
+     "format": "text",
+     "prompt": "What expression models a rise of 4 from -6?",
+     "choices": [
+      {
+       "text": "-6 + 4",
+       "correct": true
+      },
+      {
+       "text": "-6 - 4",
+       "correct": false
+      },
+      {
+       "text": "6 + 4",
+       "correct": false
+      },
+      {
+       "text": "6 - 4",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "easy",
+     "junyi_template": "T013",
+     "hint": "Start value plus change.",
+     "hint_source": "3.0",
+     "explanation": "A rise adds a positive change.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "foundational",
+      "difficulty": "foundational"
+     }
+    },
+    {
+     "item_key": "L3-R-S6-01",
+     "source_code": "L3-R-S6-01",
+     "format": "text",
+     "prompt": "It is -4 degrees C and warms by 9 degrees. What is the new temperature?",
+     "choices": [
+      {
+       "text": "-13",
+       "correct": false
+      },
+      {
+       "text": "-5",
+       "correct": false
+      },
+      {
+       "text": "5",
+       "correct": true
+      },
+      {
+       "text": "13",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "medium",
+     "junyi_template": "T013",
+     "hint": "Warming adds to the temperature. Start at -4 and add 9.",
+     "hint_source": "drafted",
+     "explanation": "-4 + 9 = 5.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-R-S6-02",
+     "source_code": "L3-R-S6-02",
+     "format": "text",
+     "prompt": "A diver is at -6 m and descends 4 m. What is the new position?",
+     "choices": [
+      {
+       "text": "-10 m",
+       "correct": true
+      },
+      {
+       "text": "-2 m",
+       "correct": false
+      },
+      {
+       "text": "2 m",
+       "correct": false
+      },
+      {
+       "text": "10 m",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "medium",
+     "junyi_template": "T015",
+     "hint": "Descending makes the depth more negative. Add -4 to -6.",
+     "hint_source": "drafted",
+     "explanation": "-6 + (-4) = -10.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-R-S6-05",
+     "source_code": "L3-R-S6-05",
+     "format": "text",
+     "prompt": "An account has 120 pesos. You withdraw 150 pesos. What is the new balance?",
+     "choices": [
+      {
+       "text": "-270 pesos",
+       "correct": false
+      },
+      {
+       "text": "-30 pesos",
+       "correct": true
+      },
+      {
+       "text": "30 pesos",
+       "correct": false
+      },
+      {
+       "text": "270 pesos",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "medium",
+     "junyi_template": "T013",
+     "hint": "Withdrawing subtracts. Work out 120 - 150: you take out more than you have.",
+     "hint_source": "drafted",
+     "explanation": "120 - 150 = -30.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-R-S6-03",
+     "source_code": "L3-R-S6-03",
+     "format": "text",
+     "prompt": "An elevator starts at floor 3 and goes down 7 floors. Where does it stop?",
+     "choices": [
+      {
+       "text": "-10",
+       "correct": false
+      },
+      {
+       "text": "-4",
+       "correct": true
+      },
+      {
+       "text": "4",
+       "correct": false
+      },
+      {
+       "text": "10",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "medium",
+     "junyi_template": "T015",
+     "hint": "Going down subtracts: 3 - 7. Floors below the ground floor are negative.",
+     "hint_source": "drafted",
+     "explanation": "3 - 7 = -4.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S6-01",
+     "source_code": "L3-A-S6-01",
+     "format": "text",
+     "prompt": "A submarine is at -18 m and rises 7 m. Where is it now?",
+     "choices": [
+      {
+       "text": "-25 m",
+       "correct": false
+      },
+      {
+       "text": "-11 m",
+       "correct": true
+      },
+      {
+       "text": "11 m",
+       "correct": false
+      },
+      {
+       "text": "25 m",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "medium",
+     "junyi_template": "T015",
+     "hint": "Rising moves up toward zero, so add 7 to -18.",
+     "hint_source": "drafted",
+     "explanation": "-18 + 7 = -11.",
+     "review_status": "draft",
+     "review_notes": [
+      "Was a figure question, but 3.0's figure is a blank placeholder, so it is text only now."
+     ],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S6-02",
+     "source_code": "L3-A-S6-02",
+     "format": "text",
+     "prompt": "The temperature is 6 degrees C and falls 14 degrees. What is the new temperature?",
+     "choices": [
+      {
+       "text": "-20",
+       "correct": false
+      },
+      {
+       "text": "-8",
+       "correct": true
+      },
+      {
+       "text": "8",
+       "correct": false
+      },
+      {
+       "text": "20",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "medium",
+     "junyi_template": "T013",
+     "hint": "Falling subtracts: 6 - 14. It ends below zero.",
+     "hint_source": "drafted",
+     "explanation": "6 - 14 = -8.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S6-04",
+     "source_code": "L3-A-S6-04",
+     "format": "text",
+     "prompt": "A bird is 9 m above the ground and flies down 12 m. Which expression models its new height?",
+     "choices": [
+      {
+       "text": "9 + 12",
+       "correct": false
+      },
+      {
+       "text": "9 - 12",
+       "correct": true
+      },
+      {
+       "text": "-9 - 12",
+       "correct": false
+      },
+      {
+       "text": "-9 + 12",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "medium",
+     "junyi_template": "T015",
+     "hint": "Start with where the bird is, then show flying down as taking away 12.",
+     "hint_source": "drafted",
+     "explanation": "Start at 9; flying down is a negative change of 12.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-R-S6-06",
+     "source_code": "L3-R-S6-06",
+     "format": "text",
+     "prompt": "At 6:00 PM it was 3 degrees C. By midnight it was -5 degrees C. What was the change in temperature?",
+     "choices": [
+      {
+       "text": "-8 degrees C (a fall of 8)",
+       "correct": true
+      },
+      {
+       "text": "-2 degrees C",
+       "correct": false
+      },
+      {
+       "text": "+2 degrees C",
+       "correct": false
+      },
+      {
+       "text": "+8 degrees C (a rise of 8)",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "hard",
+     "junyi_template": "T014",
+     "hint": "Change = end - start. Here that is -5 - 3.",
+     "hint_source": "drafted",
+     "explanation": "Change = end - start = -5 - 3 = -8, a fall of 8 degrees.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "regular",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S6-05",
+     "source_code": "L3-A-S6-05",
+     "format": "text",
+     "prompt": "A jeepney driver earned 350 pesos, then spent 420 pesos on fuel. What is the net amount?",
+     "choices": [
+      {
+       "text": "-770 pesos",
+       "correct": false
+      },
+      {
+       "text": "-70 pesos",
+       "correct": true
+      },
+      {
+       "text": "70 pesos",
+       "correct": false
+      },
+      {
+       "text": "770 pesos",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "hard",
+     "junyi_template": "T013",
+     "hint": "Net amount = earned - spent. Spending more than you earn gives a negative.",
+     "hint_source": "drafted",
+     "explanation": "350 - 420 = -70, a net loss of 70 pesos.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S6-03",
+     "source_code": "L3-A-S6-03",
+     "format": "text",
+     "prompt": "A hiker is 12 m above sea level, descends 19 m, then rises 3 m. Where is the hiker?",
+     "choices": [
+      {
+       "text": "-10 m",
+       "correct": false
+      },
+      {
+       "text": "-4 m",
+       "correct": true
+      },
+      {
+       "text": "4 m",
+       "correct": false
+      },
+      {
+       "text": "10 m",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "hard",
+     "junyi_template": "T015",
+     "hint": "Do it in order: 12 - 19 first, then add 3.",
+     "hint_source": "drafted",
+     "explanation": "12 - 19 + 3 = -4.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    },
+    {
+     "item_key": "L3-A-S6-06",
+     "source_code": "L3-A-S6-06",
+     "format": "text",
+     "prompt": "A submarine at -40 m rises 15 m, then dives 25 m. Where is it, compared with where it started?",
+     "choices": [
+      {
+       "text": "-50 m, lower",
+       "correct": true
+      },
+      {
+       "text": "-50 m, higher",
+       "correct": false
+      },
+      {
+       "text": "-30 m, higher",
+       "correct": false
+      },
+      {
+       "text": "-80 m, lower",
+       "correct": false
+      }
+     ],
+     "skill": "INT_CONTEXT",
+     "difficulty": "hard",
+     "junyi_template": "T015",
+     "hint": "Do it in order: -40 + 15, then subtract 25. Then compare the end with -40.",
+     "hint_source": "drafted",
+     "explanation": "-40 + 15 - 25 = -50, which is below -40.",
+     "review_status": "draft",
+     "review_notes": [],
+     "is_new": false,
+     "from_3_0": {
+      "skill": "S6",
+      "set": "additional",
+      "difficulty": "standard"
+     }
+    }
+   ]
+  }
+ ]
+}

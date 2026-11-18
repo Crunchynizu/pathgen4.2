@@ -1,0 +1,31 @@
+{# Dialog 4: Publish exercise (docs/modals.md). Pool and coverage problems are fixed in the editor first. #}
+<dialog id="dialog-publish" class="dialog" aria-labelledby="dialog-publish-title"{% if open_dialog == "publish" %} data-open-on-load{% endif %}>
+  <form method="post" action="{% url 'practice:publish' exercise.id %}">
+    {% csrf_token %}
+    <div class="dialog-head">
+      <h2 id="dialog-publish-title">Publish “{{ publish_target.title }}”?</h2>
+      <button type="button" class="dialog-x" data-dialog-close aria-label="Close">×</button>
+    </div>
+    <div class="dialog-body">
+      <dl class="facts">
+        <div><dt>Questions per session</dt><dd>{{ publish_target.target_count }} (from a pool of {{ publish_target.questions.count }})</dd></div>
+        <div><dt>Required skills</dt><dd>{% for skill in publish_target.required_skills.all %}{{ skill.short_name }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd></div>
+      </dl>
+      {% if classes %}
+      <fieldset class="field">
+        <legend>Open it for these classes</legend>
+        {% for classroom in classes %}
+        <label class="check-row"><input type="checkbox" name="classes" value="{{ classroom.id }}"{% if classroom.id in active_class_ids or classes|length == 1 %} checked{% endif %}> {{ classroom.name }}</label>
+        {% endfor %}
+      </fieldset>
+      <p class="muted">Students in these classes can start it once they have submitted the pretest.{% if live and draft %} Students who already started version {{ live.number }} finish on it; new sessions use this version.{% endif %}</p>
+      {% else %}
+      <p class="notice notice-info">You don't have a class yet. The admin creates classes and assigns them to you.</p>
+      {% endif %}
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-dialog-close>Keep editing</button>
+      {% if classes %}<button type="submit" class="btn btn-primary" data-once>Publish exercise</button>{% endif %}
+    </div>
+  </form>
+</dialog>

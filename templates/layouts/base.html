@@ -1,0 +1,26 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a9db8">
+  <title>{% block title %}PathGen{% endblock %} · PathGen</title>
+  <link rel="icon" type="image/png" href="{% static 'images/pathgen.png' %}">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% block header %}{% endblock %}
+  {% block shell %}
+  <main id="main" class="page" tabindex="-1">
+    {% include "includes/messages.html" %}
+    {% block content %}{% endblock %}
+  </main>
+  {% endblock %}
+  {% if user.is_authenticated %}{% include "includes/dialogs/discard_changes.html" %}{% endif %}
+  <script src="{% static 'js/app.js' %}" defer></script>
+  <script src="{% static 'vendor/animateicons-0.2.0/lucide.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

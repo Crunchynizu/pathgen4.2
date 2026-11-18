@@ -1,0 +1,49 @@
+{% extends "layouts/lesson.html" %}
+{% comment %}
+Adding Integers: skill 5. Text adapted from PathGen 3.0 Lesson 2.1 (draft, waiting for the math
+teacher's check). Examples avoid the locked pretest/posttest items.
+{% endcomment %}
+{% block lesson_body %}
+<section class="recap card card-ink" aria-labelledby="recap-title">
+  <p class="eyebrow">2-minute recap</p>
+  <h2 id="recap-title">Adding integers</h2>
+  <p class="key-idea">Same signs: add the distances and keep the sign. Different signs: subtract the distances and keep the sign of the number farther from zero.</p>
+  <figure class="lw-box" data-widget="chips" data-negatives="5" data-positives="3">
+    <p class="lw-badge">Try it</p>
+    <div data-widget-stage><p>-5 + 3: five negative chips and three positive chips make three zero pairs. Two negatives are left, so -5 + 3 = -2.</p></div>
+    <figcaption class="muted">Change the chips, then make zero pairs.</figcaption>
+  </figure>
+  <div class="lw-box" data-reveal-group data-reveal-label="Show step" data-reveal-final="Show the answer">
+    <p class="lw-title">Worked example</p>
+    <p>Compute -7 + 4.</p>
+    <ol class="lw-steps">
+      <li data-reveal-item>The signs are different, so subtract the distances: 7 - 4 = 3.</li>
+      <li data-reveal-item>-7 is farther from zero than 4, so the answer is negative.</li>
+    </ol>
+    <p class="lw-answer" data-reveal-item data-reveal-answer>-7 + 4 = -3</p>
+  </div>
+</section>
+
+<section id="skill-int-add-neg" class="lesson-section card" aria-labelledby="skill-int-add-neg-title">
+  <h2 id="skill-int-add-neg-title">Addition</h2>
+  <h3>Zero pairs</h3>
+  <p>When you add integers with different signs, a positive chip and a negative chip cancel. Each pair equals zero.</p>
+  <p>Example: -5 + 3. Start with 5 negative chips. Add 3 positive chips. Three pairs cancel and two negatives remain, so -5 + 3 = -2.</p>
+  <h3>Same signs</h3>
+  <p>Add the distances and keep the sign.</p>
+  <ul>
+    <li>(-4) + (-3) = -7</li>
+    <li>4 + 3 = 7</li>
+  </ul>
+  <h3>Different signs</h3>
+  <p>Subtract the smaller distance from the larger one. The answer takes the sign of the number farther from zero: -9 + 4 = -5, and 9 + (-4) = 5.</p>
+  <div class="lw-box lw-mistake" data-spot-mistake>
+    <p class="lw-mistake-label">Common mistake</p>
+    <p data-mistake-text>-6 + 2 = -8 is wrong. The signs are different, so subtract the distances: 6 - 2 = 4, and keep the negative sign. Correct: -6 + 2 = -4.</p>
+  </div>
+  <details class="lw-box video-box">
+    <summary>Optional video: adding and subtracting negative numbers (45 seconds)</summary>
+    <div class="video-frame"><iframe title="Adding and subtracting negative numbers" src="https://www.youtube-nocookie.com/embed/NQSN00zL5gg?start=80&amp;end=125" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  </details>
+</section>
+{% endblock %}

@@ -1,0 +1,115 @@
+{
+  "type": "logistic regression",
+  "format": 1,
+  "target": "struggle = 1 if the answer is wrong or a hint was used",
+  "skills": [
+    "INT_ABS_COMPARE",
+    "INT_ADD_NEG",
+    "INT_CONTEXT",
+    "INT_DIV_NEG",
+    "INT_EXPR_NEG",
+    "INT_MULT_NEG",
+    "INT_NUMBER_LINE",
+    "INT_OPPOSITE_POS4",
+    "INT_ORDER_NEG",
+    "INT_SUB_NEG"
+  ],
+  "numeric_features": [
+    "candidate_difficulty",
+    "last_correct",
+    "last_hint_used",
+    "recent_correct_rate",
+    "recent_hint_rate",
+    "candidate_skill_prior_encounters",
+    "candidate_skill_bkt_mastery"
+  ],
+  "log1p": [
+    "candidate_skill_prior_encounters"
+  ],
+  "mean": [
+    0.20324920488039352,
+    0.7998599471757283,
+    0.05544417296523797,
+    0.7937197737283784,
+    0.05858777467328397,
+    2.485011827162184,
+    0.8455389245294151
+  ],
+  "scale": [
+    0.09308385320072346,
+    0.40010500131697213,
+    0.2288451805253471,
+    0.2515505067134146,
+    0.1664120713473143,
+    1.2496510964332646,
+    0.28414308875186495
+  ],
+  "intercept": -1.5560511854813128,
+  "skill_coef": {
+    "INT_ABS_COMPARE": 0.2701020657054347,
+    "INT_ADD_NEG": 0.18286744746145137,
+    "INT_CONTEXT": -0.10152823990569579,
+    "INT_DIV_NEG": 0.27083396387776537,
+    "INT_EXPR_NEG": -0.9191873868542444,
+    "INT_MULT_NEG": 0.17618133362956065,
+    "INT_NUMBER_LINE": -0.1381152265050397,
+    "INT_OPPOSITE_POS4": -0.7573757599876302,
+    "INT_ORDER_NEG": -0.05213263344129135,
+    "INT_SUB_NEG": -0.48508643561645975
+  },
+  "numeric_coef": {
+    "candidate_difficulty": 0.530904539073043,
+    "last_correct": 0.000494094515240757,
+    "last_hint_used": 0.06290758811489991,
+    "recent_correct_rate": -0.21621814342384724,
+    "recent_hint_rate": 0.04427890775741569,
+    "candidate_skill_prior_encounters": 0.024547628913589158,
+    "candidate_skill_bkt_mastery": -0.4960022359027275
+  },
+  "skill_level": "fine_skill",
+  "recent_window": 5,
+  "base_rates": {
+    "INT_ABS_COMPARE": 0.12528016075430867,
+    "INT_ADD_NEG": 0.16660339113928124,
+    "INT_CONTEXT": 0.2536572719528906,
+    "INT_DIV_NEG": 0.1476038113990366,
+    "INT_EXPR_NEG": 0.44357692523731956,
+    "INT_MULT_NEG": 0.10629879906165751,
+    "INT_NUMBER_LINE": 0.24558085057687906,
+    "INT_OPPOSITE_POS4": 0.16867150185742083,
+    "INT_ORDER_NEG": 0.07536246839688354,
+    "INT_SUB_NEG": 0.3483587393621996
+  },
+  "trained_on": {
+    "rows": 656895,
+    "students": 14741,
+    "balance_skills": true,
+    "per_skill_quota": null,
+    "C": 1.0,
+    "rows_sha256": "0722cd0487c626a3892991075b897b0a122cc3e1bb478f854550583383452a39",
+    "bkt_params_sha256": "429dfdfe8851128e98f9c508bb91254499fbac8f68302c0108de53316fdb5200",
+    "difficulty_sha256": "c0bd6c3b5c2b6e762a2790e14d54bbf11733942aa0acc01206faf287abae86d6"
+  },
+  "validation": {
+    "struggle model (logistic)": {
+      "log_loss": 0.42480391174507215,
+      "brier": 0.13264499581815284,
+      "auc": 0.7521343336736244
+    },
+    "BKT only": {
+      "log_loss": 0.4421256656175755,
+      "brier": 0.1384387946857195,
+      "auc": 0.7184880401064011
+    },
+    "skill base rate": {
+      "log_loss": 0.47243295696657783,
+      "brier": 0.1510815555778447,
+      "auc": 0.6514690321992584
+    },
+    "boosted trees (comparison)": {
+      "log_loss": 0.408547736300276,
+      "brier": 0.1268735744595035,
+      "auc": 0.7725974655736677
+    }
+  }
+}

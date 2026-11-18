@@ -1,0 +1,17 @@
+{# Dialog 1: Create teacher account (docs/modals.md). #}
+<dialog id="dialog-create-teacher" class="dialog" aria-labelledby="dialog-create-teacher-title"{% if open_dialog == "dialog-create-teacher" %} data-open-on-load{% endif %}>
+  <form method="post" action="{% url 'classrooms:create_teacher' %}" data-guard novalidate>
+    {% csrf_token %}
+    <div class="dialog-head">
+      <h2 id="dialog-create-teacher-title">Create teacher account</h2>
+      <button type="button" class="dialog-x" data-dialog-close aria-label="Close">×</button>
+    </div>
+    <div class="dialog-body">
+      {% include "includes/form_fields.html" with form=teacher_form %}
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-dialog-close>Cancel</button>
+      <button type="submit" class="btn btn-primary" data-once>Create teacher</button>
+    </div>
+  </form>
+</dialog>

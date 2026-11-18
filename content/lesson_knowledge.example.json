@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "content_version": "example-1",
+  "entries": [
+    {
+      "skill_id": "INT_SUB_NEG",
+      "lesson_code": "integer_subtraction",
+      "section_id": "skill-int-sub-neg",
+      "title": "Adding the opposite",
+      "explanation": "To subtract an integer, add its opposite.",
+      "worked_example": "3 - (-5) = 3 + 5 = 8."
+    }
+  ]
+}

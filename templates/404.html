@@ -1,0 +1,9 @@
+{% extends "layouts/base.html" %}
+{% block title %}Not found{% endblock %}
+{% block content %}
+<section class="card error-card">
+  <h1>We can't find that page</h1>
+  <p>The link may be old, or the page isn't available to your account.</p>
+  <a class="btn btn-primary" href="{% url 'dashboards:home' %}">Go to your page</a>
+</section>
+{% endblock %}

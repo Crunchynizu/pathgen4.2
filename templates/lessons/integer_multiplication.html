@@ -1,0 +1,53 @@
+{% extends "layouts/lesson.html" %}
+{% comment %}
+Multiplying Integers: skill 7. Text adapted from PathGen 3.0 Lesson 2.2 (draft, waiting for the
+math teacher's check). Examples avoid the locked pretest/posttest items.
+{% endcomment %}
+{% block lesson_body %}
+<section class="recap card card-ink" aria-labelledby="recap-title">
+  <p class="eyebrow">2-minute recap</p>
+  <h2 id="recap-title">Multiplying integers</h2>
+  <p class="key-idea">Multiply the distances first, then decide the sign. Same signs give a positive product; different signs give a negative product.</p>
+  <figure class="lw-box" data-widget="signs">
+    <p class="lw-badge">Try it</p>
+    <div data-widget-stage>
+      <table class="lw-signs">
+        <caption class="sr-only">Sign of a product</caption>
+        <tr><th scope="col">x</th><th scope="col">positive</th><th scope="col">negative</th></tr>
+        <tr><th scope="row">positive</th><td data-sign-cell data-label="positive times positive">positive: 6 x 4 = 24</td><td data-sign-cell data-label="positive times negative">negative: 6 x (-4) = -24</td></tr>
+        <tr><th scope="row">negative</th><td data-sign-cell data-label="negative times positive">negative: (-6) x 4 = -24</td><td data-sign-cell data-label="negative times negative">positive: (-6) x (-4) = 24</td></tr>
+      </table>
+    </div>
+    <figcaption class="muted">Tap each box to see the sign of the product.</figcaption>
+  </figure>
+  <div class="lw-box" data-reveal-group data-reveal-label="Show step" data-reveal-final="Show the answer">
+    <p class="lw-title">Worked example</p>
+    <p>Compute (-6) x 4.</p>
+    <ol class="lw-steps">
+      <li data-reveal-item>The signs are different, so the product is negative.</li>
+      <li data-reveal-item>Multiply the distances: 6 x 4 = 24.</li>
+    </ol>
+    <p class="lw-answer" data-reveal-item data-reveal-answer>(-6) x 4 = -24</p>
+  </div>
+</section>
+
+<section id="skill-int-mult-neg" class="lesson-section card" aria-labelledby="skill-int-mult-neg-title">
+  <h2 id="skill-int-mult-neg-title">Multiplication</h2>
+  <p>Work with the distances first. Then decide the sign.</p>
+  <ul>
+    <li>(-6) x 4 = -24</li>
+    <li>6 x (-4) = -24</li>
+    <li>(-6) x (-4) = 24</li>
+  </ul>
+  <h3>More than two factors</h3>
+  <p>Count the negative factors. An even number of negatives gives a positive product; an odd number gives a negative product. Example: (-1) x (-2) x (-3) = -6.</p>
+  <div class="lw-box lw-mistake" data-spot-mistake>
+    <p class="lw-mistake-label">Common mistake</p>
+    <p data-mistake-text>(-7) x 3 = 21 is wrong. The signs are different, so the answer is -21.</p>
+  </div>
+  <details class="lw-box video-box">
+    <summary>Optional video: multiplying and dividing negative numbers (45 seconds)</summary>
+    <div class="video-frame"><iframe title="Multiplying and dividing negative numbers" src="https://www.youtube-nocookie.com/embed/d8lP5tR2R3Q?start=45&amp;end=90" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  </details>
+</section>
+{% endblock %}

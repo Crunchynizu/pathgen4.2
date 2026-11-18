@@ -1,0 +1,9 @@
+{% extends "layouts/base.html" %}
+{% block title %}Not allowed{% endblock %}
+{% block content %}
+<section class="card error-card">
+  <h1>This page isn't for your account</h1>
+  <p>You're signed in, but this part of PathGen belongs to another role or another class.</p>
+  <a class="btn btn-primary" href="{% url 'dashboards:home' %}">Go to your page</a>
+</section>
+{% endblock %}

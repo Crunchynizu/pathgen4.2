@@ -1,0 +1,22 @@
+{# A revision's question pool, read-only, in the teacher's order. Needs `questions`. #}
+<ol class="pool">
+  {% for question in questions %}
+  <li class="pool-item card">
+    <div class="row-between">
+      <p class="pool-meta"><strong>{{ question.author_order }}.</strong> {{ question.skill.short_name }} · {{ question.get_difficulty_display }} · {{ question.get_format_display }}{% if question.junyi_template %} · Junyi {{ question.junyi_template }} ({{ question.difficulty_value|floatformat:2 }}){% elif question.difficulty_value is not None %} · difficulty {{ question.difficulty_value|floatformat:2 }} (provisional){% endif %}</p>
+      {% if question.review_status == "draft" %}<span class="badge badge-draft">Draft, not yet checked</span>{% else %}<span class="badge badge-published">Checked</span>{% endif %}
+    </div>
+    <p class="pool-prompt">{{ question.prompt }}</p>
+    {% include "practice/_media.html" with question=question small=True %}
+    <ol class="pool-choices" type="A">
+      {% for choice in question.choices.all %}
+      <li{% if choice.is_correct %} class="is-correct"{% endif %}>{{ choice.text }}{% if choice.is_correct %} <span class="sr-only">(correct answer)</span><span aria-hidden="true"> ✓</span>{% endif %}</li>
+      {% endfor %}
+    </ol>
+    <p class="pool-hint"><strong>Hint:</strong> {{ question.hint|default:"(none yet)" }}</p>
+    {% if question.explanation %}<p class="pool-hint muted"><strong>Explanation:</strong> {{ question.explanation }}</p>{% endif %}
+  </li>
+  {% empty %}
+  <li class="empty">No questions yet.</li>
+  {% endfor %}
+</ol>

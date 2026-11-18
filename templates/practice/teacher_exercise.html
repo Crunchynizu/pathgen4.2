@@ -1,0 +1,35 @@
+{% extends "layouts/dashboard.html" %}
+{% block title %}{{ exercise }}{% endblock %}
+
+{% block content %}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="{% url 'dashboards:teacher' 'exercises' %}">Exercises</a> › <span aria-current="page">{{ exercise }}</span></nav>
+<header class="page-head page-head-actions">
+  <div>
+  <p class="eyebrow">{{ exercise.lesson.title }}</p>
+  <h1>{{ revision.title|default:exercise }}</h1>
+  {% if revision %}
+  <p class="muted">Version {{ revision.number }} · {{ revision.get_state_display }}{% if revision.published_at %} {{ revision.published_at|date:"M j, Y" }}{% endif %} · {{ revision.target_count }} questions per session · {{ questions|length }} in the pool</p>
+  {% endif %}
+  </div>
+  <a class="btn btn-primary" href="{% url 'practice:editor' exercise.id %}">Open in the editor</a>
+</header>
+
+{% if revision %}
+<section class="card" aria-labelledby="setup-title">
+  <h2 id="setup-title">Set-up</h2>
+  <dl class="facts">
+    <div><dt>Required skills</dt><dd>{% for skill in skills %}{{ skill.short_name }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd></div>
+    <div><dt>Classes</dt><dd>{% for assignment in assignments %}{{ assignment.classroom.name }}{% if assignment.status != "active" %} (unpublished){% endif %}{% if not forloop.last %}, {% endif %}{% empty %}None{% endfor %}</dd></div>
+  </dl>
+  {% if problems %}<div class="notice notice-error"><p>This draft can't be published yet:</p><ul>{% for problem in problems %}<li>{{ problem }}</li>{% endfor %}</ul></div>{% endif %}
+  <p class="muted">Published versions are frozen, so students' saved results always match what they saw. Changes go into a new draft in the editor.</p>
+</section>
+
+<section aria-labelledby="pool-title">
+  <h2 id="pool-title">Question pool, in your order</h2>
+  {% include "practice/_pool.html" %}
+</section>
+{% else %}
+<p class="empty">This exercise has no version yet.</p>
+{% endif %}
+{% endblock %}

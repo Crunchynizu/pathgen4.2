@@ -1,0 +1,12 @@
+{
+  "fitted_on": "2026-11-16",
+  "trainer": "thesis/pathgen4.0-trainer (run.py all --config config.fine_skill.json)",
+  "skill_level": "fine_skill",
+  "bkt_limits": "guess <= 0.3, slip <= 0.1, learn <= 0.3",
+  "inputs": 8,
+  "files": {
+    "bkt_params.json": "429dfdfe8851128e98f9c508bb91254499fbac8f68302c0108de53316fdb5200",
+    "struggle_model.json": "9f0e206619c7953d7e356ad20862936e98791b3c862064f52034f50ae1a07428",
+    "template_difficulty.json": "c0bd6c3b5c2b6e762a2790e14d54bbf11733942aa0acc01206faf287abae86d6"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "junyi_dir": "C:/Users/User/junyi/data",
+  "work_dir": "C:/Users/User/junyi/pathgen42/work",
+  "output_dir": "C:/Users/User/junyi/pathgen42/output",
+  "skill_map": "skill_map.csv",
+  "skill_level": "fine_skill",
+  "split": {
+    "seed": 42,
+    "test_share": 0.2,
+    "validation_share": 0.1,
+    "folds": 5
+  },
+  "bkt": {
+    "bounds": {
+      "p_l0": [
+        0.0001,
+        0.9999
+      ],
+      "p_t": [
+        0.0001,
+        0.3
+      ],
+      "p_g": [
+        0.0001,
+        0.3
+      ],
+      "p_s": [
+        0.0001,
+        0.1
+      ]
+    },
+    "max_answers_per_skill": null,
+    "workers": 4
+  },
+  "features": {
+    "recent_window": 5,
+    "difficulty_prior_strength": 20
+  },
+  "model": {
+    "C": 1.0,
+    "balance_skills": true,
+    "per_skill_quota": null,
+    "compare_hgb": true,
+    "save_hgb": false
+  },
+  "update": {
+    "study_share": 0.2,
+    "holdout_share": 0.2
+  }
+}

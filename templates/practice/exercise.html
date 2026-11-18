@@ -1,0 +1,148 @@
+{% extends "layouts/student.html" %}
+{% block title %}{{ revision.title }}{% endblock %}
+
+{% block content %}
+<div class="exercise stack" data-exercise>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{% url 'dashboards:learn' %}">Journey</a> › <a href="{{ lesson.get_absolute_url }}">{{ lesson.title }}</a> › <span aria-current="page">Practice</span></nav>
+
+  {% if state == "start" %}
+  <section class="card card-ink" aria-labelledby="ex-title">
+    <p class="eyebrow">{{ lesson.title }}</p>
+    <h1 id="ex-title">{{ revision.title }}</h1>
+    <ul class="chips">{% for skill in skills %}<li class="chip chip-soft">{{ skill.short_name }}</li>{% endfor %}</ul>
+    <ul class="plain-list">
+      <li>{{ revision.target_count }} questions, picked for you one at a time.</li>
+      <li>Your first answer to each question is the one that counts.</li>
+      <li>If your first answer is wrong, you can open a hint and try once more, or move on.</li>
+      <li>After you finish, you can do the practice one more time.</li>
+    </ul>
+    {% if assigned %}
+    <form method="post" action="{% url 'practice:start' exercise.id %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-sun btn-big" data-once>Start practice →</button>
+    </form>
+    {% else %}
+    <p class="notice notice-info">This practice isn't open for your class right now.</p>
+    {% endif %}
+  </section>
+
+  {% elif state == "question" or state == "retry" %}
+  {% include "practice/_progress.html" %}
+  <section class="card card-ink question" aria-labelledby="q-prompt">
+    <p class="eyebrow">{{ item.question.skill.short_name }}</p>
+    <h1 id="q-prompt" class="q-prompt">{{ item.question.prompt }}</h1>
+    {% include "practice/_media.html" with question=item.question %}
+    {% if state == "retry" %}
+    <p class="notice notice-warning" role="status">Not quite. Open the hint if you like, then try once more, or move on.</p>
+    {% endif %}
+    <form method="post" action="{% url 'practice:answer' exercise.id %}" data-timed>
+      {% csrf_token %}
+      <input type="hidden" name="item" value="{{ item.id }}">
+      <input type="hidden" name="active_seconds" value="" data-active-seconds>
+      {% if item.question.format == "video" %}<input type="hidden" name="video_seconds" value="" data-video-seconds>{% endif %}
+      <fieldset class="q-choices">
+        <legend class="sr-only">{% if state == "retry" %}Choose your second answer{% else %}Choose your answer{% endif %}</legend>
+        {% for choice in choices %}
+        <label class="choice{% if choice.id == first_choice %} choice-wrong{% endif %}">
+          <input type="radio" name="choice" value="{{ choice.id }}" required{% if choice.id == first_choice %} disabled{% endif %}>
+          <span class="choice-letter" aria-hidden="true">{{ choice.letter }}</span>
+          <span class="choice-text">{{ choice.text }}{% if choice.id == first_choice %} <span class="choice-note">(your first answer)</span>{% endif %}</span>
+        </label>
+        {% endfor %}
+      </fieldset>
+      <button type="submit" class="btn btn-primary btn-big" data-once>{% if state == "retry" %}Check my second answer{% else %}Check my answer{% endif %}</button>
+    </form>
+  </section>
+  {% if state == "retry" %}
+  <section class="card hint-card" id="hint" aria-labelledby="hint-title">
+    <h2 id="hint-title">Hint</h2>
+    {% if item.hint_used %}
+    <p class="hint-text">{{ item.question.hint }}</p>
+    {% else %}
+    <form method="post" action="{% url 'practice:hint' exercise.id %}">
+      {% csrf_token %}
+      <input type="hidden" name="item" value="{{ item.id }}">
+      <button type="submit" class="btn btn-secondary" data-once>Show the hint</button>
+    </form>
+    {% endif %}
+    <form method="post" action="{% url 'practice:move_on' exercise.id %}" class="move-on">
+      {% csrf_token %}
+      <input type="hidden" name="item" value="{{ item.id }}">
+      <button type="submit" class="btn btn-secondary" data-once>Move on without retrying</button>
+    </form>
+  </section>
+  {% endif %}
+
+  {% elif state == "checked" %}
+  {% include "practice/_progress.html" with done_count=item.position %}
+  <section class="card card-ink question" aria-labelledby="q-prompt">
+    {% if item.outcome == "correct_first" %}<p class="result result-good" role="status">✓ Correct on the first try!</p>
+    {% elif item.outcome == "correct_retry" %}<p class="result result-good" role="status">✓ Correct on your second try.</p>
+    {% else %}<p class="result result-miss" role="status">Not this time. Here is the right answer.</p>{% endif %}
+    <h1 id="q-prompt" class="q-prompt">{{ item.question.prompt }}</h1>
+    {% if item.question.format == "figure" %}{% include "practice/_media.html" with question=item.question %}{% endif %}
+    <ul class="q-review">
+      {% for choice in choices %}
+      <li class="{% if choice.is_correct %}is-correct{% elif choice.id in picked %}is-wrong{% endif %}">
+        <span class="choice-letter" aria-hidden="true">{{ choice.letter }}</span> {{ choice.text }}
+        {% if choice.is_correct %}<strong> · right answer</strong>{% elif choice.id in picked %} · your answer{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% if item.question.explanation %}<p class="explain"><strong>Why:</strong> {{ item.question.explanation }}</p>{% endif %}
+    {% if session.is_completed %}
+    <a class="btn btn-sun btn-big" href="{% url 'practice:exercise' exercise.id %}">See your results →</a>
+    {% else %}
+    <a class="btn btn-sun btn-big" href="{% url 'practice:exercise' exercise.id %}" autofocus>Next question →</a>
+    {% endif %}
+  </section>
+
+  {% elif state == "results" %}
+  <header>
+    <p class="eyebrow">{{ lesson.title }}</p>
+    <h1>{{ revision.title }}: your results</h1>
+  </header>
+  {% for row in results reversed %}
+  <section class="card card-ink results" aria-labelledby="res-{{ row.session.id }}">
+    <h2 id="res-{{ row.session.id }}">{% if row.session.attempt_number == 2 %}Your retake{% else %}{% if results|length > 1 %}Your first time{% else %}Your score{% endif %}{% endif %}</h2>
+    <div class="score-pair">
+      <div class="score-box"><p class="score-label">Right on the first try</p><p class="score-value">{{ row.session.first_try_correct }}<span>/{{ row.session.target_count }}</span></p></div>
+      <div class="score-box"><p class="score-label">Fixed on the retry</p><p class="score-value">{{ row.session.corrected_on_retry }}</p></div>
+    </div>
+    {% if row.feedback %}
+    <div class="feedback"{% if llm_enabled and row.feedback.generation == "pending" %} data-generate="{% url 'practice:feedback' exercise.id %}" data-session="{{ row.session.id }}"{% endif %}>
+      {% if row.feedback.strength_skill %}<p class="feedback-line"><strong>Strength:</strong> {{ row.feedback.strength_skill.short_name }}</p>{% endif %}
+      {% if row.feedback.focus_skill %}<p class="feedback-line"><strong>Next focus:</strong> {{ row.feedback.focus_skill.short_name }}</p>{% endif %}
+      <p data-feedback-text>{{ row.feedback.text }}</p>
+      <p class="muted feedback-status" data-feedback-status aria-live="polite"></p>
+      {% if row.feedback.review_url %}<a class="btn btn-secondary" href="{{ row.feedback.review_url }}">Review {{ row.feedback.focus_skill.short_name }} in the lesson</a>{% endif %}
+    </div>
+    {% endif %}
+    <details>
+      <summary>See each question</summary>
+      <ol class="result-list">
+        {% for each in row.items %}<li>{{ each.question.prompt }} · <strong>{{ each.get_outcome_display }}</strong></li>{% endfor %}
+      </ol>
+    </details>
+  </section>
+  {% endfor %}
+  <div class="actions">
+    {% if can_retake %}
+    <button type="button" class="btn btn-primary" data-dialog-open="dialog-retake">Do it one more time</button>
+    {% elif results|length > 1 %}
+    <p class="muted">You've used your one retake for this practice.</p>
+    {% endif %}
+    <a class="btn btn-secondary" href="{{ lesson.get_absolute_url }}">Back to {{ lesson.title }}</a>
+    <a class="btn btn-secondary" href="{% url 'dashboards:learn' %}">Your journey</a>
+  </div>
+  {% if can_retake %}{% include "includes/dialogs/start_retake.html" %}{% endif %}
+
+  {% elif state == "stuck" %}
+  <section class="card" aria-labelledby="stuck-title">
+    <h1 id="stuck-title">This practice can't pick a next question</h1>
+    <p>Your answers so far are saved. Please tell your teacher; they can check the question pool.</p>
+    <a class="btn btn-secondary" href="{{ lesson.get_absolute_url }}">Back to {{ lesson.title }}</a>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

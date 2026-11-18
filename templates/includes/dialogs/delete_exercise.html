@@ -1,0 +1,17 @@
+{# Dialog 5: Delete draft exercise (docs/modals.md). Only for an exercise that was never published. #}
+<dialog id="dialog-delete" class="dialog" aria-labelledby="dialog-delete-title">
+  <form method="post" action="{% url 'practice:delete' exercise.id %}">
+    {% csrf_token %}
+    <div class="dialog-head">
+      <h2 id="dialog-delete-title">Delete the draft “{{ revision.title }}”?</h2>
+      <button type="button" class="dialog-x" data-dialog-close aria-label="Close">×</button>
+    </div>
+    <div class="dialog-body">
+      <p>Its {{ questions|length }} draft question{{ questions|length|pluralize }}, their hints and any pictures you uploaded for them are removed. This can't be undone. Students never saw this exercise.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-dialog-close>Keep draft</button>
+      <button type="submit" class="btn btn-danger" data-once>Delete draft</button>
+    </div>
+  </form>
+</dialog>

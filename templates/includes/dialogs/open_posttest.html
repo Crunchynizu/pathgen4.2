@@ -1,0 +1,18 @@
+{# Dialog 7: Open posttest (docs/modals.md). Needs `classroom` and `pretests_done`. #}
+<dialog id="dialog-open-posttest" class="dialog" aria-labelledby="dialog-open-posttest-title">
+  <form method="post" action="{% url 'assessments:open_posttest' classroom.id %}">
+    {% csrf_token %}
+    <div class="dialog-head">
+      <h2 id="dialog-open-posttest-title">Open the posttest for {{ classroom.name }}?</h2>
+      <button type="button" class="dialog-x" data-dialog-close aria-label="Close">×</button>
+    </div>
+    <div class="dialog-body">
+      <p>Students in {{ classroom.name }} who have submitted the pretest can start the posttest right away. Right now that is <strong>{{ pretests_done }} of {{ roster|length }}</strong> students; the others can take it after their pretest.</p>
+      <p>This can't be undone in the app.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-dialog-close>Not yet</button>
+      <button type="submit" class="btn btn-primary" data-once>Open posttest</button>
+    </div>
+  </form>
+</dialog>

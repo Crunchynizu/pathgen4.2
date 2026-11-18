@@ -1,0 +1,40 @@
+# Local development (docs/tech_stack.md, "Teammate setup"): SQLite, uploads and the Qwen cache in
+# named volumes, so they survive a restart.
+#
+#   docker compose up --build                          the app at http://localhost:8000
+#   LLM_BASE_URL=http://llm:8080 docker compose --profile llm up --build
+#                                                      the same, plus local Qwen feedback
+#                                                      (PowerShell: $env:LLM_BASE_URL="http://llm:8080"; then the command)
+services:
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py migrate --noinput
+      && python manage.py seed_curriculum
+      && python manage.py seed_assessments
+      && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.development
+      DATABASE_URL: sqlite:////data/db/pathgen.sqlite3
+      MEDIA_ROOT: /data/media
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - sqlite:/data/db
+      - media:/data/media
+
+  # Qwen2.5-0.5B on llama.cpp (docs/rag.md). Off unless started with --profile llm; practice and the
+  # feedback fallback work without it.
+  llm:
+    profiles: ["llm"]
+    build: deploy/llm
+    environment:
+      LLAMA_ARG_HOST: 0.0.0.0
+    expose:
+      - "8080"
+
+volumes:
+  sqlite:
+  media:

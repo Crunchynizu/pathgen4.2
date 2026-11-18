@@ -1,0 +1,8 @@
+# Normalize line endings in Git; Docker and deploy files always use LF (they run on Linux).
+* text=auto
+Dockerfile text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+*.png binary
+*.gguf binary

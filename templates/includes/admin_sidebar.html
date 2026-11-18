@@ -1,0 +1,8 @@
+{% load icons %}<nav class="sidebar-nav" aria-label="Admin">
+  <ul>
+    {% for key, name in sections %}
+    <li><a href="{% url 'dashboards:admin' key %}"{% if section == key %} aria-current="page"{% endif %}>{% section_icon key %}<span>{{ name }}</span></a></li>
+    {% endfor %}
+    <li><a href="{% url 'accounts:profile' %}"{% if section == 'profile' %} aria-current="page"{% endif %}>{% section_icon "profile" %}<span>Profile</span></a></li>
+  </ul>
+</nav>

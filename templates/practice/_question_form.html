@@ -1,0 +1,74 @@
+{% load static %}{# One question card in the editor. Needs `form` (QuestionForm in the formset) and `number`. #}
+<li class="card q-edit{% if form.errors %} q-edit-invalid{% endif %}" data-question data-format="{{ form.format.value|default:'text' }}">
+  {{ form.source_id }}{{ form.keep_figure }}
+  <div class="row-between q-edit-head">
+    <h3>Question <span data-number>{{ number }}</span>{% if form.initial.item_key %} <code class="muted">{{ form.initial.item_key }}</code>{% endif %}</h3>
+    <div class="q-edit-tools">
+      <label class="q-order">Position {{ form.ORDER }}</label>
+      <button type="button" class="btn btn-quiet btn-small" data-move="-1" aria-label="Move question up" hidden>↑</button>
+      <button type="button" class="btn btn-quiet btn-small" data-move="1" aria-label="Move question down" hidden>↓</button>
+      <label class="q-remove">{{ form.DELETE }} Remove</label>
+    </div>
+  </div>
+  {% if form.non_field_errors %}<div class="form-errors" role="alert">{% for e in form.non_field_errors %}<p>{{ e }}</p>{% endfor %}</div>{% endif %}
+
+  <fieldset class="field q-format">
+    <legend>Format</legend>
+    <div class="radio-row">{% for radio in form.format %}<label>{{ radio.tag }} {{ radio.choice_label }}</label>{% endfor %}</div>
+  </fieldset>
+
+  <div class="field{% if form.prompt.errors %} field-invalid{% endif %}">
+    <label for="{{ form.prompt.id_for_label }}">{{ form.prompt.label }}</label>{{ form.prompt }}
+    {% for e in form.prompt.errors %}<p class="field-error" role="alert">{{ e }}</p>{% endfor %}
+  </div>
+
+  <div class="q-media" data-media="figure">
+    {% if form.initial.figure_name or form.initial.figure_static %}
+    <figure class="q-figure q-figure-small" data-current-figure>
+      {% if form.initial.figure_name %}<img src="{% url 'practice:figure' form.initial.figure_name %}" alt="{{ form.initial.figure_description }}">{% else %}<img src="{% static form.initial.figure_static %}" alt="{{ form.initial.figure_description }}">{% endif %}
+      <figcaption class="muted">Current picture. Choose a new file to replace it.</figcaption>
+    </figure>
+    {% endif %}
+    <div class="field{% if form.figure.errors %} field-invalid{% endif %}">
+      <label for="{{ form.figure.id_for_label }}">{{ form.figure.label }}</label>{{ form.figure }}
+      <p class="field-help" data-figure-check aria-live="polite"></p>
+      <img class="q-figure-preview" alt="Preview of the chosen picture" data-figure-preview hidden>
+      {% for e in form.figure.errors %}<p class="field-error" role="alert">{{ e }}</p>{% endfor %}
+    </div>
+    <div class="field{% if form.figure_description.errors %} field-invalid{% endif %}">
+      <label for="{{ form.figure_description.id_for_label }}">{{ form.figure_description.label }}</label>{{ form.figure_description }}
+      <p class="field-help">{{ form.figure_description.help_text }}</p>
+    </div>
+  </div>
+
+  <div class="q-media" data-media="video">
+    <div class="field{% if form.video_url.errors %} field-invalid{% endif %}">
+      <label for="{{ form.video_url.id_for_label }}">{{ form.video_url.label }}</label>{{ form.video_url }}
+      {% for e in form.video_url.errors %}<p class="field-error" role="alert">{{ e }}</p>{% endfor %}
+    </div>
+    <div class="field{% if form.video_start.errors %} field-invalid{% endif %}">
+      <label for="{{ form.video_start.id_for_label }}">{{ form.video_start.label }}</label>{{ form.video_start }}
+      <p class="field-help">{{ form.video_start.help_text }}</p>
+      {% for e in form.video_start.errors %}<p class="field-error" role="alert">{{ e }}</p>{% endfor %}
+    </div>
+    <p class="field-help" data-video-check aria-live="polite"></p>
+    <img class="q-video-thumb" alt="" data-video-thumb hidden>
+  </div>
+
+  <fieldset class="field q-choices-edit{% if form.correct.errors %} field-invalid{% endif %}">
+    <legend>Answer choices <span class="muted">(pick the correct one)</span></legend>
+    {% for choice_field, position in form.choice_fields %}
+    <div class="q-choice-row">
+      <label class="q-correct"><input type="radio" name="{{ form.correct.html_name }}" value="{{ position }}"{% if form.correct.value|stringformat:"s" == position|stringformat:"s" %} checked{% endif %}> <span class="sr-only">Correct answer is</span> {{ choice_field.label }}</label>
+      <label class="sr-only" for="{{ choice_field.id_for_label }}">Choice {{ choice_field.label }}</label>{{ choice_field }}
+    </div>
+    {% endfor %}
+    {% for e in form.correct.errors %}<p class="field-error" role="alert">{{ e }}</p>{% endfor %}
+  </fieldset>
+
+  <div class="q-edit-grid">
+    <div class="field{% if form.skill.errors %} field-invalid{% endif %}"><label for="{{ form.skill.id_for_label }}">Skill</label>{{ form.skill }}{% for e in form.skill.errors %}<p class="field-error" role="alert">{{ e }}</p>{% endfor %}</div>
+    <div class="field"><label for="{{ form.difficulty.id_for_label }}">Level</label>{{ form.difficulty }}</div>
+  </div>
+  <div class="field"><label for="{{ form.hint.id_for_label }}">Hint</label>{{ form.hint }}<p class="field-help">{{ form.hint.help_text }}</p></div>
+</li>

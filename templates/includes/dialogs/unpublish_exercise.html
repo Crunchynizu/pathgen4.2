@@ -1,0 +1,22 @@
+{# Dialog 6: Unpublish exercise (docs/modals.md). #}
+<dialog id="dialog-unpublish" class="dialog" aria-labelledby="dialog-unpublish-title">
+  <form method="post" action="{% url 'practice:unpublish' exercise.id %}">
+    {% csrf_token %}
+    <div class="dialog-head">
+      <h2 id="dialog-unpublish-title">Unpublish “{{ revision.title }}”?</h2>
+      <button type="button" class="dialog-x" data-dialog-close aria-label="Close">×</button>
+    </div>
+    <div class="dialog-body">
+      <p>It closes for: <strong>{% for a in active_assignments %}{{ a.classroom.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</strong>.</p>
+      <ul>
+        <li>No one can start it or take the retake.</li>
+        <li>{% if started_sessions %}{{ started_sessions }} session{{ started_sessions|pluralize }} already in progress can finish.{% else %}Nobody is in the middle of it right now.{% endif %}</li>
+        <li>Saved results stay, and you can publish it again later.</li>
+      </ul>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-dialog-close>Keep published</button>
+      <button type="submit" class="btn btn-danger" data-once>Unpublish exercise</button>
+    </div>
+  </form>
+</dialog>

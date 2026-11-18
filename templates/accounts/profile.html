@@ -1,0 +1,34 @@
+{% extends user.is_student|yesno:"layouts/student.html,layouts/dashboard.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="stack">
+  <header>
+    <p class="eyebrow">Profile</p>
+    <h1>{{ user }}</h1>
+    <p class="muted">Username: <strong>{{ user.username }}</strong> · {{ user.get_role_display }}</p>
+  </header>
+
+  <section class="card" aria-labelledby="name-title">
+    <h2 id="name-title">Display name</h2>
+    <form method="post" data-guard data-guard-page novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="form" value="name">
+      {% include "includes/form_fields.html" with form=name_form %}
+      <button type="submit" class="btn btn-primary" data-once>Save name</button>
+    </form>
+  </section>
+
+  <section class="card" aria-labelledby="password-title">
+    <h2 id="password-title">Password</h2>
+    <form method="post" data-guard data-guard-page novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="form" value="password">
+      {% include "includes/form_fields.html" with form=password_form %}
+      <button type="submit" class="btn btn-primary" data-once>Change password</button>
+    </form>
+  </section>
+
+  <p><a href="{{ back_url }}">← Back</a></p>
+</div>
+{% endblock %}

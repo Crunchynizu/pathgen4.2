@@ -1,0 +1,207 @@
+{% extends "layouts/dashboard.html" %}
+{% load static %}
+{% block title %}{% if view == "class" %}{{ classroom.name }}{% elif view == "student" %}{{ student }}{% else %}Teacher{% endif %}{% endblock %}
+
+{% block content %}
+{% if view == "class" %}
+{# ---- One class ---- #}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="{% url 'dashboards:teacher' 'classes' %}">My Classes</a> › <span aria-current="page">{{ classroom.name }}</span></nav>
+<header class="page-head page-head-actions">
+  <div>
+    <p class="eyebrow">Class</p>
+    <h1>{{ classroom.name }}</h1>
+    <p class="muted">{{ roster|length }} students · {{ pretests_done }} pretests submitted</p>
+  </div>
+</header>
+
+<section class="card" aria-labelledby="posttest-title">
+  <h2 id="posttest-title">Posttest</h2>
+  {% if release %}
+  <p class="notice notice-success">Open since {{ release.opened_at|date:"M j, g:i A" }}. Students who submitted the pretest can take it.</p>
+  {% elif has_posttest %}
+  <p>Open it at the end of the unit. Students can start it once they have submitted the pretest.</p>
+  <button type="button" class="btn btn-primary" data-dialog-open="dialog-open-posttest">Open posttest</button>
+  {% include "includes/dialogs/open_posttest.html" %}
+  {% else %}
+  <p class="empty">There is no published posttest yet.</p>
+  {% endif %}
+</section>
+
+<section class="card" aria-labelledby="roster-title">
+  <h2 id="roster-title">Students <span class="count">{{ roster|length }}</span></h2>
+  {% if roster %}
+  <div class="table-wrap"><table>
+    <caption class="sr-only">Pretest and posttest scores out of the number of items; change in percentage points; practice exercises finished out of those assigned; first-try right answers out of questions asked in first sessions</caption>
+    <thead><tr><th scope="col">Student</th><th scope="col">Pretest</th><th scope="col">Posttest</th><th scope="col">Change</th><th scope="col">Practice finished</th><th scope="col">First-try right</th></tr></thead>
+    <tbody>
+    {% for row in roster %}
+    <tr>
+      <td><a href="{% url 'dashboards:teacher_student' classroom.id row.user.id %}">{{ row.user }}</a><br><code class="muted">{{ row.user.username }}</code></td>
+      <td>{% include "dashboards/_score.html" with attempt=row.pre %}</td>
+      <td>{% include "dashboards/_score.html" with attempt=row.post %}</td>
+      <td>{% if row.change is not None %}{{ row.change|stringformat:"+.1f" }} pts{% else %}<span class="muted">Not available</span>{% endif %}</td>
+      <td>{{ row.practice.finished }} of {{ assigned_count }}</td>
+      <td>{% if row.practice.asked %}{{ row.practice.right }}/{{ row.practice.asked }} <span class="muted">({{ row.practice.percent }}%)</span>{% else %}<span class="muted">Not available</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% else %}<p class="empty">No students in this class yet. The admin adds them.</p>{% endif %}
+</section>
+
+<section class="card" aria-labelledby="gaps-title">
+  <h2 id="gaps-title">Skill gaps</h2>
+  <p class="muted">Number of students in each group, out of {{ roster|length }}. Labels come from practice only (BKT mastery: Doing well at 0.75 or more).</p>
+  {% if roster %}<div class="chart chart-tall" data-chart="chart-gaps" role="img" aria-label="Bar chart of skill gaps. The table below has the same numbers."><canvas></canvas></div>{% endif %}
+  <div class="table-wrap"><table>
+    <caption class="sr-only">Skill gaps: students per label for each skill</caption>
+    <thead><tr><th scope="col">Skill</th><th scope="col">Needs practice</th><th scope="col">Doing well</th><th scope="col">Not yet practiced</th></tr></thead>
+    <tbody>{% for gap in gaps %}<tr><td>{{ gap.skill.short_name }}</td><td>{% if gap.needs %}<strong>{{ gap.needs }}</strong>{% else %}0{% endif %}</td><td>{{ gap.well }}</td><td>{{ gap.none }}</td></tr>{% endfor %}</tbody>
+  </table></div>
+</section>
+
+<section class="card" aria-labelledby="by-skill-title">
+  <h2 id="by-skill-title">Pretest and posttest by skill</h2>
+  {% if by_skill %}
+  <p class="muted">Percent correct, for the {{ paired_count }} student{{ paired_count|pluralize }} who submitted both tests.</p>
+  <div class="chart chart-tall" data-chart="chart-scores" role="img" aria-label="Bar chart of pretest and posttest percent correct by skill. The table below has the same numbers."><canvas></canvas></div>
+  <div class="table-wrap"><table>
+    <caption class="sr-only">Pretest and posttest percent correct by skill, and the change in percentage points</caption>
+    <thead><tr><th scope="col">Skill</th><th scope="col">Items per test</th><th scope="col">Pretest</th><th scope="col">Posttest</th><th scope="col">Change</th></tr></thead>
+    <tbody>{% for row in by_skill %}<tr><td>{{ row.skill.short_name }}</td><td>{{ row.items }}</td><td>{{ row.pre }}%</td><td>{{ row.post }}%</td><td>{{ row.change|stringformat:"+.1f" }} pts</td></tr>{% endfor %}</tbody>
+  </table></div>
+  {% else %}
+  <p class="empty">Shown once students have submitted both the pretest and the posttest.</p>
+  {% endif %}
+</section>
+
+<section class="card" aria-labelledby="assigned-title">
+  <h2 id="assigned-title">Assigned practice</h2>
+  {% if assignments %}
+  <ul class="plain-list">{% for assignment in assignments %}<li><a href="{% url 'practice:teacher_exercise' assignment.exercise.id %}">{{ assignment.exercise.active_revision.title }}</a> · {{ assignment.exercise.lesson.title }}</li>{% endfor %}</ul>
+  {% else %}<p class="empty">No practice assigned to this class yet.</p>{% endif %}
+</section>
+
+{% elif view == "student" %}
+{# ---- One student ---- #}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="{% url 'dashboards:teacher' 'classes' %}">My Classes</a> › <a href="{% url 'dashboards:teacher_class' classroom.id %}">{{ classroom.name }}</a> › <span aria-current="page">{{ student }}</span></nav>
+<header class="page-head">
+  <p class="eyebrow">Student</p>
+  <h1>{{ student }}</h1>
+  <p class="muted"><code>{{ student.username }}</code> · {{ classroom.name }}</p>
+</header>
+<section class="card" aria-labelledby="scores-title">
+  <h2 id="scores-title">Pretest and posttest</h2>
+  {% include "dashboards/_scores_pair.html" %}
+</section>
+<section class="card" aria-labelledby="skills-title">
+  <h2 id="skills-title">Skills</h2>
+  {% include "dashboards/_skills.html" with show_mastery=True %}
+</section>
+<section class="card" aria-labelledby="practice-title">
+  <h2 id="practice-title">Practice results</h2>
+  {% if practice_sessions %}
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Exercise</th><th scope="col">Session</th><th scope="col">First-try right</th><th scope="col">Fixed on retry</th><th scope="col">Status</th></tr></thead>
+    <tbody>{% for s in practice_sessions %}<tr><td>{{ s.revision.title }}</td><td>{% if s.attempt_number == 2 %}Retake{% else %}First{% endif %}</td><td>{% if s.is_completed %}{{ s.first_try_correct }}/{{ s.target_count }}{% else %}<span class="muted">Not available</span>{% endif %}</td><td>{% if s.is_completed %}{{ s.corrected_on_retry }}{% else %}<span class="muted">Not available</span>{% endif %}</td><td>{{ s.get_status_display }}</td></tr>{% endfor %}</tbody>
+  </table></div>
+  {% else %}
+  <p class="empty">No practice yet.</p>
+  {% endif %}
+</section>
+
+{% elif section == "overview" %}
+<header class="page-head">
+  <p class="eyebrow">Teacher</p>
+  <h1>Hello, {{ user }}</h1>
+</header>
+{% if summaries %}
+<ul class="class-cards">
+  {% for item in summaries %}
+  <li class="card">
+    <h2><a href="{% url 'dashboards:teacher_class' item.classroom.id %}">{{ item.classroom.name }}</a></h2>
+    <dl class="facts">
+      <div><dt>Students</dt><dd>{{ item.students }}</dd></div>
+      <div><dt>Pretests submitted</dt><dd>{{ item.pretests }} of {{ item.students }}</dd></div>
+      <div><dt>Posttests submitted</dt><dd>{{ item.posttests }} of {{ item.students }}</dd></div>
+      <div><dt>Assigned exercises</dt><dd>{{ item.exercises }}</dd></div>
+      <div><dt>Posttest</dt><dd>{% if item.release %}Open{% else %}Not open yet{% endif %}</dd></div>
+    </dl>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">You don't have a class yet. The admin creates classes and assigns them to you.</p>
+{% endif %}
+
+{% elif section == "classes" %}
+<header class="page-head">
+  <p class="eyebrow">Teacher</p>
+  <h1>My Classes</h1>
+</header>
+{% if summaries %}
+<div class="table-wrap card"><table>
+  <thead><tr><th scope="col">Class</th><th scope="col">Students</th><th scope="col">Pretests</th><th scope="col">Posttests</th><th scope="col">Posttest</th></tr></thead>
+  <tbody>
+  {% for item in summaries %}
+  <tr>
+    <td><a href="{% url 'dashboards:teacher_class' item.classroom.id %}">{{ item.classroom.name }}</a></td>
+    <td>{{ item.students }}</td>
+    <td>{{ item.pretests }} of {{ item.students }}</td>
+    <td>{{ item.posttests }} of {{ item.students }}</td>
+    <td>{% if item.release %}Open{% else %}Not open yet{% endif %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table></div>
+{% else %}
+<p class="empty">You don't have a class yet. The admin creates classes and assigns them to you.</p>
+{% endif %}
+{% endif %}
+
+{% if section == "exercises" or section == "overview" %}{% if not view %}
+<section class="{% if section == 'overview' %}card {% endif %}stack" aria-labelledby="exercises-title">
+  {% if section == "exercises" %}
+  <header class="page-head page-head-actions"><div><p class="eyebrow">Teacher</p><h1 id="exercises-title">Exercises</h1>
+    <p class="muted">Practice for your classes. Drafts stay hidden from students until you publish them.</p></div>
+    <a class="btn btn-primary" href="{% url 'practice:editor_new' %}">+ New exercise</a></header>
+  {% else %}<h2 id="exercises-title">Your exercises</h2>{% endif %}
+  {% if exercises %}
+  {% if section == "exercises" and drafts %}
+  <h2>Drafts <span class="count">{{ drafts|length }}</span></h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Exercise</th><th scope="col">Lesson</th><th scope="col">Per session</th><th scope="col">Status</th></tr></thead>
+    <tbody>
+    {% for exercise in drafts %}
+    <tr><td><a href="{% url 'practice:editor' exercise.id %}">{{ exercise.shown.title }}</a></td><td>{{ exercise.lesson.title }}</td><td>{{ exercise.shown.target_count }}</td><td><span class="badge badge-draft">Draft</span></td></tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% endif %}
+  {% if section == "exercises" %}<h2>Published <span class="count">{{ published|length }}</span></h2>{% endif %}
+  {% if published %}
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Exercise</th><th scope="col">Lesson</th><th scope="col">Per session</th><th scope="col">Pool</th><th scope="col">Classes</th><th scope="col">Status</th></tr></thead>
+    <tbody>
+    {% for exercise in published %}
+    <tr>
+      <td><a href="{% url 'practice:editor' exercise.id %}">{{ exercise.active_revision.title }}</a></td>
+      <td>{{ exercise.lesson.title }}</td>
+      <td>{{ exercise.active_revision.target_count }}</td>
+      <td>{{ exercise.pool }}</td>
+      <td>{% for assignment in exercise.assignments.all %}{{ assignment.classroom.name }}{% if assignment.status != "active" %} (unpublished){% endif %}{% if not forloop.last %}, {% endif %}{% empty %}—{% endfor %}</td>
+      <td>{{ exercise.get_status_display }}{% if exercise.draft %} · <span class="badge badge-draft">Draft changes</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% else %}<p class="empty">Nothing published yet.</p>{% endif %}
+  {% else %}<p class="empty">No exercises yet. {% if section == "exercises" %}Start one with “New exercise”.{% endif %}</p>{% endif %}
+</section>
+{% endif %}{% endif %}
+{% if charts %}{{ charts|json_script:"chart-data" }}{% endif %}
+{% endblock %}
+
+{% block extra_js %}{% if charts %}
+<script src="{% static 'vendor/chartjs-4.6.1/chart.umd.min.js' %}" defer></script>
+<script src="{% static 'js/charts.js' %}" defer></script>{% endif %}{% endblock %}

@@ -1,0 +1,28 @@
+# Secrets and local data
+.env
+*.sqlite3
+media/
+logs/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Build output
+staticfiles/
+
+# Large model binaries (Qwen GGUF stays out of Git)
+*.gguf
+model_cache/
+
+# Editors and OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Login sheets and anything else with passwords or real student data
+private/

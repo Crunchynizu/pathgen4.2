@@ -1,0 +1,1 @@
+{% if attempt and attempt.is_submitted %}<strong>{{ attempt.correct_count }}/{{ attempt.item_count }}</strong> <span class="muted">({{ attempt.percent }}%)</span>{% elif attempt %}<span class="muted">In progress</span>{% else %}<span class="muted">Not started</span>{% endif %}

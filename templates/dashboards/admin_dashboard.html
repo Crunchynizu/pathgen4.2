@@ -1,0 +1,157 @@
+{% extends "layouts/dashboard.html" %}
+{% block title %}Admin · {% for key, name in sections %}{% if key == section %}{{ name }}{% endif %}{% endfor %}{% endblock %}
+
+{% block content %}
+{% if section == "overview" %}
+<header class="page-head">
+  <p class="eyebrow">Admin console</p>
+  <h1>Overview</h1>
+</header>
+<ul class="stats" aria-label="Totals">
+  <li class="stat"><span class="stat-value">{{ counts.teachers }}</span><span class="stat-label">Teachers</span></li>
+  <li class="stat"><span class="stat-value">{{ counts.classes }}</span><span class="stat-label">Classes</span></li>
+  <li class="stat"><span class="stat-value">{{ counts.students }}</span><span class="stat-label">Students</span></li>
+  <li class="stat"><span class="stat-value">{{ counts.pretests }}</span><span class="stat-label">Pretests submitted</span></li>
+  <li class="stat"><span class="stat-value">{{ counts.posttests }}</span><span class="stat-label">Posttests submitted</span></li>
+  <li class="stat"><span class="stat-value">{{ counts.lessons }} · {{ counts.skills }}</span><span class="stat-label">Lessons · skills</span></li>
+</ul>
+<section class="card" aria-labelledby="setup-title">
+  <h2 id="setup-title">Setting up a class</h2>
+  <ol class="steps">
+    <li><a href="{% url 'dashboards:admin' 'accounts' %}">Create the teacher's account</a>.</li>
+    <li><a href="{% url 'dashboards:admin' 'classes' %}">Create the class</a> and assign that teacher.</li>
+    <li>Add the students: one at a time on <a href="{% url 'dashboards:admin' 'accounts' %}">Accounts</a>, or a whole class with <code>manage.py create_study_class</code>, which also writes login slips.</li>
+    <li>Give the class its practice with <code>manage.py import_bank --teacher &lt;username&gt; --class "&lt;class&gt;"</code>.</li>
+  </ol>
+</section>
+
+{% elif section == "accounts" %}
+<header class="page-head page-head-actions">
+  <div>
+    <p class="eyebrow">Admin console</p>
+    <h1>Accounts</h1>
+  </div>
+  <div class="actions">
+    <button type="button" class="btn btn-primary" data-dialog-open="dialog-create-teacher">Create teacher</button>
+    {% if classes %}
+    <button type="button" class="btn btn-secondary" data-dialog-open="dialog-create-student">Create student</button>
+    {% endif %}
+  </div>
+</header>
+{% if not classes %}<p class="notice notice-info">To add students, first <a href="{% url 'dashboards:admin' 'classes' %}">create a class</a>.</p>{% endif %}
+
+<section class="card" aria-labelledby="teachers-title">
+  <h2 id="teachers-title">Teachers <span class="count">{{ teachers|length }}</span></h2>
+  {% if teachers %}
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Name</th><th scope="col">Username</th><th scope="col">Classes</th></tr></thead>
+    <tbody>{% for teacher in teachers %}<tr><td>{{ teacher }}</td><td><code>{{ teacher.username }}</code></td><td>{{ teacher.class_count }}</td></tr>{% endfor %}</tbody>
+  </table></div>
+  {% else %}<p class="empty">No teacher accounts yet. Start with <strong>Create teacher</strong>.</p>{% endif %}
+</section>
+
+<section class="card" aria-labelledby="students-title">
+  <h2 id="students-title">Students <span class="count">{{ students|length }}</span></h2>
+  {% if students %}
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Name</th><th scope="col">Username</th><th scope="col">Class</th></tr></thead>
+    <tbody>{% for profile in students %}<tr><td>{{ profile.user }}</td><td><code>{{ profile.user.username }}</code></td><td>{{ profile.classroom }}</td></tr>{% endfor %}</tbody>
+  </table></div>
+  {% else %}<p class="empty">No student accounts yet.</p>{% endif %}
+</section>
+
+<section class="card" aria-labelledby="admins-title">
+  <h2 id="admins-title">Admins <span class="count">{{ admins|length }}</span></h2>
+  <ul class="plain-list">{% for admin in admins %}<li>{{ admin }} · <code>{{ admin.username }}</code></li>{% endfor %}</ul>
+</section>
+{% include "includes/dialogs/create_teacher.html" %}
+{% if classes %}{% include "includes/dialogs/create_student.html" %}{% endif %}
+
+{% elif section == "classes" %}
+<header class="page-head page-head-actions">
+  <div>
+    <p class="eyebrow">Admin console</p>
+    <h1>Classes</h1>
+  </div>
+  {% if teachers %}
+  <div class="actions"><button type="button" class="btn btn-primary" data-dialog-open="dialog-create-class">Create class</button></div>
+  {% endif %}
+</header>
+{% if not teachers %}
+<p class="notice notice-info">A class needs a teacher. First <a href="{% url 'dashboards:admin' 'accounts' %}">create a teacher account</a>, then come back here.</p>
+{% endif %}
+<section class="card" aria-labelledby="classes-title">
+  <h2 id="classes-title">All classes <span class="count">{{ classes|length }}</span></h2>
+  {% if classes %}
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Class</th><th scope="col">Teacher</th><th scope="col">Students</th></tr></thead>
+    <tbody>{% for classroom in classes %}<tr><td>{{ classroom.name }}</td><td>{{ classroom.teacher }}</td><td>{{ classroom.student_count }}</td></tr>{% endfor %}</tbody>
+  </table></div>
+  {% else %}<p class="empty">No classes yet.</p>{% endif %}
+</section>
+{% if teachers %}{% include "includes/dialogs/create_class.html" %}{% endif %}
+
+{% elif section == "lessons" %}
+<header class="page-head">
+  <p class="eyebrow">Admin console</p>
+  <h1>Lessons and skills</h1>
+  <p class="muted">The six lessons and ten skills are fixed by the curriculum. Run <code>manage.py seed_curriculum</code> to restore them.</p>
+</header>
+{% if lessons %}
+<ol class="lesson-admin-list">
+  {% for lesson in lessons %}
+  <li class="card">
+    <div class="row-between">
+      <h2>{{ forloop.counter }}. {{ lesson.title }}</h2>
+      <span class="badge badge-{{ lesson.content_status }}">{{ lesson.get_content_status_display }}</span>
+    </div>
+    <p class="muted"><code>{{ lesson.code }}</code> · <a href="{{ lesson.get_absolute_url }}">Preview the page</a></p>
+    <ul class="chips">
+      {% for link in lesson.skill_links.all %}
+      <li class="chip{% if link.scope == 'review' %} chip-soft{% endif %}">{{ link.skill.short_name }}{% if link.scope == 'review' %} (review){% endif %}</li>
+      {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
+</ol>
+<section class="card" aria-labelledby="prereq-title">
+  <h2 id="prereq-title">Review suggestions (prerequisites)</h2>
+  <p class="muted">When a student needs practice on a skill, PathGen can suggest reviewing these first. They never lock anything.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Skill</th><th scope="col">Review first</th><th scope="col">Where</th></tr></thead>
+    <tbody>{% for link in prerequisites %}<tr><td>{{ link.skill.short_name }}</td><td>{{ link.prerequisite.short_name }}</td><td><a href="{{ link.review_url }}">{{ link.prerequisite.lesson.title }}</a></td></tr>{% endfor %}</tbody>
+  </table></div>
+</section>
+{% else %}
+<p class="empty">The curriculum isn't loaded. Run <code>manage.py seed_curriculum</code>.</p>
+{% endif %}
+
+{% elif section == "assessments" %}
+<header class="page-head">
+  <p class="eyebrow">Admin console</p>
+  <h1>Pretest and posttest</h1>
+  <p class="muted">The study uses the locked 30-item test for both. Its items are not edited in the app.</p>
+</header>
+{% for entry in forms %}
+<section class="card" aria-labelledby="form-{{ entry.form.id }}">
+  <div class="row-between">
+    <h2 id="form-{{ entry.form.id }}">{{ entry.form.get_kind_display }} · revision {{ entry.form.revision }}</h2>
+    <span class="badge badge-{{ entry.form.state }}">{{ entry.form.get_state_display }}{% if entry.form.locked %} · locked{% endif %}</span>
+  </div>
+  <p>{{ entry.items }} items · {{ entry.attempts }} attempts started</p>
+  <details>
+    <summary>Items per skill</summary>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">Skill</th><th scope="col">Items</th></tr></thead>
+      <tbody>{% for skill, count in entry.coverage %}<tr><td>{{ skill.short_name }}</td><td>{{ count }}</td></tr>{% endfor %}</tbody>
+    </table></div>
+  </details>
+  {% if entry.missing %}
+  <p class="notice notice-warning">Not measured by this test: {% for skill in entry.missing %}{{ skill.short_name }}{% if not forloop.last %}, {% endif %}{% endfor %}. Practice still covers {% if entry.missing|length == 1 %}it{% else %}them{% endif %}; the report says so.</p>
+  {% endif %}
+</section>
+{% empty %}
+<p class="empty">No pretest or posttest yet. Run <code>manage.py seed_assessments</code>.</p>
+{% endfor %}
+{% endif %}
+{% endblock %}

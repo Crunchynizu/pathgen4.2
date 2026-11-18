@@ -1,0 +1,27 @@
+{# Dialog 8: Start assessment, shared by the pretest and posttest (docs/modals.md). #}
+<dialog id="dialog-start-assessment" class="dialog" aria-labelledby="dialog-start-title">
+  <form method="post" action="{% url 'assessments:start' kind %}">
+    {% csrf_token %}
+    <div class="dialog-head">
+      <h2 id="dialog-start-title">Start the {{ label|lower }}?</h2>
+      <button type="button" class="dialog-x" data-dialog-close aria-label="Close">×</button>
+    </div>
+    <div class="dialog-body">
+      <ul class="plain-list">
+        {% if kind == "pretest" %}
+        <li>It shows what you already know about integers, before the lessons.</li>
+        {% else %}
+        <li>It shows what you know now, after the lessons, to compare with your pretest.</li>
+        {% endif %}
+        <li>{{ item_count }} questions, each with four choices. There are no hints.</li>
+        <li>Your answers save as you go. You can leave and come back.</li>
+        <li>You submit once, when every question has an answer. After that, answers can't change.</li>
+        {% if kind == "pretest" %}<li>Submitting opens all six lessons.</li>{% endif %}
+      </ul>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-dialog-close>Not now</button>
+      <button type="submit" class="btn btn-primary" data-once>Start {{ label|lower }}</button>
+    </div>
+  </form>
+</dialog>

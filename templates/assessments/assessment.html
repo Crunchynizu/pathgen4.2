@@ -1,0 +1,80 @@
+{% extends "layouts/student.html" %}
+{% block title %}{{ label }}{% endblock %}
+{% block body_class %}role-student assessment-page{% endblock %}
+
+{% block content %}
+{# The pretest and posttest look identical on purpose: same layout, no gamified extras. #}
+<div class="assessment stack">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{% url 'dashboards:learn' %}">Journey</a> › <span aria-current="page">{{ label }}</span></nav>
+
+  {% if state == "blocked" %}
+  <section class="card" aria-labelledby="a-title">
+    <h1 id="a-title">{{ label }}</h1>
+    <p class="notice notice-info">{{ reason }}</p>
+    <a class="btn btn-secondary" href="{% url 'dashboards:learn' %}">Back to your journey</a>
+  </section>
+
+  {% elif state == "intro" %}
+  <section class="card" aria-labelledby="a-title">
+    <p class="eyebrow">{{ journey.classroom }}</p>
+    <h1 id="a-title">{{ label }}</h1>
+    <ul class="plain-list">
+      <li>{{ item_count }} questions with four choices each.</li>
+      <li>No hints and no time limit. Take your time.</li>
+      <li>Answers save as you go, so you can come back later.</li>
+      <li>Submit once, when every question has an answer.</li>
+    </ul>
+    <button type="button" class="btn btn-primary btn-big" data-dialog-open="dialog-start-assessment">Start the {{ label|lower }}</button>
+  </section>
+  {% include "includes/dialogs/start_assessment.html" %}
+
+  {% elif state == "submitted" %}
+  <section class="card" aria-labelledby="a-title">
+    <h1 id="a-title">{{ label }} submitted</h1>
+    <p class="score-big">You got <strong>{{ attempt.correct_count }}</strong> out of {{ attempt.item_count }} <span class="muted">({{ attempt.percent }}%)</span>.</p>
+    {% if kind == "pretest" %}
+    <p>Thank you! All six lessons are open now.</p>
+    <a class="btn btn-primary" href="{% url 'dashboards:learn' %}">Go to your journey</a>
+    {% else %}
+    {% include "dashboards/_scores_pair.html" %}
+    <a class="btn btn-primary" href="{% url 'dashboards:learn' %}">Back to your journey</a>
+    {% endif %}
+  </section>
+
+  {% else %}
+  <header>
+    <h1>{{ label }}</h1>
+    <p class="muted">Choose one answer for each question. Your answers save as you go.</p>
+  </header>
+  {% if error %}<p class="notice notice-error" role="alert" id="submit-error">{{ error }}</p>{% endif %}
+  <form id="assessment-form" method="post" action="{% url 'assessments:save' kind %}"
+        data-assessment data-save-url="{% url 'assessments:save' kind %}" novalidate>
+    {% csrf_token %}
+    <ol class="items">
+      {% for item in items %}
+      <li class="item card{% if first_missing == item.position %} item-missing{% endif %}" id="item-{{ item.position }}">
+        <fieldset data-item>
+          <legend><span class="item-number">Question {{ item.position }} of {{ items|length }}</span> <span class="item-prompt">{{ item.prompt }}</span></legend>
+          <div class="choices">
+            {% for index, text in item.choices %}
+            <label class="choice">
+              <input type="radio" name="item-{{ item.id }}" value="{{ index }}"{% if item.selected == index %} checked{% endif %}>
+              <span class="choice-letter" aria-hidden="true">{% cycle "A" "B" "C" "D" %}</span>
+              <span class="choice-text">{{ text }}</span>
+            </label>
+            {% endfor %}
+          </div>
+        </fieldset>
+      </li>
+      {% endfor %}
+    </ol>
+    <div class="submit-bar">
+      <p class="submit-status" aria-live="polite"><span data-answered>{{ answered }}</span> of {{ items|length }} answered<span data-save-status></span></p>
+      <noscript><button type="submit" class="btn btn-secondary">Save answers</button></noscript>
+      <button type="submit" class="btn btn-primary" formaction="{% url 'assessments:submit' kind %}" data-submit-open>Submit {{ label|lower }}</button>
+    </div>
+  </form>
+  {% include "includes/dialogs/submit_assessment.html" %}
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "layouts/lesson.html" %}
+{% comment %}
+Expressions and Applications: skills 9-10. Text adapted from PathGen 3.0 Lessons 3.1 and 3.2 (draft,
+waiting for the math teacher's check). 3.0's worked expression and temperature story were the same
+as posttest items 16 and 18, so this page uses different numbers.
+{% endcomment %}
+{% block lesson_body %}
+<section class="recap card card-ink" aria-labelledby="recap-title">
+  <p class="eyebrow">2-minute recap</p>
+  <h2 id="recap-title">Order of operations and signed changes</h2>
+  <p class="key-idea">Grouping first, then multiply and divide from left to right, then add and subtract from left to right. In stories, a rise or gain is positive and a fall or loss is negative.</p>
+  <figure class="lw-box" data-reveal-group data-reveal-label="Show step" data-reveal-final="Show the answer">
+    <p class="lw-badge">Try it</p>
+    <p class="lw-title">Evaluate -2 x (-5) + (-12) / 4 - (-3)</p>
+    <ol class="lw-steps">
+      <li data-reveal-item>Multiply and divide first, left to right: -2 x (-5) = 10 and (-12) / 4 = -3.</li>
+      <li data-reveal-item>Rewrite: 10 + (-3) - (-3).</li>
+      <li data-reveal-item>Subtracting a negative is adding a positive: 10 + (-3) + 3.</li>
+      <li data-reveal-item>Add from left to right: 10 - 3 = 7, then 7 + 3 = 10.</li>
+    </ol>
+    <p class="lw-answer" data-reveal-item data-reveal-answer>10</p>
+  </figure>
+</section>
+
+<section id="skill-int-expr-neg" class="lesson-section card" aria-labelledby="skill-int-expr-neg-title">
+  <h2 id="skill-int-expr-neg-title">Expressions: the order of operations</h2>
+  <ol>
+    <li>Grouping first: ( ), [ ], { }.</li>
+    <li>Multiply and divide, from left to right.</li>
+    <li>Add and subtract, from left to right.</li>
+  </ol>
+  <div class="lw-box" data-reveal-group data-reveal-label="Show step" data-reveal-final="Show the answer">
+    <p class="lw-title">Worked example</p>
+    <p>Evaluate 4 + 2 x (-3).</p>
+    <ol class="lw-steps">
+      <li data-reveal-item>Multiply before you add: 2 x (-3) = -6.</li>
+      <li data-reveal-item>Then add: 4 + (-6) = -2.</li>
+    </ol>
+    <p class="lw-answer" data-reveal-item data-reveal-answer>-2</p>
+  </div>
+  <div class="lw-box lw-mistake" data-spot-mistake>
+    <p class="lw-mistake-label">Common mistake</p>
+    <p data-mistake-text>6 + 8 / (-2) = -7 is wrong. That adds before dividing. Divide first: 8 / (-2) = -4, then 6 + (-4) = 2.</p>
+  </div>
+</section>
+
+<section id="skill-int-context" class="lesson-section card" aria-labelledby="skill-int-context-title">
+  <h2 id="skill-int-context-title">Signed quantities: changes in real life</h2>
+  <h3>Words that mean signs</h3>
+  <p>Rise, gain, deposit and up mean positive changes. Fall, loss, withdrawal and down mean negative changes. Add the change to where you start.</p>
+  <figure class="lw-box" data-widget="thermometer" data-start="-5" data-change="7">
+    <p class="lw-badge">Try it</p>
+    <div data-widget-stage><p>It is -5 degrees C and the temperature rises 7 degrees: -5 + 7 = 2, so it is now 2 degrees C.</p></div>
+    <figcaption class="muted">A rise of 7 degrees from -5 degrees C.</figcaption>
+  </figure>
+  <h3>Interpreting the result</h3>
+  <p>Always include the unit. Say whether the result is positive or negative, and what it means.</p>
+  <div class="lw-box" data-reveal-group data-reveal-label="Show step" data-reveal-final="Show the answer">
+    <p class="lw-title">Worked example</p>
+    <p>A diver is at -12 m and rises 5 m. Where is the diver now?</p>
+    <ol class="lw-steps">
+      <li data-reveal-item>The start is -12. "Rises" is a positive change: +5.</li>
+      <li data-reveal-item>Add: -12 + 5 = -7.</li>
+      <li data-reveal-item>Interpret: the diver is 7 m below sea level.</li>
+    </ol>
+    <p class="lw-answer" data-reveal-item data-reveal-answer>-7 m (7 m below sea level)</p>
+  </div>
+  <div class="lw-box lw-mistake" data-spot-mistake>
+    <p class="lw-mistake-label">Common mistake</p>
+    <p data-mistake-text>Writing a fall of 6 degrees as +6 is wrong. A fall is a negative change, so write -6.</p>
+  </div>
+  <details class="lw-box video-box">
+    <summary>Optional video: an order of operations example (45 seconds)</summary>
+    <div class="video-frame"><iframe title="Order of operations example" src="https://www.youtube-nocookie.com/embed/GiSpzFKI5_w?start=40&amp;end=85" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  </details>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{# Dialog 3: Create student account, in exactly one class (docs/modals.md). #}
+<dialog id="dialog-create-student" class="dialog" aria-labelledby="dialog-create-student-title"{% if open_dialog == "dialog-create-student" %} data-open-on-load{% endif %}>
+  <form method="post" action="{% url 'classrooms:create_student' %}" data-guard novalidate>
+    {% csrf_token %}
+    <div class="dialog-head">
+      <h2 id="dialog-create-student-title">Create student account</h2>
+      <button type="button" class="dialog-x" data-dialog-close aria-label="Close">×</button>
+    </div>
+    <div class="dialog-body">
+      <p class="muted">For a whole class at once, use <code>manage.py create_study_class</code>. It also prints login slips.</p>
+      {% include "includes/form_fields.html" with form=student_form %}
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-dialog-close>Cancel</button>
+      <button type="submit" class="btn btn-primary" data-once>Create student</button>
+    </div>
+  </form>
+</dialog>

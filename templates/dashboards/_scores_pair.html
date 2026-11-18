@@ -1,0 +1,14 @@
+{# Pretest and posttest side by side; needs `journey`. #}
+<div class="score-pair">
+  <div class="score-box">
+    <p class="score-label">Pretest</p>
+    {% if journey.pretest_done %}<p class="score-value">{{ journey.pretest.correct_count }}<span>/{{ journey.pretest.item_count }}</span></p><p class="muted">{{ journey.pretest.percent }}%</p>
+    {% elif journey.pretest %}<p class="score-none">In progress</p>{% else %}<p class="score-none">Not taken yet</p>{% endif %}
+  </div>
+  <div class="score-box">
+    <p class="score-label">Posttest</p>
+    {% if journey.posttest_done %}<p class="score-value">{{ journey.posttest.correct_count }}<span>/{{ journey.posttest.item_count }}</span></p><p class="muted">{{ journey.posttest.percent }}%</p>
+    {% elif journey.posttest %}<p class="score-none">In progress</p>{% elif journey.posttest_open %}<p class="score-none">Open, not started</p>{% else %}<p class="score-none">Waiting for the teacher</p>{% endif %}
+  </div>
+</div>
+{% if journey.score_change is not None %}<p class="score-change">Score change: <strong>{{ journey.score_change|stringformat:"+.1f" }} percentage points</strong></p>{% endif %}

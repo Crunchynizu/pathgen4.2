@@ -1,0 +1,14 @@
+{# Dialog 9: Submit assessment (docs/modals.md). The page checks for missing answers first. #}
+<dialog id="dialog-submit-assessment" class="dialog" aria-labelledby="dialog-submit-title">
+  <div class="dialog-head">
+    <h2 id="dialog-submit-title">Submit your {{ label|lower }}?</h2>
+    <button type="button" class="dialog-x" data-dialog-close aria-label="Close">×</button>
+  </div>
+  <div class="dialog-body">
+    <p>Every question has an answer. After you submit, your answers can't change and you'll see your score.</p>
+  </div>
+  <div class="dialog-actions">
+    <button type="button" class="btn btn-secondary" data-dialog-close>Keep checking</button>
+    <button type="submit" class="btn btn-primary" form="assessment-form" formaction="{% url 'assessments:submit' kind %}" data-once>Submit {{ label|lower }}</button>
+  </div>
+</dialog>

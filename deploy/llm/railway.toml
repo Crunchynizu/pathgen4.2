@@ -1,0 +1,12 @@
+# The private Qwen service on Railway. In its service settings, set the root directory to
+# deploy/llm and the config file to /deploy/llm/railway.toml. Give it no public domain.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5

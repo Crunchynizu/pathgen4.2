@@ -1,0 +1,18 @@
+{% load static %}{# A question's figure or video (docs/user_features.md "Student"). Needs `question`. #}
+{% if question.format == "figure" and question.has_figure %}
+<figure class="q-figure{% if small %} q-figure-small{% endif %}">
+  {% if question.figure_file %}
+  <img src="{% url 'practice:figure' question.figure_file.name %}" alt="{{ question.figure_description }}" loading="lazy">
+  {% else %}
+  <img src="{% static question.figure_path %}" alt="{{ question.figure_description }}" loading="lazy">
+  {% endif %}
+  {% if not small %}<figcaption class="sr-only">{{ question.figure_description }}</figcaption>{% endif %}
+</figure>
+{% elif question.format == "video" and question.video_id %}
+<div class="q-video{% if small %} q-video-small{% endif %}">
+  <iframe id="video-{{ question.id }}" src="{{ question.video_embed_url }}" title="Video for this question"
+          allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin" data-video></iframe>
+  {% if question.video_start_seconds %}<p class="muted">Starts at {{ question.video_start_seconds }} s.</p>{% endif %}
+</div>
+{% endif %}
