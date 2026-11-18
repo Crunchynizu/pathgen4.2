@@ -81,6 +81,8 @@ PathGen 4.2 is a fresh Django build of the spec in `docs/` (pathgendocs2). It re
 
 ## Where 4.2 differs from the spec, and why
 
+These are choices made during the build, not locks. After checking them, the team can move any of them closer to the spec, or somewhere else entirely. "If the team wants to switch" below says where each one lives in the code. Talk it over first, make the change on a branch, run the tests on both databases, and update this table so it stays true.
+
 | Spec | 4.2 | Why |
 |---|---|---|
 | `agent_model.pkl` and `bkt_parameters.json`, 12 inputs | `struggle_model.json` and `bkt_params.json`, 8 inputs, refitted at the 10-skill level, plain Python, checked against `manifest.json` | The spec's BKT file has no limits on its guess and slip values. That clashes with the progress labels: a student with 0 of 6 right can still read as strong. 4.2 refits both files with limits (guess ≤ 0.3, slip ≤ 0.1, learn ≤ 0.3), so 0 of 6 right gives mastery of 0.03–0.34. The 4 attempt and time inputs shift between Junyi (unlimited attempts, hints any time) and PathGen (2 attempts, hint only after a wrong answer), so a model trained on them would misread PathGen students. Plain JSON also avoids loading a pickle, which runs code when it loads. All 12 inputs are still saved for every served question and exported in `agent_retrain.csv`, so a 12-input model can be trained on PathGen's own data later. |
@@ -89,6 +91,31 @@ PathGen 4.2 is a fresh Django build of the spec in `docs/` (pathgendocs2). It re
 | Google Fonts | System fonts | The approved 3.0 look uses system fonts, so adding a Google Font changes an approved design. It waits for approval. |
 | Difficulty values Easy 0.15 / Medium 0.30 / Hard 0.50 | Bank questions: their Junyi template's real struggle rate. Editor questions: 0.15 / 0.30 / 0.50 | The model was trained on template struggle rates, so bank questions use the same scale. Teacher-written questions have no template, so they use the spec's provisional numbers. |
 | Feedback from local Qwen | Built, off unless `LLM_BASE_URL` is set | Qwen needs about 1 GB of memory on Railway. The approved text is the feedback whenever Qwen is off or fails. |
+
+### If the team wants to switch
+
+- **To use the spec's pickle model (12 inputs):**
+  1. Put `agent_model.pkl` and `bkt_parameters.json` in `model_artifacts/`, and add their SHA-256 values to `manifest.json`.
+  2. Add the runtime pins from `docs/tech_stack.md` (scikit-learn, pandas, NumPy, SciPy, joblib) to `requirements.txt`.
+  3. In `learning/agent.py`, load the pickle only after its checksum matches. Then call `predict_proba` on a pandas table built from `learning/features.snapshot()`, which already produces the 12 inputs in the spec's order.
+  4. In `learning/bkt.py`, read `bkt_parameters.json` (`initial_mastery`, `learn`, `guess`, `slip`).
+  5. Run `tests/test_phase5.py`. `test_zero_right_never_looks_strong` shows whether 0 of 6 right still reads as strong.
+
+  A middle way: keep plain JSON but refit with all 12 inputs in `pathgen4.0-trainer`, using `agent_retrain.csv` from the study.
+- **To let the admin edit the pretest and posttest:** only after the study. Either build an editor in the admin console's Assessments section, or edit `content/locked_test.json` and run `seed_assessments` on a database with no test attempts yet.
+- **To use Python 3.14:**
+  1. Change `FROM python:3.13-slim` in `Dockerfile` and the version in `.python-version`.
+  2. Make a new virtual environment.
+  3. Run the tests on SQLite and on PostgreSQL.
+- **To add a Google Font:** once it is approved, add the font's `<link>` in `templates/layouts/base.html`, and put its name first in `--font-sans` at the top of `static/css/app.css`.
+- **To use the spec's difficulty numbers everywhere:**
+  - Editor questions already use `PROVISIONAL_DIFFICULTY` in `apps/practice/authoring.py`.
+  - For bank questions, change `difficulty_value=templates[...]` in `apps/practice/importer.py` to `PROVISIONAL_DIFFICULTY[item["difficulty"]]`, then run `import_bank` again.
+  - The model was trained on template rates, so compare the predictions before and after.
+- **To turn Qwen on or change it:**
+  - Set `LLM_BASE_URL` (no code change).
+  - The wording request and the checks on Qwen's answer are in `learning/feedback/service.py`.
+  - The timeout is `LLM_TIMEOUT_SECONDS`.
 
 ## Changes from PathGen 3.0 worth knowing
 - **Lesson examples:** 3.0's lesson examples repeated two posttest items word for word (item 16's expression and item 18's temperature story). The 4.2 lessons use other numbers, and a test checks that no test item appears on a lesson page.
