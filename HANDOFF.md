@@ -76,6 +76,20 @@ PathGen 4.2 is a fresh Django build of the spec in `docs/` (pathgendocs2). It re
   - `agent_retrain.csv` for a later retrain.
 - The production settings pass Django's deployment check.
 
+### Look and feel (a second pass, after the team's review)
+Feedback: the first look felt minimal and "AI generated". The second pass took inspiration from Khan Academy and Dribbble learning apps for students, and from professional dashboards for staff. It changed CSS and templates only; no rule, label or graded content changed.
+- **Students** keep the gamified feel: chunky pressable buttons, the journey trail, and the bouncing "next" step. There are still no points, badges or streaks.
+  - Each lesson has its own color (`.tone-1` … `.tone-6` in `static/css/app.css`, cyan to coral) and its math sign as a mark (±, +, −, ×, ÷, ( )). The marks are set in `LESSON_GLYPHS`, `apps/dashboards/templatetags/icons.py`.
+  - **Journey:** a navy hero with the greeting, two progress bars (practice done, skills doing well) and an "Up next" card for the first lesson with practice left. Each lesson card has a progress bar and a skill square per skill: green for doing well, amber for needs practice, hollow for not yet. There is a legend, and the words stay on the skill list.
+  - **Lesson pages:** a hero in the lesson's color, and an "In this lesson" menu from 1024px.
+  - **Practice:** lettered answer tiles and a progress bar in the lesson's color.
+  - **Login:** a split screen with a navy art panel.
+  - **More color** (`body.learner` in `app.css`): soft colored page background, a six-color strip on the top bar, lesson cards and worked examples tinted in their lesson's color, sunny "Try it" and hint boxes, one color per answer letter in practice, and a colored profile banner.
+- **Teachers and admins** (`body.staff`): a navy sidebar with the user's initials, thin borders, flat buttons and quieter tables. The teacher overview shows four figures per class.
+- **Not frozen:** the team is still checking and adjusting the look. Colors and shadows are tokens at the top of `static/css/app.css`. The student color layer is the `body.learner` section, and the staff look is the `body.staff` section. Change the look freely, but keep the pretest and posttest identical to each other, and run the tests after.
+- **Pretest and posttest:** both still share one template, so they look identical. They have no gamified extras, only the new shared colors and answer tiles.
+- **Still the approved basics:** system fonts and the cyan/navy palette. Text meets 4.5:1 contrast. The exceptions are the big lesson signs and icons on the lighter lesson colors, which only need 3:1 because they are large.
+
 ### Phase 8: online (not done yet)
 - The code is on GitHub. Railway is next: follow `DEPLOY.md` (app, PostgreSQL, a volume for pictures, and optionally the Qwen service).
 

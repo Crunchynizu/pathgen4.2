@@ -1,19 +1,21 @@
 {% extends "layouts/base.html" %}
-{% load static %}
+{% load static icons %}
 {# Student pages: Journey, own profile and sign out (docs/pages.md, "Navigation"). #}
-{% block body_class %}role-{{ user.role }} gv{% endblock %}
+{% block body_class %}role-{{ user.role }} gv learner{% endblock %}
 
 {% block header %}
 <header class="topbar">
-  <a class="brand" href="{% url 'dashboards:home' %}"><img src="{% static 'images/pathgen.png' %}" alt="" width="28" height="28"> PathGen</a>
-  <nav class="topbar-nav" aria-label="Main">
-    {% if user.is_student %}
-    <a href="{% url 'dashboards:learn' %}"{% if nav == 'journey' %} aria-current="page"{% endif %}>Journey</a>
-    {% else %}
-    <a href="{% url 'dashboards:home' %}">Dashboard</a>
-    {% endif %}
-    <a href="{% url 'accounts:profile' %}"{% if nav == 'profile' %} aria-current="page"{% endif %}>Profile</a>
-    {% include "includes/signout.html" with signout_class="btn btn-secondary btn-small" %}
-  </nav>
+  <div class="topbar-inner">
+    <a class="brand" href="{% url 'dashboards:home' %}"><img src="{% static 'images/pathgen.png' %}" alt="" width="30" height="30"> PathGen</a>
+    <nav class="topbar-nav" aria-label="Main">
+      {% if user.is_student %}
+      <a class="nav-pill" href="{% url 'dashboards:learn' %}"{% if nav == 'journey' %} aria-current="page"{% endif %}>{% icon "map" 18 %}<span>Journey</span></a>
+      {% else %}
+      <a class="nav-pill" href="{% url 'dashboards:home' %}">{% icon "layout-dashboard" 18 %}<span>Dashboard</span></a>
+      {% endif %}
+      <a class="nav-pill nav-profile" href="{% url 'accounts:profile' %}"{% if nav == 'profile' %} aria-current="page"{% endif %}><span class="avatar" aria-hidden="true">{{ user|initials }}</span><span>Profile</span></a>
+      {% include "includes/signout.html" with signout_class="btn btn-secondary btn-small btn-signout" %}
+    </nav>
+  </div>
 </header>
 {% endblock %}

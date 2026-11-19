@@ -1,7 +1,7 @@
 {% extends "layouts/base.html" %}
-{% load static %}
+{% load static icons %}
 {# Admin and teacher pages: a sidebar from 1024px up, a menu button below it. #}
-{% block body_class %}role-{{ user.role }}{% endblock %}
+{% block body_class %}role-{{ user.role }} staff{% endblock %}
 
 {% block shell %}
 <div class="shell">
@@ -17,7 +17,11 @@
   </header>
   <aside class="sidebar" aria-label="Sections">
     <a class="brand" href="{% url 'dashboards:home' %}"><img src="{% static 'images/pathgen.png' %}" alt="" width="32" height="32"> PathGen</a>
-    <p class="sidebar-role">{{ user.get_role_display }} · {{ user }}</p>
+    <div class="sidebar-user">
+      <span class="avatar" aria-hidden="true">{{ user|initials }}</span>
+      <div><span class="sidebar-user-name">{{ user }}</span><p class="sidebar-role">{{ user.get_role_display }}</p></div>
+    </div>
+    <p class="sidebar-label">{% if user.is_app_admin %}Admin console{% else %}Teaching{% endif %}</p>
     {% if user.is_app_admin %}{% include "includes/admin_sidebar.html" %}{% else %}{% include "includes/teacher_sidebar.html" %}{% endif %}
     <div class="sidebar-foot">{% include "includes/signout.html" %}</div>
   </aside>

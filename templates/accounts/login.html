@@ -1,10 +1,16 @@
 {% extends "layouts/base.html" %}
 {% load static %}
 {% block title %}Sign in{% endblock %}
-{% block body_class %}page-login gv{% endblock %}
+{% block body_class %}page-login gv learner{% endblock %}
 
 {% block content %}
 <div class="login">
+  <div class="login-art" aria-hidden="true">
+    <p class="login-art-title">Integers, one step <span>at a time.</span></p>
+    <ul class="login-signs"><li>+</li><li>−</li><li>×</li><li>÷</li></ul>
+    <div class="login-line"></div>
+  </div>
+  <div class="login-main">
   <section class="card login-card" aria-labelledby="login-title">
     <img class="login-logo" src="{% static 'images/pathgen.png' %}" alt="" width="64" height="64">
     <p class="eyebrow">Grade 7 · Integers</p>
@@ -27,5 +33,6 @@
     </form>
     <p class="muted">Your teacher gives you your username and password. Ask them if you forget it.</p>
   </section>
+  </div>
 </div>
 {% endblock %}

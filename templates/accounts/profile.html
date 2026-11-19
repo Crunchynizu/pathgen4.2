@@ -1,12 +1,16 @@
 {% extends user.is_student|yesno:"layouts/student.html,layouts/dashboard.html" %}
+{% load icons %}
 {% block title %}Profile{% endblock %}
 
 {% block content %}
 <div class="stack">
-  <header>
-    <p class="eyebrow">Profile</p>
-    <h1>{{ user }}</h1>
-    <p class="muted">Username: <strong>{{ user.username }}</strong> · {{ user.get_role_display }}</p>
+  <header class="profile-head">
+    <span class="avatar avatar-lg" aria-hidden="true">{{ user|initials }}</span>
+    <div>
+      <p class="eyebrow">Profile</p>
+      <h1>{{ user }}</h1>
+      <p class="muted">Username: <strong>{{ user.username }}</strong> · {{ user.get_role_display }}</p>
+    </div>
   </header>
 
   <section class="card" aria-labelledby="name-title">

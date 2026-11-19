@@ -1,4 +1,4 @@
 <div class="q-progress">
-  <p class="q-count">Question {{ item.position }} of {{ session.target_count }}{% if session.attempt_number == 2 %} · retake{% endif %}</p>
+  <p class="q-count"><span>Question {{ item.position }} of {{ session.target_count }}{% if session.attempt_number == 2 %} · retake{% endif %}</span><span class="q-count-done">{{ done_count }} done</span></p>
   <div class="bar" role="progressbar" aria-label="Questions finished" aria-valuemin="0" aria-valuemax="{{ session.target_count }}" aria-valuenow="{{ done_count }}"><span style="width: {% widthratio done_count session.target_count 100 %}%"></span></div>
 </div>

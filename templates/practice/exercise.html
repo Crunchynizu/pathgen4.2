@@ -2,7 +2,7 @@
 {% block title %}{{ revision.title }}{% endblock %}
 
 {% block content %}
-<div class="exercise stack" data-exercise>
+<div class="exercise stack tone-{{ lesson.sort_order }}" data-exercise>
   <nav class="crumbs" aria-label="Breadcrumb"><a href="{% url 'dashboards:learn' %}">Journey</a> › <a href="{{ lesson.get_absolute_url }}">{{ lesson.title }}</a> › <span aria-current="page">Practice</span></nav>
 
   {% if state == "start" %}
@@ -50,7 +50,7 @@
         </label>
         {% endfor %}
       </fieldset>
-      <button type="submit" class="btn btn-primary btn-big" data-once>{% if state == "retry" %}Check my second answer{% else %}Check my answer{% endif %}</button>
+      <button type="submit" class="btn btn-primary btn-big btn-check" data-once>{% if state == "retry" %}Check my second answer{% else %}Check my answer{% endif %}</button>
     </form>
   </section>
   {% if state == "retry" %}

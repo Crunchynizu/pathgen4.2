@@ -3,65 +3,109 @@
 {% block title %}Your journey{% endblock %}
 
 {% block content %}
-<div class="journey-page stack">
-  <section class="hello card card-ink" aria-labelledby="hello-title">
-    <p class="eyebrow">{{ journey.classroom|default:"No class yet" }}</p>
-    <h1 id="hello-title">Hi, {{ user }}!</h1>
-    {% if not journey.classroom %}
-    <p>Your account isn't in a class yet. Ask your teacher.</p>
-    {% elif journey.state == "pretest_required" %}
-    <p>Start with the pretest. It shows what you already know. When you submit it, all six lessons open.</p>
-    <a class="btn btn-sun btn-big" href="{% url 'assessments:take' 'pretest' %}">{% if journey.pretest %}Continue the pretest{% else %}Start the pretest{% endif %} →</a>
-    {% elif journey.state == "posttest_open" %}
-    <p>Your teacher opened the posttest. You can still visit every lesson.</p>
-    <a class="btn btn-sun btn-big" href="{% url 'assessments:take' 'posttest' %}">{% if journey.posttest %}Continue the posttest{% else %}Start the posttest{% endif %} →</a>
-    {% elif journey.state == "unit_complete" %}
-    <p>You finished the unit. Here are both of your scores. You can still visit the lessons.</p>
-    {% else %}
-    <p>All six lessons are open. Go in order, or pick the one you need.</p>
-    {% if first_lesson %}<a class="btn btn-sun btn-big" href="{{ first_lesson.get_absolute_url }}">Go to {{ first_lesson.title }} →</a>{% endif %}
+<div class="journey-page">
+  <section class="hero" aria-labelledby="hello-title">
+    <div class="hero-text">
+      <p class="hero-eyebrow">{{ journey.classroom|default:"No class yet" }}</p>
+      <h1 id="hello-title">Hi, {{ user }}!</h1>
+      {% if not journey.classroom %}
+      <p>Your account isn't in a class yet. Ask your teacher.</p>
+      {% elif journey.state == "pretest_required" %}
+      <p>Start with the pretest. It shows what you already know. When you submit it, all six lessons open.</p>
+      <a class="btn btn-sun btn-big" href="{% url 'assessments:take' 'pretest' %}">{% if journey.pretest %}Continue the pretest{% else %}Start the pretest{% endif %} →</a>
+      {% elif journey.state == "posttest_open" %}
+      <p>Your teacher opened the posttest. You can still visit every lesson.</p>
+      <a class="btn btn-sun btn-big" href="{% url 'assessments:take' 'posttest' %}">{% if journey.posttest %}Continue the posttest{% else %}Start the posttest{% endif %} →</a>
+      {% elif journey.state == "unit_complete" %}
+      <p>You finished the unit. Here are both of your scores. You can still visit the lessons.</p>
+      {% else %}
+      <p>All six lessons are open. Go in order, or pick the one you need.</p>
+      {% endif %}
+      <ul class="hero-signs" aria-hidden="true">{% for stage in stages %}{% if stage.kind == "lesson" %}<li class="tile tone-{{ stage.lesson.sort_order }}">{{ stage.lesson|lesson_glyph }}</li>{% endif %}{% endfor %}</ul>
+    </div>
+
+    {% if journey.pretest_done %}
+    <div class="hero-meters" aria-label="Your progress">
+      <div class="meter">
+        <p class="meter-label"><strong>{{ practice_done }}</strong> of {{ practice_total }} practice done</p>
+        <div class="bar bar-sun" role="progressbar" aria-label="Practice done" aria-valuemin="0" aria-valuemax="{{ practice_total }}" aria-valuenow="{{ practice_done }}"><span style="width: {% if practice_total %}{% widthratio practice_done practice_total 100 %}{% else %}0{% endif %}%"></span></div>
+      </div>
+      <div class="meter">
+        <p class="meter-label"><strong>{{ skills_well }}</strong> of {{ skills|length }} skills doing well</p>
+        <div class="bar bar-mint" role="progressbar" aria-label="Skills doing well" aria-valuemin="0" aria-valuemax="{{ skills|length }}" aria-valuenow="{{ skills_well }}"><span style="width: {% widthratio skills_well skills|length 100 %}%"></span></div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if journey.classroom and journey.pretest_done and journey.state != "posttest_open" and up_next %}
+    <a class="up-next tone-{{ up_next.lesson.sort_order }}" href="{{ up_next.lesson.get_absolute_url }}">
+      <span class="tile" aria-hidden="true">{{ up_next.lesson|lesson_glyph }}</span>
+      <span class="up-next-text">
+        <span class="up-next-kicker">Up next · Lesson {{ up_next.lesson.sort_order }}</span>
+        <span class="up-next-title">Go to {{ up_next.title }}</span>
+        <span class="up-next-note">{% if up_next.exercises %}{{ up_next.finished }} of {{ up_next.exercises }} practice done{% else %}Read the lesson{% endif %}</span>
+      </span>
+      <span class="up-next-go" aria-hidden="true">{% icon "arrow-right" 22 %}</span>
+    </a>
     {% endif %}
   </section>
 
-  <section aria-labelledby="map-title">
-    <h2 id="map-title">Your journey</h2>
-    <ol class="journey">
-      {% for stage in stages %}
-      <li class="stage stage-{{ stage.state }}">
-        <span class="stage-node" aria-hidden="true">{% if stage.state == "done" %}{% icon "check" 26 %}{% elif stage.state == "locked" %}{% icon "lock" 22 %}{% elif stage.kind == "pretest" %}{% icon "clipboard-check" 24 %}{% elif stage.kind == "posttest" %}{% icon "flag" 24 %}{% else %}{{ forloop.counter|add:"-1" }}{% endif %}</span>
-        <div class="stage-card">
-          {% if stage.kind == "lesson" %}
-            {% if stage.state == "locked" %}
-            <p class="stage-title">{{ stage.title }}</p>
-            <p class="stage-note">Opens after the pretest</p>
+  <div class="journey-layout">
+    <section class="journey-main" aria-labelledby="map-title">
+      <div class="section-head">
+        <h2 id="map-title">Your journey</h2>
+        <ul class="legend" aria-label="Skill squares">
+          <li><span class="sq sq-well" aria-hidden="true"></span>Doing well</li>
+          <li><span class="sq sq-needs" aria-hidden="true"></span>Needs practice</li>
+          <li><span class="sq sq-none" aria-hidden="true"></span>Not yet practiced</li>
+        </ul>
+      </div>
+      <ol class="journey">
+        {% for stage in stages %}
+        <li class="stage stage-{{ stage.state }} stage-{{ stage.kind }}{% if stage.kind == 'lesson' %} tone-{{ stage.lesson.sort_order }}{% if stage.exercises and stage.finished == stage.exercises %} stage-complete{% endif %}{% if stage == up_next and journey.pretest_done %} stage-next{% endif %}{% endif %}">
+          <span class="stage-node" aria-hidden="true">{% if stage.state == "done" %}{% icon "check" 26 %}{% elif stage.state == "locked" and stage.kind != "lesson" %}{% icon "lock" 22 %}{% elif stage.kind == "pretest" %}{% icon "clipboard-check" 24 %}{% elif stage.kind == "posttest" %}{% icon "flag" 24 %}{% else %}{{ stage.lesson|lesson_glyph }}{% endif %}</span>
+          <div class="stage-card">
+            {% if stage.kind == "lesson" %}
+              <p class="stage-kicker">Lesson {{ stage.lesson.sort_order }}{% if stage.exercises and stage.finished == stage.exercises %} · practice done{% endif %}</p>
+              {% if stage.state == "locked" %}
+              <p class="stage-title">{{ stage.title }}</p>
+              <p class="stage-note">{% icon "lock" 14 %} Opens after the pretest</p>
+              {% else %}
+              <a class="stage-title" href="{{ stage.lesson.get_absolute_url }}">{{ stage.title }}</a>
+              <p class="stage-note">{% if stage.exercises %}{{ stage.finished }} of {{ stage.exercises }} practice done{% else %}No practice assigned yet{% endif %}</p>
+              {% if stage.exercises %}<div class="mini-bar" aria-hidden="true"><span style="width: {% widthratio stage.finished stage.exercises 100 %}%"></span></div>{% endif %}
+              {% endif %}
+              {% if stage.skills %}
+              <ul class="squares" aria-label="Skills in {{ stage.title }}">
+                {% for row in stage.skills %}<li class="sq sq-{{ row.tone }}" title="{{ row.skill.short_name }}: {{ row.label }}"><span class="sr-only">{{ row.skill.short_name }}: {{ row.label }}</span></li>{% endfor %}
+              </ul>
+              {% endif %}
             {% else %}
-            <a class="stage-title" href="{{ stage.lesson.get_absolute_url }}">{{ stage.title }}</a>
-            <p class="stage-note">{% if stage.exercises %}{{ stage.finished }} of {{ stage.exercises }} practice done{% else %}No practice assigned yet{% endif %}</p>
+              <p class="stage-kicker">{% if stage.kind == "pretest" %}Start here{% else %}Final check{% endif %}</p>
+              {% if stage.state == "locked" %}
+              <p class="stage-title">{{ stage.title }}</p>
+              <p class="stage-note">{% if stage.kind == "posttest" %}Waiting for your teacher{% endif %}</p>
+              {% else %}
+              <a class="stage-title" href="{% url stage.url stage.arg %}">{{ stage.title }}</a>
+              <p class="stage-note">{% if stage.state == "done" %}Submitted{% elif stage.kind == "pretest" %}Start here{% else %}Open now{% endif %}</p>
+              {% endif %}
             {% endif %}
-          {% else %}
-            {% if stage.state == "locked" %}
-            <p class="stage-title">{{ stage.title }}</p>
-            <p class="stage-note">{% if stage.kind == "posttest" %}Waiting for your teacher{% endif %}</p>
-            {% else %}
-            <a class="stage-title" href="{% url stage.url stage.arg %}">{{ stage.title }}</a>
-            <p class="stage-note">{% if stage.state == "done" %}Submitted{% elif stage.kind == "pretest" %}Start here{% else %}Open now{% endif %}</p>
-            {% endif %}
-          {% endif %}
-        </div>
-      </li>
-      {% endfor %}
-    </ol>
-  </section>
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
 
-  <div class="two-col">
-    <section class="card" aria-labelledby="scores-title">
-      <h2 id="scores-title">Your scores</h2>
-      {% include "dashboards/_scores_pair.html" %}
-    </section>
-    <section class="card" aria-labelledby="skills-title">
-      <h2 id="skills-title">Your skills</h2>
-      {% include "dashboards/_skills.html" %}
-    </section>
+    <aside class="journey-side" aria-label="Your scores and skills">
+      <section class="card panel tone-1" aria-labelledby="scores-title">
+        <h2 id="scores-title"><span class="icon-tile" aria-hidden="true">{% icon "clipboard-check" 20 %}</span><span>Your scores</span></h2>
+        {% include "dashboards/_scores_pair.html" %}
+      </section>
+      <section class="card panel tone-3" aria-labelledby="skills-title">
+        <h2 id="skills-title"><span class="icon-tile" aria-hidden="true">{% icon "target" 20 %}</span><span>Your skills</span></h2>
+        {% include "dashboards/_skills.html" %}
+      </section>
+    </aside>
   </div>
 </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends "layouts/dashboard.html" %}
-{% load static %}
+{% load static icons %}
 {% block title %}{% if view == "class" %}{{ classroom.name }}{% elif view == "student" %}{{ student }}{% else %}Teacher{% endif %}{% endblock %}
 
 {% block content %}
@@ -114,19 +114,23 @@
 <header class="page-head">
   <p class="eyebrow">Teacher</p>
   <h1>Hello, {{ user }}</h1>
+  <p class="muted">Your classes at a glance. Open a class for its students, skill gaps and the posttest.</p>
 </header>
 {% if summaries %}
-<ul class="class-cards">
+<ul class="class-list">
   {% for item in summaries %}
-  <li class="card">
-    <h2><a href="{% url 'dashboards:teacher_class' item.classroom.id %}">{{ item.classroom.name }}</a></h2>
-    <dl class="facts">
+  <li class="card class-card">
+    <div class="class-card-head">
+      <h2>{% icon "school" 20 %}<a href="{% url 'dashboards:teacher_class' item.classroom.id %}">{{ item.classroom.name }}</a></h2>
+      <span class="badge {% if item.release %}badge-published{% else %}badge-retired{% endif %}">Posttest {% if item.release %}open{% else %}not open yet{% endif %}</span>
+    </div>
+    <dl class="kpis">
       <div><dt>Students</dt><dd>{{ item.students }}</dd></div>
-      <div><dt>Pretests submitted</dt><dd>{{ item.pretests }} of {{ item.students }}</dd></div>
-      <div><dt>Posttests submitted</dt><dd>{{ item.posttests }} of {{ item.students }}</dd></div>
+      <div><dt>Pretests submitted</dt><dd>{{ item.pretests }} <span>of {{ item.students }}</span></dd></div>
+      <div><dt>Posttests submitted</dt><dd>{{ item.posttests }} <span>of {{ item.students }}</span></dd></div>
       <div><dt>Assigned exercises</dt><dd>{{ item.exercises }}</dd></div>
-      <div><dt>Posttest</dt><dd>{% if item.release %}Open{% else %}Not open yet{% endif %}</dd></div>
     </dl>
+    <a class="btn btn-secondary btn-small" href="{% url 'dashboards:teacher_class' item.classroom.id %}">Open class {% icon "arrow-right" 16 %}</a>
   </li>
   {% endfor %}
 </ul>

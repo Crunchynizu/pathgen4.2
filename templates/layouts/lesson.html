@@ -1,5 +1,5 @@
 {% extends "layouts/student.html" %}
-{% load static %}
+{% load static icons %}
 {% comment %}
 Shared lesson layout (docs/pages.md, "Student journey"; docs/file_structure.md, "Developer content handoff").
 A lesson page overrides `lesson_body` with its teaching content. Keep the skill section anchors
@@ -9,67 +9,89 @@ generated here, so a content handoff never has to touch it.
 {% block title %}{{ lesson.title }}{% endblock %}
 
 {% block content %}
-<article class="lesson stack" aria-labelledby="lesson-title" data-lesson-page>
+<article class="lesson tone-{{ lesson.sort_order }}" aria-labelledby="lesson-title" data-lesson-page>
   <nav class="crumbs" aria-label="Breadcrumb">
     {% if user.is_student %}<a href="{% url 'dashboards:learn' %}">Journey</a>{% else %}<a href="{% url 'dashboards:home' %}">Dashboard</a>{% endif %} › <span aria-current="page">{{ lesson.title }}</span>
   </nav>
   {% if preview %}<p class="notice notice-info">Preview: this is how students see the lesson. Practice cards list {% if user.is_teacher %}your own exercises{% else %}nothing for admins{% endif %}.</p>{% endif %}
 
-  <header class="lesson-hero card card-ink">
-    <p class="eyebrow">Lesson {{ lesson.sort_order }} of 6</p>
-    <h1 id="lesson-title">{{ lesson.title }}</h1>
-    <p>{{ lesson.summary }}</p>
-    <ul class="chips" aria-label="Skills in this lesson">
-      {% for skill in taught_skills %}<li><a class="chip" href="#{{ skill.anchor }}">{{ skill.short_name }}</a></li>{% endfor %}
-    </ul>
+  <header class="lesson-hero">
+    <span class="tile tile-lg" aria-hidden="true">{{ lesson|lesson_glyph }}</span>
+    <div class="lesson-hero-text">
+      <p class="eyebrow">Lesson {{ lesson.sort_order }} of 6</p>
+      <h1 id="lesson-title">{{ lesson.title }}</h1>
+      <p>{{ lesson.summary }}</p>
+      <ul class="chips" aria-label="Skills in this lesson">
+        {% for skill in taught_skills %}<li><a class="chip" href="#{{ skill.anchor }}">{{ skill.short_name }}</a></li>{% endfor %}
+      </ul>
+    </div>
   </header>
 
-  {% block lesson_body %}
-  {% if lesson.content_status == "placeholder" %}
-  <p class="notice notice-info">The full lesson is on its way. The practice below already works.</p>
-  {% endif %}
-  {% for skill in taught_skills %}
-  <section id="{{ skill.anchor }}" class="lesson-section card" aria-labelledby="{{ skill.anchor }}-title">
-    <h2 id="{{ skill.anchor }}-title">{{ skill.short_name }}</h2>
-    <p>{{ skill.name }}</p>
-  </section>
-  {% endfor %}
-  {% endblock %}
+  <div class="lesson-layout">
+    <nav class="lesson-toc" aria-label="In this lesson">
+      <p class="lesson-toc-title">In this lesson</p>
+      <ol>
+        <li><a href="#recap-title">{% icon "sparkles" 16 %}<span>Quick recap</span></a></li>
+        {% for skill in taught_skills %}<li><a href="#{{ skill.anchor }}">{% icon "book-open" 16 %}<span>{{ skill.short_name }}</span></a></li>{% endfor %}
+        {% if review_skills %}<li><a href="#review-title">{% icon "route" 16 %}<span>Review</span></a></li>{% endif %}
+        <li><a href="#practice-title">{% icon "list-checks" 16 %}<span>Practice</span></a></li>
+      </ol>
+    </nav>
 
-  {% if review_skills %}
-  <section class="card" aria-labelledby="review-title">
-    <h2 id="review-title">Review from earlier lessons</h2>
-    <ul class="plain-list">{% for skill in review_skills %}<li><a href="{{ skill.review_url }}">{{ skill.short_name }}</a> · {{ skill.lesson.title }}</li>{% endfor %}</ul>
-  </section>
-  {% endif %}
-
-  <section class="practice-list" aria-labelledby="practice-title">
-    <h2 id="practice-title">Practice</h2>
-    {% if cards %}
-    <ul class="exercise-cards">
-      {% for card in cards %}
-      <li class="exercise-card card card-ink">
-        <h3>{{ card.revision.title }}</h3>
-        <p>{{ card.revision.target_count }} questions{% if card.skills|length > 1 %} · {{ card.skills|length }} skills{% endif %}</p>
-        <ul class="chips">{% for skill in card.skills %}<li class="chip chip-soft">{{ skill.short_name }}</li>{% endfor %}</ul>
-        {% if user.is_student %}
-        <p class="card-status">{{ card.status }}</p>
-        <a class="btn btn-primary" href="{% url 'practice:exercise' card.exercise.id %}">{% if card.finished %}See results{% else %}Open practice{% endif %}</a>
-        {% else %}
-        <a class="btn btn-secondary" href="{% url 'practice:teacher_exercise' card.exercise.id %}">See the question pool</a>
-        {% endif %}
-      </li>
+    <div class="lesson-body stack">
+      {% block lesson_body %}
+      {% if lesson.content_status == "placeholder" %}
+      <p class="notice notice-info">The full lesson is on its way. The practice below already works.</p>
+      {% endif %}
+      {% for skill in taught_skills %}
+      <section id="{{ skill.anchor }}" class="lesson-section card" aria-labelledby="{{ skill.anchor }}-title">
+        <h2 id="{{ skill.anchor }}-title">{{ skill.short_name }}</h2>
+        <p>{{ skill.name }}</p>
+      </section>
       {% endfor %}
-    </ul>
-    {% else %}
-    <p class="empty">No practice is assigned for this lesson yet.</p>
-    {% endif %}
-  </section>
+      {% endblock %}
 
-  <nav class="lesson-nav" aria-label="Lessons">
-    {% if previous_lesson %}<a class="btn btn-secondary" href="{{ previous_lesson.get_absolute_url }}">← {{ previous_lesson.title }}</a>{% else %}<span></span>{% endif %}
-    {% if next_lesson %}<a class="btn btn-secondary" href="{{ next_lesson.get_absolute_url }}">{{ next_lesson.title }} →</a>{% endif %}
-  </nav>
+      {% if review_skills %}
+      <section class="card" aria-labelledby="review-title">
+        <h2 id="review-title">Review from earlier lessons</h2>
+        <ul class="plain-list">{% for skill in review_skills %}<li><a href="{{ skill.review_url }}">{{ skill.short_name }}</a> · {{ skill.lesson.title }}</li>{% endfor %}</ul>
+      </section>
+      {% endif %}
+
+      <section class="practice-list" aria-labelledby="practice-title">
+        <h2 id="practice-title">Practice</h2>
+        {% if cards %}
+        <ul class="exercise-cards">
+          {% for card in cards %}
+          <li class="exercise-card card{% if card.finished %} is-finished{% endif %}">
+            <div class="exercise-card-head">
+              <span class="tile" aria-hidden="true">{% if card.finished %}{% icon "check" 22 %}{% else %}{% icon "list-checks" 22 %}{% endif %}</span>
+              <div>
+                <h3>{{ card.revision.title }}</h3>
+                <p class="muted">{{ card.revision.target_count }} questions{% if card.skills|length > 1 %} · {{ card.skills|length }} skills{% endif %}</p>
+              </div>
+            </div>
+            <ul class="chips">{% for skill in card.skills %}<li class="chip chip-soft">{{ skill.short_name }}</li>{% endfor %}</ul>
+            {% if user.is_student %}
+            <p class="card-status">{{ card.status }}</p>
+            <a class="btn {% if card.finished %}btn-secondary{% else %}btn-primary{% endif %} btn-block" href="{% url 'practice:exercise' card.exercise.id %}">{% if card.finished %}See results{% else %}Open practice{% endif %}</a>
+            {% else %}
+            <a class="btn btn-secondary btn-block" href="{% url 'practice:teacher_exercise' card.exercise.id %}">See the question pool</a>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p class="empty">No practice is assigned for this lesson yet.</p>
+        {% endif %}
+      </section>
+
+      <nav class="lesson-nav" aria-label="Lessons">
+        {% if previous_lesson %}<a class="btn btn-secondary" href="{{ previous_lesson.get_absolute_url }}">← {{ previous_lesson.title }}</a>{% else %}<span></span>{% endif %}
+        {% if next_lesson %}<a class="btn btn-secondary" href="{{ next_lesson.get_absolute_url }}">{{ next_lesson.title }} →</a>{% endif %}
+      </nav>
+    </div>
+  </div>
 </article>
 {% endblock %}
 

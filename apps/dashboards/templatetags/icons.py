@@ -25,3 +25,27 @@ def icon(name, size=20):
 @register.simple_tag
 def section_icon(key, size=20):
     return icon(SECTION_ICONS.get(key, "sparkles"), size)
+
+
+# Each lesson has its own color (CSS .tone-1 ... .tone-6, by sort order) and a math sign as its
+# mark, so a lesson looks the same on the journey, its page and its practice.
+LESSON_GLYPHS = {
+    "integer_foundation": "±",
+    "integer_addition": "+",
+    "integer_subtraction": "−",
+    "integer_multiplication": "×",
+    "integer_division": "÷",
+    "integer_expressions_applications": "( )",
+}
+
+
+@register.filter
+def lesson_glyph(lesson):
+    return LESSON_GLYPHS.get(getattr(lesson, "code", ""), "•")
+
+
+@register.filter
+def initials(user):
+    """Up to two letters for the round avatar: "Demo Student 2" -> "DS"."""
+    words = [word for word in str(user).split() if word[:1].isalpha()]
+    return ("".join(word[0] for word in words[:2]) or str(user)[:1]).upper()

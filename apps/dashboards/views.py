@@ -318,6 +318,7 @@ def learn(request):
     for card in cards:
         per_lesson.setdefault(card["exercise"].lesson_id, []).append(card)
 
+    skills = _skill_rows(request.user)
     stages = [{
         "kind": "pretest",
         "title": "Pretest",
@@ -325,7 +326,8 @@ def learn(request):
         "url": "assessments:take",
         "arg": "pretest",
     }]
-    for lesson in Lesson.objects.order_by("sort_order"):
+    lessons = list(Lesson.objects.order_by("sort_order"))
+    for lesson in lessons:
         stages.append({
             "kind": "lesson",
             "lesson": lesson,
@@ -333,7 +335,14 @@ def learn(request):
             "state": "open" if journey.pretest_done else "locked",
             "exercises": len(per_lesson.get(lesson.id, [])),
             "finished": sum(1 for card in per_lesson.get(lesson.id, []) if card["finished"]),
+            "skills": [row for row in skills if row["skill"].lesson_id == lesson.id],
         })
+    # "Up next": the first lesson with practice still to do (the first lesson if none is left).
+    lesson_stages = [stage for stage in stages if stage["kind"] == "lesson"]
+    up_next = next((stage for stage in lesson_stages if stage["finished"] < stage["exercises"]),
+                   lesson_stages[0] if lesson_stages else None)
+    practice_total = sum(stage["exercises"] for stage in lesson_stages)
+    practice_done = sum(stage["finished"] for stage in lesson_stages)
     stages.append({
         "kind": "posttest",
         "title": "Posttest",
@@ -345,9 +354,14 @@ def learn(request):
         request,
         "dashboards/student_dashboard.html",
         {
+            "nav": "journey",
             "journey": journey,
             "stages": stages,
-            "skills": _skill_rows(request.user),
-            "first_lesson": Lesson.objects.order_by("sort_order").first(),
+            "skills": skills,
+            "first_lesson": lessons[0] if lessons else None,
+            "up_next": up_next,
+            "practice_total": practice_total,
+            "practice_done": practice_done,
+            "skills_well": sum(1 for row in skills if row["tone"] == "well"),
         },
     )
